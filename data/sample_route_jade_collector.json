@@ -1,0 +1,1055 @@
+{
+  "profile_summary": {
+    "time_budget": 45,
+    "num_target_galleries": 9,
+    "total_stops": 24
+  },
+  "route": [
+    {
+      "gallery": 200,
+      "name": "Chinese Ceramics & More!",
+      "region": "chinese_ceramics",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 52,
+      "featured_artworks": [
+        {
+          "object_id": 42229,
+          "title": "Vase",
+          "culture": "China",
+          "date": "1713\u201322",
+          "classification": "Ceramics",
+          "medium": "Porcelain with peach-bloom glaze (Jingdezhen ware)\r\n\r\n",
+          "alt_text": "Slender porcelain vase with a white rim, three neck rings, and mottled reddish-pink glaze",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP246426.jpg",
+          "highlight": true,
+          "score": 0.63,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779262161,
+      "lng": -73.963184305,
+      "neighbors": [
+        201,
+        202
+      ]
+    },
+    {
+      "gallery": 202,
+      "name": "Gallery 202",
+      "region": "chinese_ceramics",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 10,
+      "featured_artworks": [
+        {
+          "object_id": 39666,
+          "title": "Jar with dragon",
+          "culture": "China",
+          "date": "early 15th century",
+          "classification": "Ceramics",
+          "medium": "Porcelain painted with cobalt blue under transparent glaze (Jingdezhen ware)\r\n\r\n",
+          "alt_text": "Porcelain jar decorated with a blue underglaze dragon among clouds and a band of lotus petals",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32251-001.jpg",
+          "highlight": true,
+          "score": 0.59,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 42193,
+          "title": "Incense burner",
+          "culture": "China",
+          "date": "dated 1512",
+          "classification": "Ceramics",
+          "medium": "Stoneware with relief decoration under colored glazes",
+          "alt_text": "Ornate stoneware incense burner with green and amber glazes, dragons, flowers, and a carved wooden lid",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32252-001.jpg",
+          "highlight": false,
+          "score": 0.49,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 45862,
+          "title": "Amphora with dragon-shaped handles",
+          "culture": "China",
+          "date": "7th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with raised decoration and pale buff glaze\r\n\r\n",
+          "alt_text": "Pale buff stoneware amphora featuring high-arching handles terminating in creature heads that grip the rim",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14610-060.jpg",
+          "highlight": false,
+          "score": 0.47,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779239302,
+      "lng": -73.962979541,
+      "neighbors": [
+        200,
+        203,
+        204,
+        207
+      ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 247,
+      "featured_artworks": [
+        {
+          "object_id": 49369,
+          "title": "Ritual object (Cong)",
+          "culture": "China",
+          "date": "13th\u201312th century BCE",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "A hollow, square stone object with circular collars and handwritten text on its side",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/32710.jpg",
+          "highlight": false,
+          "score": 1.0,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 49538,
+          "title": "Scabbard Chape",
+          "culture": "China",
+          "date": "4th\u20132nd century BCE",
+          "classification": "Hardstone",
+          "medium": "Agate",
+          "alt_text": "Small trapezoidal agate scabbard chape with dark and light gray banding and mottled stone patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1985_214_105.JPG",
+          "highlight": false,
+          "score": 0.7,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 75244,
+          "title": "Plaque",
+          "culture": "China",
+          "date": "",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Horizontal pale green jade plaque with a central hole and stylized symmetrical curved protrusions",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP210602.jpg",
+          "highlight": false,
+          "score": 0.7,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
+    },
+    {
+      "gallery": 219,
+      "name": "Chinese Jade & Decorative Arts",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 118,
+      "featured_artworks": [
+        {
+          "object_id": 39844,
+          "title": "Boy with water buffalo",
+          "culture": "China",
+          "date": "18th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "White jade sculpture of a reclining water buffalo with a small child on its back",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP318968.jpg",
+          "highlight": false,
+          "score": 0.98,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 41201,
+          "title": "Snuff bottle",
+          "culture": "China",
+          "date": "19th century",
+          "classification": "Snuff Bottles",
+          "medium": "Jade (jadeite)",
+          "alt_text": "A rounded green jade snuff bottle with a domed stopper and mottled texture",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP319176.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 41213,
+          "title": "Snuff Bottle",
+          "culture": "China",
+          "date": "18th\u201319th century",
+          "classification": "Snuff Bottles",
+          "medium": "Glass with aventurine stopper",
+          "alt_text": "Translucent yellow glass snuff bottle topped with a sparkling brown and gold aventurine stopper",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP321809.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77935,
+      "lng": -73.96255,
+      "neighbors": [
+        207,
+        220,
+        222
+      ]
+    },
+    {
+      "gallery": 222,
+      "name": "Chinese Jade Collection",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 123,
+      "featured_artworks": [
+        {
+          "object_id": 42149,
+          "title": "Table screen with landscape scene",
+          "culture": "China",
+          "date": "18th\u201319th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Carved pale green jade oval screen depicting eight people, a pavilion, and a bird in a mountain landscape",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP278060.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 42153,
+          "title": "Incense burner with cover",
+          "culture": "China",
+          "date": "18th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "A light-toned, fluted vessel with a dome-shaped cover and two small loop handles",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/14576.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 42154,
+          "title": "Covered box from an incense set",
+          "culture": "China",
+          "date": "18th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Round jade box with vertical ribbing, a carved geometric top, and the number 538",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/14570.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77935,
+      "lng": -73.9624,
+      "neighbors": [
+        219,
+        221
+      ]
+    },
+    {
+      "gallery": 219,
+      "name": "Chinese Jade & Decorative Arts",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 118,
+      "featured_artworks": [],
+      "lat": 40.77935,
+      "lng": -73.96255,
+      "neighbors": [
+        207,
+        220,
+        222
+      ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 247,
+      "featured_artworks": [],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
+    },
+    {
+      "gallery": 208,
+      "name": "Chinese Buddhist Art ",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 20,
+      "featured_artworks": [
+        {
+          "object_id": 42733,
+          "title": "Buddha Maitreya (Mile)",
+          "culture": "China",
+          "date": "dated 486 (10th year of Taihe reign)",
+          "classification": "Sculpture",
+          "medium": "Gilt bronze with traces of pigment; piece-mold cast",
+          "alt_text": "Gilt bronze standing figure on a petal-decorated base with raised right hand and serene expression",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP170102.jpg",
+          "highlight": true,
+          "score": 0.56,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779721287,
+      "lng": -73.962478484,
+      "neighbors": [
+        207,
+        209,
+        233
+      ]
+    },
+    {
+      "gallery": 233,
+      "name": "Flip Sides: Seeing Korean Art Anew",
+      "region": "korean",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 42,
+      "featured_artworks": [
+        {
+          "object_id": 57524,
+          "title": "Talisman",
+          "culture": "Korea",
+          "date": "19th century",
+          "classification": "Hardstone",
+          "medium": "Stone",
+          "alt_text": "Rectangular dark stone block with deeply carved serpentine creature and swirling cloud patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-41794-001.jpg",
+          "highlight": false,
+          "score": 0.5,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 910524,
+          "title": "Openwork jar with peonies",
+          "culture": "Korea",
+          "date": "late 18th\u2013early 19th century",
+          "classification": "Ceramics",
+          "medium": "Porcelain",
+          "alt_text": "Globular porcelain jar featuring an outer shell carved with openwork peony blossoms and winding leafy vines",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34236-001.jpg",
+          "highlight": true,
+          "score": 0.45,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 72485,
+          "title": "Seated bodhisattva (left attendant of a triad)",
+          "culture": "Korea",
+          "date": "ca. mid-17th century",
+          "classification": "Sculpture",
+          "medium": "Gilt wood",
+          "alt_text": "Gilded wood sculpture of a person seated cross-legged wearing an elaborate crown with bird motifs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP358652.jpg",
+          "highlight": true,
+          "score": 0.42,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779601942,
+      "lng": -73.962554258,
+      "neighbors": [
+        208,
+        234,
+        235
+      ]
+    },
+    {
+      "gallery": 234,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 51,
+      "featured_artworks": [
+        {
+          "object_id": 50588,
+          "title": "Eccentric Anthropomorph",
+          "culture": "India",
+          "date": "1500\u20131000 BCE",
+          "classification": "Metalwork",
+          "medium": "Copper",
+          "alt_text": "Stylized copper object with a rounded top, horizontal projections, and flared lower limbs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-37037-002.jpg",
+          "highlight": false,
+          "score": 0.4,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 50589,
+          "title": "Eccentric Anthropomorph",
+          "culture": "Nepal (Kathmandu Valley)",
+          "date": "1500\u20131000 BCE",
+          "classification": "Metalwork",
+          "medium": "Copper",
+          "alt_text": "A flat copper cutout with a fan-shaped top and horizontal side tabs covered in green patina",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-37038-001.jpg",
+          "highlight": false,
+          "score": 0.4,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 50598,
+          "title": "Harpoon",
+          "culture": "India",
+          "date": "1500\u20131000 BCE",
+          "classification": "Metalwork",
+          "medium": "Copper",
+          "alt_text": "A horizontal copper harpoon with a leaf-shaped head and four pairs of backwards-curving barbs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-37134-001.jpg",
+          "highlight": false,
+          "score": 0.4,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77953248,
+      "lng": -73.962460574,
+      "neighbors": [
+        204,
+        233,
+        235
+      ]
+    },
+    {
+      "gallery": 235,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 41,
+      "featured_artworks": [
+        {
+          "object_id": 38239,
+          "title": "Drum panel with scenes of the Great Departure and Temptation of the Buddha",
+          "culture": "India, Nagarjunakonda, Guntur district, Andhra Pradesh",
+          "date": "first half 3rd century CE",
+          "classification": "Sculpture",
+          "medium": "Limestone",
+          "alt_text": "Limestone relief panel with two registers of numerous people and animals separated by a floral band",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-18911-001.jpg",
+          "highlight": true,
+          "score": 0.38,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779605905,
+      "lng": -73.962407032,
+      "neighbors": [
+        233,
+        234,
+        236
+      ]
+    },
+    {
+      "gallery": 236,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 26,
+      "featured_artworks": [
+        {
+          "object_id": 38198,
+          "title": "Standing Buddha Offering Protection",
+          "culture": "India (Uttar Pradesh, Mathura)",
+          "date": "late 5th century",
+          "classification": "Sculpture",
+          "medium": "Red sandstone",
+          "alt_text": "Standing red stone sculpture of a person in thin draped robes with a fragmented carved backdrop",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT237.jpg",
+          "highlight": true,
+          "score": 0.38,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779690488,
+      "lng": -73.962345353,
+      "neighbors": [
+        235,
+        237
+      ]
+    },
+    {
+      "gallery": 237,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 42,
+      "featured_artworks": [
+        {
+          "object_id": 39346,
+          "title": "Avalokiteshvara Padmapani",
+          "culture": "Pakistan (Swat Valley)",
+          "date": "7th century",
+          "classification": "Metalwork",
+          "medium": "Bronze inlaid with silver and copper\r\n\r\n",
+          "alt_text": "Bronze sculpture of a seated person with silver eyes holding a flower on a tiered lotus base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP272542.jpg",
+          "highlight": true,
+          "score": 0.42,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 38435,
+          "title": "Diadem with Kinnaris (Half-Bird, Half-Female Creatures)",
+          "culture": "India (Jammu & Kashmir, ancient kingdom of Kashmir)",
+          "date": "9th\u201310th century",
+          "classification": "Jewelry",
+          "medium": "Gold inset with garnet",
+          "alt_text": "Ornate gold diadem with three panels depicting human-bird figures and a central red gemstone with hanging discs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14791-023.jpg",
+          "highlight": true,
+          "score": 0.42,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 39345,
+          "title": "Crowned  Buddha",
+          "culture": "India, Ancient kingdom of Kashmir",
+          "date": "9th century",
+          "classification": "Sculpture",
+          "medium": "Brass",
+          "alt_text": "Metal sculpture of a standing figure wearing an elaborate crown and jewelry within an almond-shaped frame",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT229537.jpg",
+          "highlight": true,
+          "score": 0.38,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779760304,
+      "lng": -73.962294441,
+      "neighbors": [
+        236,
+        238
+      ]
+    },
+    {
+      "gallery": 238,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 27,
+      "featured_artworks": [
+        {
+          "object_id": 38124,
+          "title": "Manjuvajra Mandala",
+          "culture": "Bangladesh or India (Bengal)",
+          "date": "11th century",
+          "classification": "Sculpture",
+          "medium": "Black stone",
+          "alt_text": "A dark stone sculpture of a three-headed, six-armed person seated within an ornate architectural arch",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-033.jpg",
+          "highlight": true,
+          "score": 0.36,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779813175,
+      "lng": -73.962255887,
+      "neighbors": [
+        237,
+        239
+      ]
+    },
+    {
+      "gallery": 239,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 2,
+      "featured_artworks": [
+        {
+          "object_id": 38133,
+          "title": "Enthroned Vishnu",
+          "culture": "India",
+          "date": "second half of the 8th\u2013early 9th century",
+          "classification": "Sculpture",
+          "medium": "Granulite",
+          "alt_text": "Vertical stone sculpture of a four-armed person seated on a throne in a relaxed posture",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5240.jpg",
+          "highlight": true,
+          "score": 0.36,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779898381,
+      "lng": -73.962193753,
+      "neighbors": [
+        209,
+        238,
+        240,
+        241
+      ]
+    },
+    {
+      "gallery": 241,
+      "name": "Indian Medieval Sculpture Gallery",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 11,
+      "featured_artworks": [
+        {
+          "object_id": 38146,
+          "title": "Vishnu",
+          "culture": "India (Punjab)",
+          "date": "10th\u201311th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Vertical sandstone relief sculpture of a four-armed figure surrounded by smaller figures and decorative carvings",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5052.jpg",
+          "highlight": true,
+          "score": 0.36,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779923533,
+      "lng": -73.962067714,
+      "neighbors": [
+        239,
+        240,
+        242,
+        243,
+        244
+      ]
+    },
+    {
+      "gallery": 244,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 69,
+      "featured_artworks": [
+        {
+          "object_id": 38632,
+          "title": "Ceremonial Ax",
+          "culture": "Indonesia",
+          "date": "ca. 500 BCE\u2013300 CE",
+          "classification": "Hardstone",
+          "medium": "Translucent agate",
+          "alt_text": "A vertical, blade-shaped stone object with translucent brown and tan swirling agate patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102596.jpg",
+          "highlight": false,
+          "score": 0.49,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 50781,
+          "title": "Vessel in the Form of a Horn",
+          "culture": "Vietnam (Sa Huynh culture?)",
+          "date": "ca. 500 BCE\u2013100 CE",
+          "classification": "Hardstone",
+          "medium": "Stone",
+          "alt_text": "Stone vessel in the shape of a horn with horizontal ridges and a curled spiral base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102595.jpg",
+          "highlight": false,
+          "score": 0.49,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 37747,
+          "title": "Box for Betel Leaves",
+          "culture": "Indonesia (Sulawesi)",
+          "date": "ca. 500 BCE\u2013300 CE",
+          "classification": "Metalwork",
+          "medium": "Bronze",
+          "alt_text": "Rectangular green-patinated bronze box with a tiered lid featuring parallel bars, small figures, and geometric patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP228215.jpg",
+          "highlight": true,
+          "score": 0.47,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779996135,
+      "lng": -73.962027516,
+      "neighbors": [
+        216,
+        241,
+        243,
+        245,
+        247
+      ]
+    },
+    {
+      "gallery": 216,
+      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 2,
+      "featured_artworks": [
+        {
+          "object_id": 42148,
+          "title": "Seated luohan holding a fan",
+          "culture": "China",
+          "date": "late 18th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Vertical stone sculpture of a seated person with a fan inside a craggy rock grotto",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP350747.jpg",
+          "highlight": false,
+          "score": 0.68,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780057202,
+      "lng": -73.962077937,
+      "neighbors": [
+        215,
+        217,
+        244,
+        253
+      ]
+    },
+    {
+      "gallery": 217,
+      "name": "Chinese Courtyard in the Style of the Ming Dynasty",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 3,
+      "object_count": 0,
+      "featured_artworks": [],
+      "lat": 40.780140228,
+      "lng": -73.962198618,
+      "neighbors": [
+        210,
+        216,
+        218
+      ]
+    },
+    {
+      "gallery": 210,
+      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 28,
+      "featured_artworks": [
+        {
+          "object_id": 40055,
+          "title": "Emperor Xuanzong's flight to Shu",
+          "culture": "China",
+          "date": "mid-12th century",
+          "classification": "Paintings",
+          "medium": "Hanging scroll; ink, color, and gold on silk",
+          "alt_text": "Landscape painting on a scroll featuring about nine people traveling through mountains on horseback and foot",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP247676.jpg",
+          "highlight": true,
+          "score": 0.51,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780212407,
+      "lng": -73.962252558,
+      "neighbors": [
+        211,
+        217,
+        232
+      ]
+    },
+    {
+      "gallery": 232,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 7,
+      "featured_artworks": [
+        {
+          "object_id": 53154,
+          "title": "\u201cFlame-Style\u201d Deep Pot (Kaen doki)",
+          "culture": "Japan",
+          "date": "",
+          "classification": "Ceramics",
+          "medium": "Earthenware with cord-marked and incised decoration",
+          "alt_text": "Ornate earthenware vessel with a sculptural rim of scrolling projections and a cord-marked, tapered body",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2015_300_258_Burke_website.jpg",
+          "highlight": false,
+          "score": 0.37,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780169066,
+      "lng": -73.962431458,
+      "neighbors": [
+        210,
+        223,
+        231
+      ]
+    },
+    {
+      "gallery": 223,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 25,
+      "featured_artworks": [
+        {
+          "object_id": 50342,
+          "title": "Small Dish (Kozara) with Three Jars",
+          "culture": "Japan",
+          "date": "1680\u201390s",
+          "classification": "Ceramics",
+          "medium": "Porcelain with cobalt blue under transparent glaze and polychrome enamels over the glaze (Hizen ware, Nabeshima type)",
+          "alt_text": "Circular porcelain dish featuring three decorated jars with geometric, crackled, and floral patterns on a blue ground",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP222421.jpg",
+          "highlight": true,
+          "score": 0.45,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780106867,
+      "lng": -73.962499034,
+      "neighbors": [
+        224,
+        232
+      ]
+    },
+    {
+      "gallery": 224,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 25,
+      "featured_artworks": [
+        {
+          "object_id": 48373,
+          "title": "Tea bowl",
+          "culture": "China",
+          "date": "13th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with celadon glaze (Longquan ware), gold lacquer repairs",
+          "alt_text": "Flared pale green glazed stoneware bowl with a dark gold-colored lacquer repair on the rim",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP342270.jpg",
+          "highlight": false,
+          "score": 0.47,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780153923,
+      "lng": -73.962598275,
+      "neighbors": [
+        223,
+        225,
+        231
+      ]
+    },
+    {
+      "gallery": 225,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 20,
+      "featured_artworks": [
+        {
+          "object_id": 42514,
+          "title": "Dish with Peonies",
+          "culture": "China",
+          "date": "late 14th\u2013early 15th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with incised decoration under celadon glaze (Longquan ware) \r\n\r\n",
+          "alt_text": "Pale green celadon dish with a scalloped rim, fluted sides, and a large incised center floral medallion",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-1984_358_001.jpg",
+          "highlight": false,
+          "score": 0.49,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 50709,
+          "title": "Jar with loop handles",
+          "culture": "China",
+          "date": "7th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with olive celadon glaze",
+          "alt_text": "Stout olive-green stoneware jar with a wide mouth and two small vertical loop handles on its shoulder",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1977_449_10.jpg",
+          "highlight": false,
+          "score": 0.47,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 50230,
+          "title": "Vase in Meiping Shape",
+          "culture": "China",
+          "date": "11th\u201312th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with white glaze (Cizhou ware)",
+          "alt_text": "White stoneware meiping vase with high, rounded shoulders, a small mouth, and a tapering base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14610-051.jpg",
+          "highlight": false,
+          "score": 0.47,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780222019,
+      "lng": -73.962713964,
+      "neighbors": [
+        224,
+        226,
+        230
+      ]
+    }
+  ],
+  "total_time_estimate": 74,
+  "path_coordinates": [
+    {
+      "gallery": 200,
+      "lat": 40.779262161,
+      "lng": -73.963184305
+    },
+    {
+      "gallery": 202,
+      "lat": 40.779239302,
+      "lng": -73.962979541
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
+    },
+    {
+      "gallery": 219,
+      "lat": 40.77935,
+      "lng": -73.96255
+    },
+    {
+      "gallery": 222,
+      "lat": 40.77935,
+      "lng": -73.9624
+    },
+    {
+      "gallery": 219,
+      "lat": 40.77935,
+      "lng": -73.96255
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
+    },
+    {
+      "gallery": 208,
+      "lat": 40.779721287,
+      "lng": -73.962478484
+    },
+    {
+      "gallery": 233,
+      "lat": 40.779601942,
+      "lng": -73.962554258
+    },
+    {
+      "gallery": 234,
+      "lat": 40.77953248,
+      "lng": -73.962460574
+    },
+    {
+      "gallery": 235,
+      "lat": 40.779605905,
+      "lng": -73.962407032
+    },
+    {
+      "gallery": 236,
+      "lat": 40.779690488,
+      "lng": -73.962345353
+    },
+    {
+      "gallery": 237,
+      "lat": 40.779760304,
+      "lng": -73.962294441
+    },
+    {
+      "gallery": 238,
+      "lat": 40.779813175,
+      "lng": -73.962255887
+    },
+    {
+      "gallery": 239,
+      "lat": 40.779898381,
+      "lng": -73.962193753
+    },
+    {
+      "gallery": 241,
+      "lat": 40.779923533,
+      "lng": -73.962067714
+    },
+    {
+      "gallery": 244,
+      "lat": 40.779996135,
+      "lng": -73.962027516
+    },
+    {
+      "gallery": 216,
+      "lat": 40.780057202,
+      "lng": -73.962077937
+    },
+    {
+      "gallery": 217,
+      "lat": 40.780140228,
+      "lng": -73.962198618
+    },
+    {
+      "gallery": 210,
+      "lat": 40.780212407,
+      "lng": -73.962252558
+    },
+    {
+      "gallery": 232,
+      "lat": 40.780169066,
+      "lng": -73.962431458
+    },
+    {
+      "gallery": 223,
+      "lat": 40.780106867,
+      "lng": -73.962499034
+    },
+    {
+      "gallery": 224,
+      "lat": 40.780153923,
+      "lng": -73.962598275
+    },
+    {
+      "gallery": 225,
+      "lat": 40.780222019,
+      "lng": -73.962713964
+    }
+  ],
+  "map_bounds": {
+    "north": 40.780422019,
+    "south": 40.779039302,
+    "east": -73.961827516,
+    "west": -73.963384305
+  }
+}

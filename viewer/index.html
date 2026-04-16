@@ -236,6 +236,65 @@
     flex-shrink: 0;
   }
 
+  /* ─── Route selector ─── */
+  .gc-route-selector {
+    padding: 0 14px 10px;
+    flex-shrink: 0;
+  }
+  .gc-route-select {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #ccc;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23888' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+  }
+  .gc-route-select:hover { border-color: rgba(255,255,255,0.2); }
+  .gc-route-select option { background: #1a1a2e; color: #ccc; }
+
+  .gc-route-info {
+    margin-top: 6px;
+    font-size: 10px;
+    color: #666;
+    display: flex;
+    gap: 8px;
+  }
+  .gc-route-info span { color: #e4002b; font-weight: 600; }
+
+  /* Route stop in gallery list */
+  .gc-item .gc-stop-badge {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e4002b;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .gc-item .gc-stop-badge.passthrough {
+    background: transparent;
+    border: 1.5px solid #666;
+    color: #666;
+  }
+  .gc-item .gc-stop-time {
+    font-size: 9px;
+    color: #888;
+    flex-shrink: 0;
+  }
+
   /* ─── Object column ─── */
   .oc-header {
     padding: 16px 16px 12px;
@@ -485,6 +544,25 @@
 </head>
 <body>
 
+<!-- Survey status badge -->
+<div id="survey-badge" style="
+  position: fixed; top: 12px; right: 12px; z-index: 9999;
+  background: rgba(14,14,34,0.95); color: #eee;
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+  padding: 10px 14px; font-size: 12px; font-family: inherit;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 280px;
+">
+  <div id="survey-badge-content">
+    <div style="color: #888; margin-bottom: 6px;">No survey loaded</div>
+    <label for="survey-file-input" style="
+      display: inline-block; padding: 6px 10px; background: #4ade80;
+      color: #0a0a1a; border-radius: 6px; cursor: pointer; font-weight: 600;
+    ">Load JSON</label>
+    <input id="survey-file-input" type="file" accept="application/json,.json" style="display:none">
+    <div style="margin-top: 6px; font-size: 11px; color: #666;">or drop a .json file anywhere</div>
+  </div>
+</div>
+
 <div id="app">
   <!-- Col 1: Gallery tree -->
   <div id="col-galleries">
@@ -493,6 +571,7 @@
       <div class="gc-stats" id="gc-stats"></div>
     </div>
     <div class="gc-floors" id="gc-floors"></div>
+    <div class="gc-route-selector" id="gc-route-selector"></div>
     <div class="gc-list" id="gc-list"></div>
   </div>
 
@@ -551,8 +630,17 @@ const SECTION_COLORS = {
   'The Iris and B.Gerald Cantor Roof Garden': '#4c8a4c',
 };
 
-let currentFloor = 'Floor 1';
+const ROUTES = [
+  { id: '', label: 'No route' },
+  { id: 'sample_route_quick_highlights', label: 'Quick Highlights (30 min)' },
+  { id: 'sample_route_ceramics_lover', label: 'Ceramics Lover (60 min)' },
+  { id: 'sample_route_sculpture_explorer', label: 'Sculpture Explorer (120 min)' },
+];
+const CENTER_LNG = -73.963517; // for mirroring
+
+let currentFloor = 'Floor 2'; // routes are on floor 2 mostly
 let selectedGallery = null;
+let currentRoute = null;
 let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata, galleryObjects, roomConnections;
 let map;
 
@@ -607,18 +695,53 @@ function renderGalleryList() {
   const galleries = getFloorGalleries(currentFloor);
   const withData = galleries.filter(g => g.objData);
 
-  document.getElementById('gc-stats').textContent = `${currentFloor} \u2022 ${withData.length}/${galleries.length} with data`;
+  // Route info
+  const routeInfo = document.getElementById('gc-route-info');
+  if (currentRoute) {
+    const s = currentRoute.profile_summary;
+    routeInfo.innerHTML = `<span>${s.total_stops}</span> stops \u2022 <span>${s.num_target_galleries}</span> galleries \u2022 ~${currentRoute.total_time_estimate} min`;
+  } else {
+    routeInfo.innerHTML = '';
+  }
+
+  // Build route stop lookup
+  const routeStops = {};
+  if (currentRoute) {
+    currentRoute.route.forEach((stop, i) => {
+      routeStops[String(stop.gallery)] = { index: i + 1, ...stop };
+    });
+  }
 
   let html = '';
-  if (withData.length > 0) {
-    html += `<div class="gc-section">With data (${withData.length})</div>`;
-    withData.forEach(g => { html += galleryItem(g); });
+
+  // If route is active, show route stops first in order
+  if (currentRoute) {
+    html += `<div class="gc-section">Route (${currentRoute.route.length} stops)</div>`;
+    currentRoute.route.forEach((stop, i) => {
+      const g = galleries.find(g => g.num === String(stop.gallery));
+      html += routeGalleryItem(stop, i + 1, g);
+    });
+
+    // Then show remaining galleries
+    const routeNums = new Set(currentRoute.route.map(s => String(s.gallery)));
+    const remaining = galleries.filter(g => !routeNums.has(g.num));
+    if (remaining.length > 0) {
+      html += `<div class="gc-section">Other galleries (${remaining.length})</div>`;
+      remaining.forEach(g => { html += galleryItem(g); });
+    }
+  } else {
+    document.getElementById('gc-stats').textContent = `${currentFloor} \u2022 ${withData.length}/${galleries.length} with data`;
+    if (withData.length > 0) {
+      html += `<div class="gc-section">With data (${withData.length})</div>`;
+      withData.forEach(g => { html += galleryItem(g); });
+    }
+    const noData = galleries.filter(g => !g.objData);
+    if (noData.length > 0) {
+      html += `<div class="gc-section">No data (${noData.length})</div>`;
+      noData.forEach(g => { html += galleryItem(g); });
+    }
   }
-  const noData = galleries.filter(g => !g.objData);
-  if (noData.length > 0) {
-    html += `<div class="gc-section">No data (${noData.length})</div>`;
-    noData.forEach(g => { html += galleryItem(g); });
-  }
+
   list.innerHTML = html;
 
   // Handlers
@@ -647,6 +770,19 @@ function galleryItem(g) {
   const cls = g.objData ? 'has-data' : 'no-data';
   const ct = g.objData ? `<span class="gc-ct">${g.objData.count}</span>` : '';
   return `<div class="gc-item ${cls}${active}" data-num="${g.num}"><span class="gc-num">${g.num}</span><span class="gc-name">${g.name}</span>${ct}</div>`;
+}
+
+function routeGalleryItem(stop, index, g) {
+  const num = String(stop.gallery);
+  const active = num === selectedGallery ? ' active' : '';
+  const badgeCls = stop.is_target ? '' : ' passthrough';
+  const name = stop.name || (g && g.name) || '';
+  return `<div class="gc-item has-data${active}" data-num="${num}">` +
+    `<span class="gc-stop-badge${badgeCls}">${index}</span>` +
+    `<span class="gc-num">${num}</span>` +
+    `<span class="gc-name">${name}</span>` +
+    `<span class="gc-stop-time">${stop.time_estimate_min}m</span>` +
+    `</div>`;
 }
 
 // ─── Object column ───
@@ -937,6 +1073,8 @@ function initMap() {
     map.addSource('other-rooms', { type: 'geojson', data: filterByFloor(otherRoomsData, currentFloor) });
     map.addSource('galleries', { type: 'geojson', data: filterByFloor(galleryData, currentFloor) });
     map.addSource('connections', { type: 'geojson', data: filterByFloor(roomConnections, currentFloor) });
+    map.addSource('route-line', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    map.addSource('route-stops', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
 
     map.addLayer({ id: 'floor-outline-fill', type: 'fill', source: 'floor-outline', paint: { 'fill-color': '#1e2444', 'fill-opacity': 0.9 } });
     map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#3a4070', 'line-width': 2 } });
@@ -961,6 +1099,19 @@ function initMap() {
 
     // Hover/select
     map.addLayer({ id: 'gallery-hover', type: 'fill', source: 'galleries', paint: { 'fill-color': '#ff4466', 'fill-opacity': 0.6 }, filter: ['==', 'gallery_number', ''] });
+
+    // Route layers
+    map.addLayer({ id: 'route-line-outline', type: 'line', source: 'route-line',
+      paint: { 'line-color': '#fff', 'line-width': 5, 'line-opacity': 0.15 } });
+    map.addLayer({ id: 'route-line-main', type: 'line', source: 'route-line',
+      paint: { 'line-color': '#ff6b35', 'line-width': 3, 'line-opacity': 0.9 } });
+    map.addLayer({ id: 'route-stops-circle', type: 'circle', source: 'route-stops',
+      paint: {
+        'circle-radius': ['case', ['get', 'is_target'], 10, 6],
+        'circle-color': ['case', ['get', 'is_target'], '#ff6b35', '#444'],
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#fff',
+      } });
 
     addGalleryLabels();
 
@@ -1031,6 +1182,93 @@ function addGalleryLabels() {
 
 // ─── Init ───
 
+// ─── Routes ───
+
+function mirrorLng(lng) {
+  return 2 * CENTER_LNG - lng;
+}
+
+const SURVEY_ROUTE_ID = '__survey_route__';
+let surveyDerivedRoute = null;
+
+async function loadRoute(routeId) {
+  if (!routeId) {
+    currentRoute = null;
+    updateRouteOnMap();
+    renderGalleryList();
+    return;
+  }
+  if (routeId === SURVEY_ROUTE_ID) {
+    currentRoute = surveyDerivedRoute;
+    updateRouteOnMap();
+    renderGalleryList();
+    return;
+  }
+  const resp = await fetch(`../data/${routeId}.json`);
+  currentRoute = await resp.json();
+  updateRouteOnMap();
+  renderGalleryList();
+}
+
+function getGalleryCentroid(galleryNum) {
+  // Find the centroid from our actual (mirrored) room polygons
+  const num = String(galleryNum);
+  const feat = galleryData.features.find(f => f.properties.gallery_number === num);
+  if (!feat) return null;
+  const coords = feat.geometry.type === 'Polygon'
+    ? feat.geometry.coordinates[0]
+    : feat.geometry.coordinates[0][0];
+  const n = coords.length - 1;
+  if (n <= 0) return null;
+  const cx = coords.slice(0, n).reduce((s, c) => s + c[0], 0) / n;
+  const cy = coords.slice(0, n).reduce((s, c) => s + c[1], 0) / n;
+  return [cx, cy];
+}
+
+function updateRouteOnMap() {
+  if (!map || !map.getSource('route-line')) return;
+
+  if (!currentRoute) {
+    map.getSource('route-line').setData({ type: 'FeatureCollection', features: [] });
+    map.getSource('route-stops').setData({ type: 'FeatureCollection', features: [] });
+    return;
+  }
+
+  // Build route line using actual room polygon centroids
+  const lineCoords = [];
+  currentRoute.route.forEach(stop => {
+    const c = getGalleryCentroid(stop.gallery);
+    if (c) lineCoords.push(c);
+  });
+
+  const lineFeatures = lineCoords.length >= 2 ? [{
+    type: 'Feature',
+    geometry: { type: 'LineString', coordinates: lineCoords },
+    properties: {}
+  }] : [];
+  map.getSource('route-line').setData({ type: 'FeatureCollection', features: lineFeatures });
+
+  // Build stop markers at room centroids
+  const stopFeatures = [];
+  currentRoute.route.forEach((stop, i) => {
+    const c = getGalleryCentroid(stop.gallery);
+    if (c) {
+      stopFeatures.push({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: c },
+        properties: {
+          index: i + 1,
+          gallery: String(stop.gallery),
+          name: stop.name,
+          is_target: stop.is_target,
+          time: stop.time_estimate_min,
+        }
+      });
+    }
+  });
+  map.getSource('route-stops').setData({ type: 'FeatureCollection', features: stopFeatures });
+}
+
 function buildUI() {
   const floors = document.getElementById('gc-floors');
   FLOORS.forEach(f => {
@@ -1042,6 +1280,22 @@ function buildUI() {
     pill.onclick = () => switchFloor(f.id);
     floors.appendChild(pill);
   });
+
+  // Route selector
+  const routeSel = document.getElementById('gc-route-selector');
+  let rhtml = '<select class="gc-route-select" id="gc-route-select">';
+  ROUTES.forEach(r => { rhtml += `<option value="${r.id}">${r.label}</option>`; });
+  rhtml += '</select><div class="gc-route-info" id="gc-route-info"></div>';
+  routeSel.innerHTML = rhtml;
+  document.getElementById('gc-route-select').addEventListener('change', (e) => {
+    loadRoute(e.target.value);
+  });
+
+  // If survey answers present from localStorage, generate + inject "Your Tour" and auto-select
+  if (window.surveyAnswers) {
+    refreshSurveyRoute();
+    rebuildRouteSelector(true);
+  }
 
   const mapSel = document.getElementById('map-floor-selector');
   FLOORS.forEach(f => {
@@ -1056,7 +1310,437 @@ function buildUI() {
   renderGalleryList();
 }
 
+// ---- Survey results loading ----
+window.surveyAnswers = null;
+
+function renderSurveyBadge() {
+  const el = document.getElementById('survey-badge-content');
+  if (!el) return;
+  if (window.surveyAnswers) {
+    const savedAt = localStorage.getItem('metSurveyResultsAt');
+    const when = savedAt ? new Date(savedAt).toLocaleTimeString() : '';
+    const keys = Object.keys(window.surveyAnswers);
+    el.innerHTML = `
+      <div style="color: #4ade80; margin-bottom: 4px; font-weight: 600;">✓ Survey loaded</div>
+      <div style="color: #888; font-size: 11px;">${keys.length} answers${when ? ' • ' + when : ''}</div>
+      <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+        <button onclick="clearSurvey()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#aaa;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;">Clear</button>
+        <label for="survey-file-input" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#aaa;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;">Replace</label>
+      </div>
+    `;
+  }
+}
+
+function setSurvey(answers) {
+  window.surveyAnswers = answers;
+  try {
+    localStorage.setItem('metSurveyResults', JSON.stringify(answers));
+    localStorage.setItem('metSurveyResultsAt', new Date().toISOString());
+  } catch (e) {}
+  renderSurveyBadge();
+  console.log('Survey loaded:', answers);
+  window.dispatchEvent(new CustomEvent('survey-loaded', { detail: answers }));
+}
+
+function clearSurvey() {
+  window.surveyAnswers = null;
+  localStorage.removeItem('metSurveyResults');
+  localStorage.removeItem('metSurveyResultsAt');
+  location.reload();
+}
+
+function loadSurveyFromFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      setSurvey(JSON.parse(e.target.result));
+    } catch (err) {
+      alert('Could not parse survey JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ─── Survey → Route generation (JS port of scripts/generate_route.py) ───
+
+const CLASS_MAP = {
+  'Ceramics': 'ceramics', 'Tomb Pottery': 'ceramics', 'Glass': 'ceramics',
+  'Sculpture': 'sculpture', 'Ivories': 'sculpture', 'Horn': 'sculpture',
+  'Metalwork': 'metalwork', 'Cloisonné': 'metalwork', 'Enamels': 'metalwork',
+  'Mirrors': 'metalwork', 'Jewelry': 'metalwork',
+  'Jade': 'jade', 'Hardstone': 'jade', 'Snuff Bottles': 'jade',
+  'Paintings': 'paintings', 'Calligraphy': 'paintings',
+  'Prints': 'prints', 'Furniture': 'furnishings', 'Lacquer': 'furnishings',
+};
+
+function classGroup(c) {
+  if (!c) return 'other';
+  return CLASS_MAP[c] || 'other';
+}
+
+function cultureGroup(c) {
+  if (!c) return 'other';
+  const cl = c.toLowerCase();
+  if (cl.includes('china') || cl.includes('chinese')) return 'east_asia';
+  if (cl.includes('japan')) return 'japan';
+  if (cl.includes('korea')) return 'korea';
+  if (['india','nepal','sri lanka','bangladesh','pakistan'].some(k => cl.includes(k))) return 'south_asia';
+  if (['thailand','cambodia','indonesia','vietnam','burma'].some(k => cl.includes(k))) return 'southeast_asia';
+  if (cl.includes('tibet')) return 'himalayan';
+  return 'other';
+}
+
+function answersToProfile(a) {
+  const timeBudget = Number(a.q1) || 60;
+
+  // Q4 materials — selected class_groups (already in canonical form from survey_pools)
+  const selectedClasses = new Set(a.q4 || []);
+  // Survey uses 'jade_hardstone' but generate_route uses 'jade' — normalize
+  if (selectedClasses.has('jade_hardstone')) {
+    selectedClasses.delete('jade_hardstone');
+    selectedClasses.add('jade');
+  }
+  const classWeights = {};
+  ['ceramics','sculpture','metalwork','jade','paintings','prints','furnishings'].forEach(k => {
+    classWeights[k] = selectedClasses.has(k) ? 0.9 : 0.3;
+  });
+
+  // Q5 cultures — selected culture_groups
+  const selectedCultures = new Set(a.q5 || []);
+  const cultureWeights = {};
+  ['east_asia','japan','korea','south_asia','southeast_asia','himalayan'].forEach(k => {
+    cultureWeights[k] = selectedCultures.has(k) ? 0.8 : 0.3;
+  });
+
+  // Q9 emotion words → era hint (light touch)
+  const words = (a.q9 || []).map(w => w.toLowerCase());
+  const eraWeights = {
+    ancient: 0.4, classical: 0.4, medieval: 0.5,
+    early_modern: 0.5, late_imperial: 0.5, modern: 0.4,
+  };
+  if (words.some(w => ['ancient','haunting','earthy'].includes(w))) {
+    eraWeights.ancient = 0.9; eraWeights.classical = 0.8;
+  }
+  if (words.some(w => ['intricate','elegant','colorful'].includes(w))) {
+    eraWeights.late_imperial = 0.9; eraWeights.early_modern = 0.8;
+  }
+
+  // Q6 single + Q7 multi → selected object ids for score boost
+  const selectedIds = [];
+  if (a.q6) selectedIds.push(...(Array.isArray(a.q6) ? a.q6 : [a.q6]));
+  if (a.q7) selectedIds.push(...(Array.isArray(a.q7) ? a.q7 : [a.q7]));
+  const selectedObjectIds = selectedIds.map(x => Number(x)).filter(Number.isFinite);
+
+  // Q8 preferred gallery
+  const preferredGallery = a.q8 ? Number(a.q8) : null;
+
+  return {
+    time_budget_minutes: timeBudget,
+    preferred_gallery: preferredGallery,
+    selected_object_ids: selectedObjectIds,
+    weights: { classification: classWeights, culture: cultureWeights, era: eraWeights },
+  };
+}
+
+function scoreObject(obj, profile) {
+  const w = profile.weights;
+  const cg = classGroup(obj.classification);
+  const cu = cultureGroup(obj.culture);
+  // Era can't be derived from gallery_objects.json (no begin_date field) — skip era per-object
+  let s = 0;
+  s += (w.culture[cu] ?? 0.3) * 0.4;
+  s += (w.classification[cg] ?? 0.3) * 0.4;
+  if (obj.highlight) s += 0.1;
+  if (profile.selected_object_ids.includes(obj.id)) s += 0.3;
+  return Math.min(s, 1.0);
+}
+
+function scoreGallery(objects, profile) {
+  if (!objects || !objects.length) return 0;
+  const scores = objects.map(o => scoreObject(o, profile)).sort((a, b) => b - a).slice(0, 5);
+  return scores.reduce((s, x) => s + x, 0) / scores.length;
+}
+
+function selectGalleries(profile, numTargets) {
+  // Scores per gallery (asian art wing = gallery <= 253 per generate_route.py convention)
+  const galleryScores = {};
+  const galleryObjsList = {};
+  for (const [gnum, gdata] of Object.entries(galleryObjects)) {
+    const n = Number(gnum);
+    if (!Number.isFinite(n) || n < 200 || n > 253) continue;
+    if (!gdata || !gdata.objects) continue;
+    galleryObjsList[n] = gdata.objects;
+    galleryScores[n] = scoreGallery(gdata.objects, profile);
+  }
+
+  const selected = [];
+  const usedCultures = {};
+  const usedClasses = {};
+
+  const bump = (g) => {
+    const objs = galleryObjsList[g] || [];
+    if (!objs.length) return;
+    const cuCount = {}, clCount = {};
+    objs.forEach(o => {
+      const cu = cultureGroup(o.culture), cl = classGroup(o.classification);
+      cuCount[cu] = (cuCount[cu] || 0) + 1;
+      clCount[cl] = (clCount[cl] || 0) + 1;
+    });
+    const topCu = Object.entries(cuCount).sort((a,b)=>b[1]-a[1])[0]?.[0];
+    const topCl = Object.entries(clCount).sort((a,b)=>b[1]-a[1])[0]?.[0];
+    if (topCu) usedCultures[topCu] = (usedCultures[topCu] || 0) + 1;
+    if (topCl) usedClasses[topCl] = (usedClasses[topCl] || 0) + 1;
+  };
+
+  const mustVisit = [217]; // great hall — same as python
+  if (profile.preferred_gallery && galleryScores[profile.preferred_gallery] !== undefined) {
+    mustVisit.push(profile.preferred_gallery);
+  }
+  mustVisit.forEach(g => {
+    if (galleryScores[g] !== undefined && !selected.includes(g)) {
+      selected.push(g); bump(g);
+    }
+  });
+
+  while (selected.length < numTargets) {
+    let bestG = null, bestS = -Infinity;
+    for (const [gStr, base] of Object.entries(galleryScores)) {
+      const g = Number(gStr);
+      if (selected.includes(g)) continue;
+      const objs = galleryObjsList[g] || [];
+      if (!objs.length) continue;
+      const cuCount = {}, clCount = {};
+      objs.forEach(o => {
+        const cu = cultureGroup(o.culture), cl = classGroup(o.classification);
+        cuCount[cu] = (cuCount[cu] || 0) + 1;
+        clCount[cl] = (clCount[cl] || 0) + 1;
+      });
+      const topCu = Object.entries(cuCount).sort((a,b)=>b[1]-a[1])[0]?.[0];
+      const topCl = Object.entries(clCount).sort((a,b)=>b[1]-a[1])[0]?.[0];
+      let penalty = 0;
+      if (topCu && (usedCultures[topCu] || 0) >= 2) penalty += 0.15 * usedCultures[topCu];
+      if (topCl && (usedClasses[topCl] || 0) >= 2) penalty += 0.10 * usedClasses[topCl];
+      const adj = base - penalty;
+      if (adj > bestS) { bestS = adj; bestG = g; }
+    }
+    if (bestG === null) break;
+    selected.push(bestG); bump(bestG);
+  }
+
+  return selected;
+}
+
+function findShortestPath(start, end) {
+  if (start === end) return [start];
+  const neighborsOf = (g) => (galleryMetadata[g]?.neighbors || []).map(Number);
+  const visited = new Set([start]);
+  const queue = [[start]];
+  while (queue.length) {
+    const path = queue.shift();
+    const current = path[path.length - 1];
+    for (const nb of neighborsOf(current)) {
+      if (nb === end) return [...path, nb];
+      if (!visited.has(nb)) { visited.add(nb); queue.push([...path, nb]); }
+    }
+  }
+  return null;
+}
+
+function pathCost(a, b) {
+  const p = findShortestPath(a, b);
+  return p ? p.length - 1 : 999;
+}
+
+function orderTargetsNearestNeighbor(targets, start) {
+  if (targets.length <= 1) return targets.slice();
+  const remaining = new Set(targets);
+  const order = [];
+  let current = start;
+  while (remaining.size) {
+    let best = null, bestD = Infinity;
+    for (const t of remaining) {
+      const d = pathCost(current, t);
+      if (d < bestD) { bestD = d; best = t; }
+    }
+    order.push(best); remaining.delete(best); current = best;
+  }
+  return order;
+}
+
+function buildWalkingRoute(targets, start) {
+  const ordered = orderTargetsNearestNeighbor(targets, start);
+  const route = ordered.includes(start) ? [] : [start];
+  let current = start;
+  for (const t of ordered) {
+    const p = findShortestPath(current, t);
+    if (p) { for (let i = 1; i < p.length; i++) route.push(p[i]); current = t; }
+  }
+  return route;
+}
+
+function pickArtworksForGallery(objects, profile, maxPicks) {
+  const scored = objects.map(o => ({ o, s: scoreObject(o, profile) }));
+  scored.sort((a, b) => b.s - a.s);
+  const picks = [];
+  for (let i = 0; i < Math.min(maxPicks, scored.length); i++) {
+    const { o, s } = scored[i];
+    const tag = i === 0 ? 'affinity' : (i === 1 ? 'stretch' : 'wildcard');
+    const img = (o.image || '').replace('/original/', '/mobile-large/').replace('/web-large/', '/mobile-large/');
+    picks.push({
+      object_id: o.id,
+      title: (o.title || '').trim(),
+      culture: o.culture || '',
+      date: o.date || '',
+      classification: o.classification || '',
+      medium: o.medium || '',
+      alt_text: o.title || '',
+      image_url: img,
+      highlight: !!o.highlight,
+      score: Math.round(s * 1000) / 1000,
+      tag,
+    });
+  }
+  return picks;
+}
+
+function generateRouteFromAnswers(answers) {
+  if (!answers || !galleryMetadata || !galleryObjects) return null;
+  const profile = answersToProfile(answers);
+  const timeMin = profile.time_budget_minutes;
+  const numTargets = Math.max(4, Math.min(Math.floor(timeMin / 5), 30));
+
+  const targets = selectGalleries(profile, numTargets);
+  if (!targets.length) return null;
+
+  const start = targets[0] === 200 ? 200 : (galleryMetadata[200] ? 200 : targets[0]);
+  const walking = buildWalkingRoute(targets, start);
+
+  const seenObjects = new Set();
+  const visited = new Set();
+  const routeOutput = [];
+  let totalTime = 0;
+
+  for (const gnum of walking) {
+    const gMeta = galleryMetadata[gnum] || {};
+    const gObjs = (galleryObjects[gnum]?.objects) || [];
+    const isTarget = targets.includes(gnum);
+    const isRevisit = visited.has(gnum);
+    visited.add(gnum);
+
+    let picks = [], timeEst;
+    if (isRevisit) {
+      timeEst = 1;
+    } else if (isTarget && gObjs.length) {
+      picks = pickArtworksForGallery(gObjs, profile, 3).filter(p => !seenObjects.has(p.object_id));
+      picks.forEach(p => seenObjects.add(p.object_id));
+      timeEst = 5;
+    } else if (gObjs.length) {
+      picks = pickArtworksForGallery(gObjs, profile, 1).filter(p => !seenObjects.has(p.object_id));
+      picks.forEach(p => seenObjects.add(p.object_id));
+      timeEst = 2;
+    } else {
+      timeEst = gnum === 217 ? 3 : 1;
+    }
+
+    totalTime += timeEst;
+    routeOutput.push({
+      gallery: gnum,
+      name: gMeta.name || `Gallery ${gnum}`,
+      region: gMeta.region || '',
+      is_target: isTarget,
+      time_estimate_min: timeEst,
+      object_count: gObjs.length,
+      featured_artworks: picks,
+      lat: gMeta.lat ?? null,
+      lng: gMeta.lng ?? null,
+      neighbors: gMeta.neighbors || [],
+    });
+  }
+
+  const pathCoords = routeOutput
+    .filter(s => s.lat != null && s.lng != null)
+    .map(s => ({ gallery: s.gallery, lat: s.lat, lng: s.lng }));
+  const lats = pathCoords.map(p => p.lat);
+  const lngs = pathCoords.map(p => p.lng);
+
+  return {
+    profile_summary: {
+      time_budget: timeMin,
+      num_target_galleries: targets.length,
+      total_stops: walking.length,
+    },
+    route: routeOutput,
+    total_time_estimate: totalTime,
+    path_coordinates: pathCoords,
+    map_bounds: lats.length ? {
+      north: Math.max(...lats) + 0.0002,
+      south: Math.min(...lats) - 0.0002,
+      east: Math.max(...lngs) + 0.0002,
+      west: Math.min(...lngs) - 0.0002,
+    } : {},
+    _source: 'survey',
+  };
+}
+
+function refreshSurveyRoute() {
+  if (!window.surveyAnswers) { surveyDerivedRoute = null; return; }
+  try {
+    surveyDerivedRoute = generateRouteFromAnswers(window.surveyAnswers);
+    console.log('Survey route generated:', surveyDerivedRoute);
+  } catch (e) {
+    console.warn('Survey route generation failed:', e);
+    surveyDerivedRoute = null;
+  }
+}
+
+function rebuildRouteSelector(autoSelectSurvey) {
+  const select = document.getElementById('gc-route-select');
+  if (!select) return;
+  const entries = [{ id: '', label: 'No route' }];
+  if (surveyDerivedRoute) {
+    const t = surveyDerivedRoute.total_time_estimate;
+    entries.push({ id: SURVEY_ROUTE_ID, label: `★ Your Tour (${t} min)` });
+  }
+  ROUTES.slice(1).forEach(r => entries.push(r));
+  select.innerHTML = entries.map(r => `<option value="${r.id}">${r.label}</option>`).join('');
+  if (autoSelectSurvey && surveyDerivedRoute) {
+    select.value = SURVEY_ROUTE_ID;
+    loadRoute(SURVEY_ROUTE_ID);
+  }
+}
+
+window.addEventListener('survey-loaded', () => {
+  refreshSurveyRoute();
+  rebuildRouteSelector(true);
+});
+
+function initSurveyLoader() {
+  // 1. localStorage
+  try {
+    const raw = localStorage.getItem('metSurveyResults');
+    if (raw) window.surveyAnswers = JSON.parse(raw);
+  } catch (e) {}
+  renderSurveyBadge();
+
+  // 2. file input
+  const input = document.getElementById('survey-file-input');
+  if (input) {
+    input.addEventListener('change', (e) => {
+      if (e.target.files[0]) loadSurveyFromFile(e.target.files[0]);
+    });
+  }
+
+  // 3. drag & drop anywhere
+  window.addEventListener('dragover', (e) => { e.preventDefault(); });
+  window.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.name.endsWith('.json')) loadSurveyFromFile(file);
+  });
+}
+
 async function main() {
+  initSurveyLoader();
   await loadData();
   buildUI();
   initMap();

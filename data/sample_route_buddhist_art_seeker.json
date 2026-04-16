@@ -1,0 +1,1929 @@
+{
+  "profile_summary": {
+    "time_budget": 90,
+    "num_target_galleries": 18,
+    "total_stops": 50
+  },
+  "route": [
+    {
+      "gallery": 200,
+      "name": "Chinese Ceramics & More!",
+      "region": "chinese_ceramics",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 52,
+      "featured_artworks": [
+        {
+          "object_id": 42229,
+          "title": "Vase",
+          "culture": "China",
+          "date": "1713\u201322",
+          "classification": "Ceramics",
+          "medium": "Porcelain with peach-bloom glaze (Jingdezhen ware)\r\n\r\n",
+          "alt_text": "Slender porcelain vase with a white rim, three neck rings, and mottled reddish-pink glaze",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP246426.jpg",
+          "highlight": true,
+          "score": 0.37,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779262161,
+      "lng": -73.963184305,
+      "neighbors": [
+        201,
+        202
+      ]
+    },
+    {
+      "gallery": 202,
+      "name": "Gallery 202",
+      "region": "chinese_ceramics",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 10,
+      "featured_artworks": [
+        {
+          "object_id": 39666,
+          "title": "Jar with dragon",
+          "culture": "China",
+          "date": "early 15th century",
+          "classification": "Ceramics",
+          "medium": "Porcelain painted with cobalt blue under transparent glaze (Jingdezhen ware)\r\n\r\n",
+          "alt_text": "Porcelain jar decorated with a blue underglaze dragon among clouds and a band of lotus petals",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32251-001.jpg",
+          "highlight": true,
+          "score": 0.43,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779239302,
+      "lng": -73.962979541,
+      "neighbors": [
+        200,
+        203,
+        204,
+        207
+      ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 247,
+      "featured_artworks": [
+        {
+          "object_id": 42183,
+          "title": "Dish in the shape of a leaf",
+          "culture": "China",
+          "date": "late 7th\u2013early 8th century",
+          "classification": "Metalwork",
+          "medium": "Silver with parcel gilding",
+          "alt_text": "Silver leaf-shaped dish with interior motifs of birds and flowers within spiraling stem circles",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP100673.jpg",
+          "highlight": true,
+          "score": 0.61,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 65100,
+          "title": "Standing attendant",
+          "culture": "China",
+          "date": "7th century",
+          "classification": "Sculpture",
+          "medium": "Earthenware with pigment",
+          "alt_text": "Earthenware sculpture of a standing person with clasped hands wearing a green tunic and boots",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2002_501.JPG",
+          "highlight": false,
+          "score": 0.6,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 49540,
+          "title": "Panel in the Shape of a Sarcophagus Door",
+          "culture": "China",
+          "date": "early 8th century",
+          "classification": "Sculpture",
+          "medium": "Limestone",
+          "alt_text": "Vertical limestone panel shaped like a doorway with low-relief carvings of four people and floral patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/20_89_229148.JPG",
+          "highlight": false,
+          "score": 0.6,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
+    },
+    {
+      "gallery": 208,
+      "name": "Chinese Buddhist Art ",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 20,
+      "featured_artworks": [
+        {
+          "object_id": 42163,
+          "title": "Buddha, probably Amitabha",
+          "culture": "China",
+          "date": "early 7th century",
+          "classification": "Sculpture",
+          "medium": "Dry lacquer with polychrome pigment and gilding",
+          "alt_text": "Seated sculpture of a person with missing hands wearing a robe with red and green patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-004.jpg",
+          "highlight": true,
+          "score": 0.7,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779721287,
+      "lng": -73.962478484,
+      "neighbors": [
+        207,
+        209,
+        233
+      ]
+    },
+    {
+      "gallery": 209,
+      "name": "Chinese Buddhist Art",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 7,
+      "featured_artworks": [
+        {
+          "object_id": 42720,
+          "title": "Monk Sengqie",
+          "culture": "China",
+          "date": "late 11th\u201312th century",
+          "classification": "Sculpture",
+          "medium": "Limestone with pigment",
+          "alt_text": "Limestone statue of a person seated cross-legged on a lotus base with a beast-headed lap support",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP213354.jpg",
+          "highlight": false,
+          "score": 0.6,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.77985,
+      "lng": -73.9624,
+      "neighbors": [
+        208,
+        239
+      ]
+    },
+    {
+      "gallery": 239,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 2,
+      "featured_artworks": [
+        {
+          "object_id": 38133,
+          "title": "Enthroned Vishnu",
+          "culture": "India",
+          "date": "second half of the 8th\u2013early 9th century",
+          "classification": "Sculpture",
+          "medium": "Granulite",
+          "alt_text": "Vertical stone sculpture of a four-armed person seated on a throne in a relaxed posture",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5240.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779898381,
+      "lng": -73.962193753,
+      "neighbors": [
+        209,
+        238,
+        240,
+        241
+      ]
+    },
+    {
+      "gallery": 241,
+      "name": "Indian Medieval Sculpture Gallery",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 11,
+      "featured_artworks": [
+        {
+          "object_id": 38146,
+          "title": "Vishnu",
+          "culture": "India (Punjab)",
+          "date": "10th\u201311th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Vertical sandstone relief sculpture of a four-armed figure surrounded by smaller figures and decorative carvings",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5052.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.779923533,
+      "lng": -73.962067714,
+      "neighbors": [
+        239,
+        240,
+        242,
+        243,
+        244
+      ]
+    },
+    {
+      "gallery": 244,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 69,
+      "featured_artworks": [
+        {
+          "object_id": 37743,
+          "title": "Ceremonial Object in the Shape of an Ax",
+          "culture": "Indonesia, possibly Sulawesi",
+          "date": "ca. 100 BCE\u2013300 CE",
+          "classification": "Metalwork",
+          "medium": "Bronze alloy",
+          "alt_text": "Vertical bronze object shaped like an ax with a ridged neck and green patina",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP221496.jpg",
+          "highlight": true,
+          "score": 0.66,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 37747,
+          "title": "Box for Betel Leaves",
+          "culture": "Indonesia (Sulawesi)",
+          "date": "ca. 500 BCE\u2013300 CE",
+          "classification": "Metalwork",
+          "medium": "Bronze",
+          "alt_text": "Rectangular green-patinated bronze box with a tiered lid featuring parallel bars, small figures, and geometric patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP228215.jpg",
+          "highlight": true,
+          "score": 0.62,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 54121,
+          "title": "Seated Male Figure",
+          "culture": "Vietnam",
+          "date": "500 BCE\u2013300 CE",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Stylized green bronze figure of a seated person with spiral chest markings and a loop on the head",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP158752.jpg",
+          "highlight": false,
+          "score": 0.61,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779996135,
+      "lng": -73.962027516,
+      "neighbors": [
+        216,
+        241,
+        243,
+        245,
+        247
+      ]
+    },
+    {
+      "gallery": 245,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 16,
+      "featured_artworks": [
+        {
+          "object_id": 38158,
+          "title": "Shiva",
+          "culture": "Vietnam or Southern Cambodia",
+          "date": "mid- 7th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Vertical sandstone sculpture of a person with a tall hair arrangement and a simple waistcloth",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LK.1987.17_DP310113R1_25W.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780049147,
+      "lng": -73.961988858,
+      "neighbors": [
+        244,
+        246,
+        247,
+        252,
+        253
+      ]
+    },
+    {
+      "gallery": 246,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 28,
+      "featured_artworks": [
+        {
+          "object_id": 38954,
+          "title": "Standing Buddha",
+          "culture": "Thailand (Nakhon Pathom Province)",
+          "date": "8th\u20139th century",
+          "classification": "Sculpture",
+          "medium": "Bronze with traces of gilt",
+          "alt_text": "Bronze sculpture of a standing figure with raised hands and a textured head",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP310136.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780109477,
+      "lng": -73.961944863,
+      "neighbors": [
+        215,
+        245,
+        248
+      ]
+    },
+    {
+      "gallery": 248,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 8,
+      "featured_artworks": [
+        {
+          "object_id": 75279,
+          "title": "The Mother Goddess Men Brajut (Hariti)",
+          "culture": "Indonesia (East Java, Trowulan)",
+          "date": "14th\u201315th century",
+          "classification": "Sculpture",
+          "medium": "Terracotta",
+          "alt_text": "Terracotta sculpture of a kneeling woman with a plate on her head and a child between her legs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-2009_321-001.jpg",
+          "highlight": false,
+          "score": 0.63,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780137591,
+      "lng": -73.96188656,
+      "neighbors": [
+        246,
+        249
+      ]
+    },
+    {
+      "gallery": 249,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 25,
+      "featured_artworks": [
+        {
+          "object_id": 65095,
+          "title": "Antefix with Kneeling Guardian",
+          "culture": "Cambodia",
+          "date": "third quarter of the 10th century",
+          "classification": "Sculpture",
+          "medium": "Reddish sandstone",
+          "alt_text": "Reddish-brown stone sculpture of a seated person with an ornate headdress and swirling scroll backdrop",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2003.142.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 38265,
+          "title": "Brahma",
+          "culture": "Cambodia",
+          "date": "first quarter of the 10th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Sandstone sculpture of a three-headed, four-armed figure wearing an ornate crown and pleated garment",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5227.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 38905,
+          "title": "Head of Shiva (lingakosha)",
+          "culture": "Vietnam (Champa, probably Quang Nam Province)",
+          "date": "late 9th\u201310th century",
+          "classification": "Sculpture",
+          "medium": "Gold and silver repouss\u00e9",
+          "alt_text": "A metal sculpture of a head with a third eye, a moustache, and a tiered topknot",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP291638.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780199747,
+      "lng": -73.961833947,
+      "neighbors": [
+        248,
+        250
+      ]
+    },
+    {
+      "gallery": 250,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 44,
+      "featured_artworks": [
+        {
+          "object_id": 63532,
+          "title": "Seated Buddha",
+          "culture": "Thailand",
+          "date": "15th century",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Bronze sculpture of a seated person with elongated earlobes and a flame-shaped head protrusion",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-052.jpg",
+          "highlight": true,
+          "score": 1.0,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 38318,
+          "title": "Crowned Buddha",
+          "culture": "Burma",
+          "date": "ca. 13th\u2013early 14th century",
+          "classification": "Sculpture",
+          "medium": "Wood with lacquer and gilt",
+          "alt_text": "Standing wooden sculpture of a person wearing an elaborate tall crown and thin, fitted robes",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1986_207.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 39107,
+          "title": "Seated Buddha",
+          "culture": "Thailand",
+          "date": "first half of the 13th century",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Bronze sculpture of a seated person with an ornate mandorla on a multi-tiered pedestal",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1980_526_1_224099.JPG",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.78027289,
+      "lng": -73.961787896,
+      "neighbors": [
+        249
+      ]
+    },
+    {
+      "gallery": 249,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 25,
+      "featured_artworks": [],
+      "lat": 40.780199747,
+      "lng": -73.961833947,
+      "neighbors": [
+        248,
+        250
+      ]
+    },
+    {
+      "gallery": 248,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 8,
+      "featured_artworks": [],
+      "lat": 40.780137591,
+      "lng": -73.96188656,
+      "neighbors": [
+        246,
+        249
+      ]
+    },
+    {
+      "gallery": 246,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 28,
+      "featured_artworks": [],
+      "lat": 40.780109477,
+      "lng": -73.961944863,
+      "neighbors": [
+        215,
+        245,
+        248
+      ]
+    },
+    {
+      "gallery": 245,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 16,
+      "featured_artworks": [],
+      "lat": 40.780049147,
+      "lng": -73.961988858,
+      "neighbors": [
+        244,
+        246,
+        247,
+        252,
+        253
+      ]
+    },
+    {
+      "gallery": 244,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 69,
+      "featured_artworks": [],
+      "lat": 40.779996135,
+      "lng": -73.962027516,
+      "neighbors": [
+        216,
+        241,
+        243,
+        245,
+        247
+      ]
+    },
+    {
+      "gallery": 241,
+      "name": "Indian Medieval Sculpture Gallery",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 11,
+      "featured_artworks": [],
+      "lat": 40.779923533,
+      "lng": -73.962067714,
+      "neighbors": [
+        239,
+        240,
+        242,
+        243,
+        244
+      ]
+    },
+    {
+      "gallery": 239,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 2,
+      "featured_artworks": [],
+      "lat": 40.779898381,
+      "lng": -73.962193753,
+      "neighbors": [
+        209,
+        238,
+        240,
+        241
+      ]
+    },
+    {
+      "gallery": 209,
+      "name": "Chinese Buddhist Art",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 7,
+      "featured_artworks": [],
+      "lat": 40.77985,
+      "lng": -73.9624,
+      "neighbors": [
+        208,
+        239
+      ]
+    },
+    {
+      "gallery": 208,
+      "name": "Chinese Buddhist Art ",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 20,
+      "featured_artworks": [],
+      "lat": 40.779721287,
+      "lng": -73.962478484,
+      "neighbors": [
+        207,
+        209,
+        233
+      ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 247,
+      "featured_artworks": [],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
+    },
+    {
+      "gallery": 219,
+      "name": "Chinese Jade & Decorative Arts",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 118,
+      "featured_artworks": [
+        {
+          "object_id": 40505,
+          "title": "Medallion with return from a spring outing",
+          "culture": "China",
+          "date": "late 16th\u2013early 17th century",
+          "classification": "Ivories",
+          "medium": "Ivory",
+          "alt_text": "Circular ivory medallion with intricate openwork carvings of people, buildings, and trees in a landscape",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT7032.jpg",
+          "highlight": false,
+          "score": 0.54,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 42012,
+          "title": "Seal with mantra in Vartu script",
+          "culture": "China",
+          "date": "early 15th century",
+          "classification": "Ivories",
+          "medium": "Ivory, turquoise, and iron damascened with gold",
+          "alt_text": "Vertical ivory seal with a domed top, stylized script, and a gold-patterned metal base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP318643.jpg",
+          "highlight": false,
+          "score": 0.54,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 42088,
+          "title": "Shouxing, Stellar God of Immortality",
+          "culture": "China",
+          "date": "16th century",
+          "classification": "Ivories",
+          "medium": "Ivory",
+          "alt_text": "Ivory carving of a seated man with an elongated forehead and long beard on a wooden base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP318638.jpg",
+          "highlight": false,
+          "score": 0.54,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77935,
+      "lng": -73.96255,
+      "neighbors": [
+        207,
+        220,
+        222
+      ]
+    },
+    {
+      "gallery": 222,
+      "name": "Chinese Jade Collection",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 123,
+      "featured_artworks": [
+        {
+          "object_id": 41913,
+          "title": "Headdress ornament",
+          "culture": "China",
+          "date": "13th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Carved pale green jade ornament with openwork birds and flowers on a circular base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP356326.jpg",
+          "highlight": false,
+          "score": 0.39,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 62067,
+          "title": "Drill for carving jade",
+          "culture": "China",
+          "date": "20th century",
+          "classification": "Metalwork",
+          "medium": "Steel",
+          "alt_text": "Slender horizontal steel rod with a blunt end and a small flared tip at the other end",
+          "image_url": "",
+          "highlight": false,
+          "score": 0.37,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 62068,
+          "title": "Drill for carving jade",
+          "culture": "China",
+          "date": "20th century",
+          "classification": "Metalwork",
+          "medium": "Steel",
+          "alt_text": "Slender cylindrical steel tool with a flared head at one end and a worn tip",
+          "image_url": "",
+          "highlight": false,
+          "score": 0.37,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.77935,
+      "lng": -73.9624,
+      "neighbors": [
+        219,
+        221
+      ]
+    },
+    {
+      "gallery": 219,
+      "name": "Chinese Jade & Decorative Arts",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 118,
+      "featured_artworks": [],
+      "lat": 40.77935,
+      "lng": -73.96255,
+      "neighbors": [
+        207,
+        220,
+        222
+      ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 247,
+      "featured_artworks": [],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
+    },
+    {
+      "gallery": 208,
+      "name": "Chinese Buddhist Art ",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 20,
+      "featured_artworks": [],
+      "lat": 40.779721287,
+      "lng": -73.962478484,
+      "neighbors": [
+        207,
+        209,
+        233
+      ]
+    },
+    {
+      "gallery": 233,
+      "name": "Flip Sides: Seeing Korean Art Anew",
+      "region": "korean",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 42,
+      "featured_artworks": [
+        {
+          "object_id": 50325,
+          "title": "Rafter finial in the shape of a dragon\u2019s head and wind chime",
+          "culture": "Korea",
+          "date": "10th century",
+          "classification": "Sculpture",
+          "medium": "Gilt bronze",
+          "alt_text": "Gilt bronze rafter finial shaped like a horned creature with bulging eyes and an open mouth",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT4423.jpg",
+          "highlight": true,
+          "score": 0.64,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 72485,
+          "title": "Seated bodhisattva (left attendant of a triad)",
+          "culture": "Korea",
+          "date": "ca. mid-17th century",
+          "classification": "Sculpture",
+          "medium": "Gilt wood",
+          "alt_text": "Gilded wood sculpture of a person seated cross-legged wearing an elaborate crown with bird motifs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP358652.jpg",
+          "highlight": true,
+          "score": 0.52,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 50397,
+          "title": "Mirror with incised Buddhist triad",
+          "culture": "Korea",
+          "date": "13th century",
+          "classification": "Mirrors",
+          "medium": "Bronze",
+          "alt_text": "A circular bronze mirror with a central knob and faint incised lines showing three seated figures",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-22_141_13_001.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779601942,
+      "lng": -73.962554258,
+      "neighbors": [
+        208,
+        234,
+        235
+      ]
+    },
+    {
+      "gallery": 208,
+      "name": "Chinese Buddhist Art ",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 20,
+      "featured_artworks": [],
+      "lat": 40.779721287,
+      "lng": -73.962478484,
+      "neighbors": [
+        207,
+        209,
+        233
+      ]
+    },
+    {
+      "gallery": 209,
+      "name": "Chinese Buddhist Art",
+      "region": "chinese_buddhist",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 7,
+      "featured_artworks": [],
+      "lat": 40.77985,
+      "lng": -73.9624,
+      "neighbors": [
+        208,
+        239
+      ]
+    },
+    {
+      "gallery": 239,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 2,
+      "featured_artworks": [],
+      "lat": 40.779898381,
+      "lng": -73.962193753,
+      "neighbors": [
+        209,
+        238,
+        240,
+        241
+      ]
+    },
+    {
+      "gallery": 238,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 27,
+      "featured_artworks": [
+        {
+          "object_id": 38124,
+          "title": "Manjuvajra Mandala",
+          "culture": "Bangladesh or India (Bengal)",
+          "date": "11th century",
+          "classification": "Sculpture",
+          "medium": "Black stone",
+          "alt_text": "A dark stone sculpture of a three-headed, six-armed person seated within an ornate architectural arch",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-033.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 39189,
+          "title": "Crowned Buddha",
+          "culture": "India (Bihar)",
+          "date": "10th\u201311th century",
+          "classification": "Sculpture",
+          "medium": "Bronze inlaid with silver, lapis lazuli, and rock crystal",
+          "alt_text": "Bronze sculpture of a seated person with an ornate crown and jewelry within a flame-edged arch",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/16%20NEW%20DP314094r4_61E.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 38559,
+          "title": "The Bodhisattva Vajrapani",
+          "culture": "Eastern India, Bihar, probably Nalanda",
+          "date": "7th\u2013early 8th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Sandstone sculpture of a standing person with an ornate headdress and a smaller companion beside them",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP314122.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779813175,
+      "lng": -73.962255887,
+      "neighbors": [
+        237,
+        239
+      ]
+    },
+    {
+      "gallery": 239,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 2,
+      "featured_artworks": [],
+      "lat": 40.779898381,
+      "lng": -73.962193753,
+      "neighbors": [
+        209,
+        238,
+        240,
+        241
+      ]
+    },
+    {
+      "gallery": 240,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 17,
+      "featured_artworks": [
+        {
+          "object_id": 39413,
+          "title": "Karaikkal Ammaiyar, Shaiva Saint",
+          "culture": "India (Tamil Nadu)",
+          "date": "ca. late 13th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy",
+          "alt_text": "Seated copper alloy sculpture of a smiling person with elongated earlobes holding small cymbals on a pedestal",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT7391.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 39328,
+          "title": "Shiva as Lord of Dance (Nataraja)",
+          "culture": "Indian (Tamil Nadu)",
+          "date": "ca. late 11th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy",
+          "alt_text": "Bronze sculpture of a four-armed figure dancing within a circular ring of stylized flames",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT240.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 39331,
+          "title": "Yashoda with the Infant Krishna",
+          "culture": "India (Tamil Nadu, Pudukkottai and Tanjavur districts)",
+          "date": "early 12th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy",
+          "alt_text": "Copper-alloy sculpture of a seated woman nursing a child while supporting its head and body",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT7387.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.779836971,
+      "lng": -73.962105781,
+      "neighbors": [
+        239,
+        241
+      ]
+    },
+    {
+      "gallery": 241,
+      "name": "Indian Medieval Sculpture Gallery",
+      "region": "south_asian",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 11,
+      "featured_artworks": [],
+      "lat": 40.779923533,
+      "lng": -73.962067714,
+      "neighbors": [
+        239,
+        240,
+        242,
+        243,
+        244
+      ]
+    },
+    {
+      "gallery": 244,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 1,
+      "object_count": 69,
+      "featured_artworks": [],
+      "lat": 40.779996135,
+      "lng": -73.962027516,
+      "neighbors": [
+        216,
+        241,
+        243,
+        245,
+        247
+      ]
+    },
+    {
+      "gallery": 247,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 90,
+      "featured_artworks": [
+        {
+          "object_id": 39020,
+          "title": "Seated Transcendent Buddha Vairochana",
+          "culture": "Indonesia (Java)",
+          "date": "ca. late 9th century",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Bronze sculpture of a figure with a halo seated in a meditative pose on a lotus base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5232.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 39021,
+          "title": "The Transcendent Buddha Vairochana (?) Seated in Western Fashion",
+          "culture": "Indonesia (Java)",
+          "date": "9th century",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Green bronze sculpture of a person seated on a throne supported by two stylized animals",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT8665.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 38994,
+          "title": "Buddha Attended by Bodhisattvas Avalokiteshvara and Maitreya",
+          "culture": "Sumatra or southern Thailand",
+          "date": "second half of the 8th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy",
+          "alt_text": "Copper alloy sculpture of three figures standing on lotus pedestals atop a rectangular base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LK.1984.386.4_DP303951R1_25U.jpg",
+          "highlight": true,
+          "score": 0.79,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.78003077,
+      "lng": -73.961922535,
+      "neighbors": [
+        244,
+        245,
+        252
+      ]
+    },
+    {
+      "gallery": 252,
+      "name": "Arts of Tibet and Nepal",
+      "region": "himalayan",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 34,
+      "featured_artworks": [
+        {
+          "object_id": 38327,
+          "title": "Bodhisattva, probably Padmapani Lokeshvara",
+          "culture": "Nepal (Kathmandu Valley)",
+          "date": "10th\u201311th century",
+          "classification": "Sculpture",
+          "medium": "Gilt copper alloy",
+          "alt_text": "A gold-toned metal sculpture of a standing figure wearing an ornate crown and holding a flowering vine",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102266.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 38328,
+          "title": "The Bodhisattva Maitreya, the Buddha of the Future",
+          "culture": "Nepal",
+          "date": "11th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy with gilding and color",
+          "alt_text": "Gilded metal statue of a slender standing person with an ornate crown and jewelry",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-30183-001.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 38335,
+          "title": "The Bodhisattva Padmapani Lokeshvara",
+          "culture": "Nepal, Kathmandu Valley",
+          "date": "11th\u201312th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy with gilding and semiprecious stones",
+          "alt_text": "Gilded standing sculpture of a person wearing an ornate crown and holding a blooming flower",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5228.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780052854,
+      "lng": -73.96190643,
+      "neighbors": [
+        245,
+        247,
+        253
+      ]
+    },
+    {
+      "gallery": 253,
+      "name": "Arts of Tibet and Nepal",
+      "region": "himalayan",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 34,
+      "featured_artworks": [
+        {
+          "object_id": 78191,
+          "title": "Buddha Shakyamuni",
+          "culture": "Central Tibet",
+          "date": "12th century",
+          "classification": "Sculpture",
+          "medium": "Brass with colored pigments",
+          "alt_text": "Seated brass sculpture of a person with blue textured hair in a cross-legged pose with downcast eyes",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-015.jpg",
+          "highlight": true,
+          "score": 0.82,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 38582,
+          "title": "Twenty-One Emanations of the Goddess Tara",
+          "culture": "Tibet",
+          "date": "14th century",
+          "classification": "Sculpture",
+          "medium": "Stone with polychrome",
+          "alt_text": "Carved stone stele with a central seated figure surrounded by twenty-one smaller figures on a red background",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP252972.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 78192,
+          "title": "The Spiritual Master Padmasambhava",
+          "culture": "Western Tibet or Ladakh",
+          "date": "14th century",
+          "classification": "Sculpture",
+          "medium": "Copper alloy with copper and silver inlay",
+          "alt_text": "Bronze-toned sculpture of a seated person wearing a tall crown and patterned robes on a tiered base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP298008.jpg",
+          "highlight": true,
+          "score": 0.76,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780064764,
+      "lng": -73.961979045,
+      "neighbors": [
+        216,
+        245,
+        252
+      ]
+    },
+    {
+      "gallery": 216,
+      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 2,
+      "featured_artworks": [
+        {
+          "object_id": 36445,
+          "title": "Rubbing of Stele for Shi Chen",
+          "culture": "China",
+          "date": "19th century rubbing; stele dated 169 CE",
+          "classification": "Rubbing",
+          "medium": "Rubbing mounted in an album of thirty-two leaves; ink on paper",
+          "alt_text": "Ink rubbing on paper showing two pages of stylized script in six vertical columns with red seals",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP363587.jpg",
+          "highlight": false,
+          "score": 0.3,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780057202,
+      "lng": -73.962077937,
+      "neighbors": [
+        215,
+        217,
+        244,
+        253
+      ]
+    },
+    {
+      "gallery": 217,
+      "name": "Chinese Courtyard in the Style of the Ming Dynasty",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 3,
+      "object_count": 0,
+      "featured_artworks": [],
+      "lat": 40.780140228,
+      "lng": -73.962198618,
+      "neighbors": [
+        210,
+        216,
+        218
+      ]
+    },
+    {
+      "gallery": 218,
+      "name": "Chinese Courtyard in the Style of the Ming Dynasty",
+      "region": "chinese_painting",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 28,
+      "featured_artworks": [
+        {
+          "object_id": 61062,
+          "title": "Pouch-shaped vessel",
+          "culture": "China",
+          "date": "16th\u201317th century",
+          "classification": "Metalwork",
+          "medium": "Copper alloy, gold and silver inlay",
+          "alt_text": "Pouch-shaped metal vessel decorated with gold and silver geometric inlays and a circular-link chain",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34944-001.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 49393,
+          "title": "Tripod cauldron (ding)",
+          "culture": "China",
+          "date": "11th century BCE",
+          "classification": "Metalwork",
+          "medium": "Bronze, black pigment inlay",
+          "alt_text": "Weathered bronze tripod vessel with a geometric band and two upright rectangular handles",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP140775.jpg",
+          "highlight": false,
+          "score": 0.43,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 58936,
+          "title": "Wine container in the shape of a leather pouch",
+          "culture": "China",
+          "date": "8th century BCE",
+          "classification": "Metalwork",
+          "medium": "Bronze",
+          "alt_text": "Bronze vessel shaped like a sagging pouch featuring a bird-head lid and intricate green-patinated patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102602.jpg",
+          "highlight": false,
+          "score": 0.43,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780257355,
+      "lng": -73.962076788,
+      "neighbors": [
+        217,
+        213
+      ]
+    },
+    {
+      "gallery": 217,
+      "name": "Chinese Courtyard in the Style of the Ming Dynasty",
+      "region": "chinese_painting",
+      "is_target": false,
+      "time_estimate_min": 1,
+      "object_count": 0,
+      "featured_artworks": [],
+      "lat": 40.780140228,
+      "lng": -73.962198618,
+      "neighbors": [
+        210,
+        216,
+        218
+      ]
+    },
+    {
+      "gallery": 210,
+      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
+      "region": "chinese_painting",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 28,
+      "featured_artworks": [
+        {
+          "object_id": 40055,
+          "title": "Emperor Xuanzong's flight to Shu",
+          "culture": "China",
+          "date": "mid-12th century",
+          "classification": "Paintings",
+          "medium": "Hanging scroll; ink, color, and gold on silk",
+          "alt_text": "Landscape painting on a scroll featuring about nine people traveling through mountains on horseback and foot",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP247676.jpg",
+          "highlight": true,
+          "score": 0.64,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 40094,
+          "title": "Nomads hunting with falcons",
+          "culture": "China",
+          "date": "early 13th century",
+          "classification": "Paintings",
+          "medium": "Fan mounted as an album leaf; ink and color on silk",
+          "alt_text": "Circular silk painting of nine people on horseback in a minimal landscape with several birds",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP153514.jpg",
+          "highlight": false,
+          "score": 0.54,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 40103,
+          "title": "Quatrain on spring\u2019s radiance",
+          "culture": "China",
+          "date": "early 13th century",
+          "classification": "Calligraphy",
+          "medium": "Round fan mounted as an album leaf; ink on silk",
+          "alt_text": "Circular tan silk fan leaf with four vertical columns of black handwritten characters and eight red seals",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP153484.jpg",
+          "highlight": false,
+          "score": 0.54,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780212407,
+      "lng": -73.962252558,
+      "neighbors": [
+        211,
+        217,
+        232
+      ]
+    },
+    {
+      "gallery": 232,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 7,
+      "featured_artworks": [
+        {
+          "object_id": 45365,
+          "title": "Storage Jar (Tsubo",
+          "culture": "Japan",
+          "date": "12th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with natural ash glaze (Echizen ware)",
+          "alt_text": "Bumpy stoneware storage jar with a flared rim and earthy brown, gray, and olive-green mottled surfaces",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-1977_261-001.jpg",
+          "highlight": false,
+          "score": 0.36,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780169066,
+      "lng": -73.962431458,
+      "neighbors": [
+        210,
+        223,
+        231
+      ]
+    },
+    {
+      "gallery": 223,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 25,
+      "featured_artworks": [
+        {
+          "object_id": 53162,
+          "title": "Tobatsu Bishamonten",
+          "culture": "Japan",
+          "date": "late 10th\u2013early 11th century",
+          "classification": "Sculpture",
+          "medium": "Zelkova wood with traces of color",
+          "alt_text": "Wood sculpture of an armored figure standing on the shoulders of three smaller humanoid figures",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-27915-006.jpg",
+          "highlight": false,
+          "score": 0.57,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 44834,
+          "title": "Wild Boar Piglet Clay Tomb Sculpture (Haniwa)",
+          "culture": "Japan",
+          "date": "6th century",
+          "classification": "Sculpture",
+          "medium": "Earthenware",
+          "alt_text": "Small tan earthenware sculpture of a piglet with an arched back and two legs bound together",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/h1_1975.268.418.jpg",
+          "highlight": false,
+          "score": 0.53,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 50310,
+          "title": "Head of a Deer Clay Tomb Sculpture (Haniwa)",
+          "culture": "Japan",
+          "date": "ca. 5th\u20136th century",
+          "classification": "Sculpture",
+          "medium": "Earthenware",
+          "alt_text": "Minimalist reddish-brown terracotta sculpture of a deer head with large rounded ears and hollow eye holes",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-43530-001.jpg",
+          "highlight": false,
+          "score": 0.53,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780106867,
+      "lng": -73.962499034,
+      "neighbors": [
+        224,
+        232
+      ]
+    },
+    {
+      "gallery": 224,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": false,
+      "time_estimate_min": 2,
+      "object_count": 25,
+      "featured_artworks": [
+        {
+          "object_id": 76084,
+          "title": "The Bodhisattva Jiz\u014d",
+          "culture": "Japan",
+          "date": "1291",
+          "classification": "Sculpture",
+          "medium": "Japanese cypress wood (hinoki) with polychrome pigments, gold paint (kindei), cut gold leaf (kirikane), and rock-crystal eyes",
+          "alt_text": "Wood sculpture of a standing person with a shaved head holding a staff and a small sphere",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14364-001.jpg",
+          "highlight": true,
+          "score": 0.67,
+          "tag": "affinity"
+        }
+      ],
+      "lat": 40.780153923,
+      "lng": -73.962598275,
+      "neighbors": [
+        223,
+        225,
+        231
+      ]
+    },
+    {
+      "gallery": 225,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 20,
+      "featured_artworks": [
+        {
+          "object_id": 39663,
+          "title": "Landscape of the Four Seasons",
+          "culture": "Japan",
+          "date": "16th century",
+          "classification": "Paintings",
+          "medium": "Pair of six-panel folding screens; ink and color on paper",
+          "alt_text": "Panoramic landscape painting on a six-panel folding screen with craggy mountains and people in small boats",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT1605.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 42347,
+          "title": "Eight Views of the Xiao and Xiang Rivers",
+          "culture": "Japan",
+          "date": "16th century",
+          "classification": "Paintings",
+          "medium": "One of a triptych of hanging scrolls; ink and color on paper",
+          "alt_text": "Vertical landscape painting on a hanging scroll showing a misty river scene with mountains, boats, and figures",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-36548-003.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 42489,
+          "title": "Eight Views of the Xiao and Xiang Rivers",
+          "culture": "Japan",
+          "date": "16th century",
+          "classification": "Paintings",
+          "medium": "One of a triptych of hanging scrolls; ink and color on paper",
+          "alt_text": "Vertical hanging scroll painting of a misty mountain landscape featuring a small village with about fifteen people",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-36549-002.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780222019,
+      "lng": -73.962713964,
+      "neighbors": [
+        224,
+        226,
+        230
+      ]
+    },
+    {
+      "gallery": 226,
+      "name": "The Infinite Artistry of Japanese Ceramics",
+      "region": "japanese",
+      "is_target": true,
+      "time_estimate_min": 5,
+      "object_count": 10,
+      "featured_artworks": [
+        {
+          "object_id": 44858,
+          "title": "Old Plum",
+          "culture": "Japan",
+          "date": "1646",
+          "classification": "Paintings",
+          "medium": "Four sliding-door panels (fusuma); ink, color, gold, and gold leaf on paper \r\n",
+          "alt_text": "Four horizontal sliding-door panels depicting a gnarled tree with small blossoms against a gold leaf grid",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT229.jpg",
+          "highlight": true,
+          "score": 0.49,
+          "tag": "affinity"
+        },
+        {
+          "object_id": 45258,
+          "title": "Bamboo in the Four Seasons",
+          "culture": "Japan",
+          "date": "late 15th\u2013early 16th century",
+          "classification": "Paintings",
+          "medium": "Pair of six-panel screens; ink, color, and gold leaf on paper \r\n",
+          "alt_text": "A six-panel horizontal screen depicting thick green bamboo stalks and brown shoots against a gold-toned background",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT1607.jpg",
+          "highlight": false,
+          "score": 0.45,
+          "tag": "stretch"
+        },
+        {
+          "object_id": 49068,
+          "title": "Bamboo in Snow",
+          "culture": "Japan",
+          "date": "1774",
+          "classification": "Paintings",
+          "medium": "Pair of hanging scrolls; ink on silk",
+          "alt_text": "A vertical hanging scroll depicts a thick bamboo stalk with dense leaves and white paint splatters",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP276881.jpg",
+          "highlight": false,
+          "score": 0.39,
+          "tag": "wildcard"
+        }
+      ],
+      "lat": 40.780275745,
+      "lng": -73.962848501,
+      "neighbors": [
+        225,
+        227,
+        229
+      ]
+    }
+  ],
+  "total_time_estimate": 132,
+  "path_coordinates": [
+    {
+      "gallery": 200,
+      "lat": 40.779262161,
+      "lng": -73.963184305
+    },
+    {
+      "gallery": 202,
+      "lat": 40.779239302,
+      "lng": -73.962979541
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
+    },
+    {
+      "gallery": 208,
+      "lat": 40.779721287,
+      "lng": -73.962478484
+    },
+    {
+      "gallery": 209,
+      "lat": 40.77985,
+      "lng": -73.9624
+    },
+    {
+      "gallery": 239,
+      "lat": 40.779898381,
+      "lng": -73.962193753
+    },
+    {
+      "gallery": 241,
+      "lat": 40.779923533,
+      "lng": -73.962067714
+    },
+    {
+      "gallery": 244,
+      "lat": 40.779996135,
+      "lng": -73.962027516
+    },
+    {
+      "gallery": 245,
+      "lat": 40.780049147,
+      "lng": -73.961988858
+    },
+    {
+      "gallery": 246,
+      "lat": 40.780109477,
+      "lng": -73.961944863
+    },
+    {
+      "gallery": 248,
+      "lat": 40.780137591,
+      "lng": -73.96188656
+    },
+    {
+      "gallery": 249,
+      "lat": 40.780199747,
+      "lng": -73.961833947
+    },
+    {
+      "gallery": 250,
+      "lat": 40.78027289,
+      "lng": -73.961787896
+    },
+    {
+      "gallery": 249,
+      "lat": 40.780199747,
+      "lng": -73.961833947
+    },
+    {
+      "gallery": 248,
+      "lat": 40.780137591,
+      "lng": -73.96188656
+    },
+    {
+      "gallery": 246,
+      "lat": 40.780109477,
+      "lng": -73.961944863
+    },
+    {
+      "gallery": 245,
+      "lat": 40.780049147,
+      "lng": -73.961988858
+    },
+    {
+      "gallery": 244,
+      "lat": 40.779996135,
+      "lng": -73.962027516
+    },
+    {
+      "gallery": 241,
+      "lat": 40.779923533,
+      "lng": -73.962067714
+    },
+    {
+      "gallery": 239,
+      "lat": 40.779898381,
+      "lng": -73.962193753
+    },
+    {
+      "gallery": 209,
+      "lat": 40.77985,
+      "lng": -73.9624
+    },
+    {
+      "gallery": 208,
+      "lat": 40.779721287,
+      "lng": -73.962478484
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
+    },
+    {
+      "gallery": 219,
+      "lat": 40.77935,
+      "lng": -73.96255
+    },
+    {
+      "gallery": 222,
+      "lat": 40.77935,
+      "lng": -73.9624
+    },
+    {
+      "gallery": 219,
+      "lat": 40.77935,
+      "lng": -73.96255
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
+    },
+    {
+      "gallery": 208,
+      "lat": 40.779721287,
+      "lng": -73.962478484
+    },
+    {
+      "gallery": 233,
+      "lat": 40.779601942,
+      "lng": -73.962554258
+    },
+    {
+      "gallery": 208,
+      "lat": 40.779721287,
+      "lng": -73.962478484
+    },
+    {
+      "gallery": 209,
+      "lat": 40.77985,
+      "lng": -73.9624
+    },
+    {
+      "gallery": 239,
+      "lat": 40.779898381,
+      "lng": -73.962193753
+    },
+    {
+      "gallery": 238,
+      "lat": 40.779813175,
+      "lng": -73.962255887
+    },
+    {
+      "gallery": 239,
+      "lat": 40.779898381,
+      "lng": -73.962193753
+    },
+    {
+      "gallery": 240,
+      "lat": 40.779836971,
+      "lng": -73.962105781
+    },
+    {
+      "gallery": 241,
+      "lat": 40.779923533,
+      "lng": -73.962067714
+    },
+    {
+      "gallery": 244,
+      "lat": 40.779996135,
+      "lng": -73.962027516
+    },
+    {
+      "gallery": 247,
+      "lat": 40.78003077,
+      "lng": -73.961922535
+    },
+    {
+      "gallery": 252,
+      "lat": 40.780052854,
+      "lng": -73.96190643
+    },
+    {
+      "gallery": 253,
+      "lat": 40.780064764,
+      "lng": -73.961979045
+    },
+    {
+      "gallery": 216,
+      "lat": 40.780057202,
+      "lng": -73.962077937
+    },
+    {
+      "gallery": 217,
+      "lat": 40.780140228,
+      "lng": -73.962198618
+    },
+    {
+      "gallery": 218,
+      "lat": 40.780257355,
+      "lng": -73.962076788
+    },
+    {
+      "gallery": 217,
+      "lat": 40.780140228,
+      "lng": -73.962198618
+    },
+    {
+      "gallery": 210,
+      "lat": 40.780212407,
+      "lng": -73.962252558
+    },
+    {
+      "gallery": 232,
+      "lat": 40.780169066,
+      "lng": -73.962431458
+    },
+    {
+      "gallery": 223,
+      "lat": 40.780106867,
+      "lng": -73.962499034
+    },
+    {
+      "gallery": 224,
+      "lat": 40.780153923,
+      "lng": -73.962598275
+    },
+    {
+      "gallery": 225,
+      "lat": 40.780222019,
+      "lng": -73.962713964
+    },
+    {
+      "gallery": 226,
+      "lat": 40.780275745,
+      "lng": -73.962848501
+    }
+  ],
+  "map_bounds": {
+    "north": 40.780475745,
+    "south": 40.779039302,
+    "east": -73.961587896,
+    "west": -73.963384305
+  }
+}

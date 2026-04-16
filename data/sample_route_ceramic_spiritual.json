@@ -2,16 +2,36 @@
   "profile_summary": {
     "time_budget": 60,
     "num_target_galleries": 12,
-    "total_stops": 47
+    "total_stops": 47,
+    "freedom": "balanced",
+    "depth": "focused",
+    "materials": [
+      "ceramics",
+      "jade_hardstone"
+    ],
+    "regions": [
+      "east_asia",
+      "japan"
+    ],
+    "emotions": [
+      "Ancient",
+      "Intricate",
+      "Peaceful",
+      "Elegant",
+      "Spiritual"
+    ]
   },
+  "route_summary": "Your 60-minute deep-dive tour (balanced style) visits 16 key galleries across 47 rooms. We focused on ceramics and jade_hardstone from Chinese, Japanese. You're looking for something ancient, intricate, peaceful \u2014 we kept that in mind.",
   "route": [
     {
       "gallery": 202,
       "name": "Gallery 202",
       "region": "chinese_ceramics",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 10,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 39666,
@@ -23,21 +43,9 @@
           "alt_text": "Porcelain jar decorated with a blue underglaze dragon among clouds and a band of lotus petals",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32251-001.jpg",
           "highlight": true,
-          "score": 1.0,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 42193,
-          "title": "Incense burner",
-          "culture": "China",
-          "date": "dated 1512",
-          "classification": "Ceramics",
-          "medium": "Stoneware with relief decoration under colored glazes",
-          "alt_text": "Ornate stoneware incense burner with green and amber glazes, dragons, flowers, and a carved wooden lid",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32252-001.jpg",
-          "highlight": false,
-          "score": 0.67,
-          "tag": "stretch"
+          "score": 0.96,
+          "tag": "affinity",
+          "reason": "You picked this in the survey \u2014 come see it in person."
         },
         {
           "object_id": 45515,
@@ -49,8 +57,23 @@
           "alt_text": "Squared stoneware vessel with a cream glaze featuring a dark hook-like motif and a diagonal lattice pattern",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-1973_80_2-001.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from Japan adds to your journey."
+        },
+        {
+          "object_id": 49282,
+          "title": "Clog-shaped tea bowl (kutsu-gata chawan) with plum blossoms and geometric patterns",
+          "culture": "Japan",
+          "date": "early 17th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware with iron-oxide decoration (Mino ware, Black Oribe type)",
+          "alt_text": "Irregularly shaped stoneware tea bowl with dark glaze and a white panel with iron-oxide patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP244298.jpg",
+          "highlight": false,
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.779239302,
@@ -67,8 +90,10 @@
       "name": "Chinese Ceramics & More!",
       "region": "chinese_ceramics",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 52,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 42229,
@@ -80,8 +105,9 @@
           "alt_text": "Slender porcelain vase with a white rim, three neck rings, and mottled reddish-pink glaze",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP246426.jpg",
           "highlight": true,
-          "score": 1.0,
-          "tag": "affinity"
+          "score": 0.98,
+          "tag": "affinity",
+          "reason": "You picked this in the survey \u2014 come see it in person."
         },
         {
           "object_id": 48649,
@@ -93,8 +119,9 @@
           "alt_text": "Lidded magenta porcelain jar with white reserves of birds and flowers on a red ground",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14605-057.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "stretch"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from China adds to your journey."
         },
         {
           "object_id": 48711,
@@ -106,8 +133,9 @@
           "alt_text": "Tall white porcelain vase decorated with a dragon-headed boat carrying a two-story pavilion and many people",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14605-158.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.779262161,
@@ -122,8 +150,10 @@
       "name": "Gallery 202",
       "region": "chinese_ceramics",
       "is_target": true,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 10,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [],
       "lat": 40.779239302,
       "lng": -73.962979541,
@@ -138,22 +168,53 @@
       "gallery": 207,
       "name": "Chinese Art: Ancient to Tang Dynasty",
       "region": "chinese_ancient",
-      "is_target": false,
-      "time_estimate_min": 2,
+      "is_target": true,
+      "is_revisit": false,
+      "time_estimate_min": 5,
       "object_count": 247,
+      "reason": "You chose this gallery in the survey \u2014 this is your pick.",
       "featured_artworks": [
         {
-          "object_id": 47993,
-          "title": "Seal paste box with eight horses",
+          "object_id": 42102,
+          "title": "Twelve animals of the Chinese zodiac",
           "culture": "China",
-          "date": "18th century",
-          "classification": "Ceramics",
-          "medium": "Porcelain painted in underglaze cobalt blue (Jingdezhen ware)",
-          "alt_text": "Round white porcelain box and lid decorated with various horses painted in dark blue underglaze",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-44141-001.jpg",
+          "date": "18th\u201319th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "Twelve pale green jade figurines of seated humanoid figures with animal heads arranged in three rows",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5058.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love jade_hardstone and you're drawn to Chinese art."
+        },
+        {
+          "object_id": 41554,
+          "title": "Snuff bottle with landscape and horses",
+          "culture": "China",
+          "date": "late 19th century",
+          "classification": "Snuff Bottles",
+          "medium": "Glass painted inside, amethyst stopper",
+          "alt_text": "Glass snuff bottle with a purple stone stopper featuring an internal painting of horses in a landscape",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP295262.jpg",
+          "highlight": false,
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how snuff bottles from China adds to your journey."
+        },
+        {
+          "object_id": 41314,
+          "title": "Snuff bottle with camel wrangler and Manchu horse rider",
+          "culture": "China",
+          "date": "",
+          "classification": "Snuff Bottles",
+          "medium": "Porcelain with overglazed enamel colors (Jingdezhen ware), coral stopper",
+          "alt_text": "White porcelain snuff bottle with a painted scene of a person riding a horse leading a dog",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP294343.jpg",
+          "highlight": false,
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.77945,
@@ -171,8 +232,10 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 42163,
@@ -184,8 +247,9 @@
           "alt_text": "Seated sculpture of a person with missing hands wearing a robe with red and green patterns",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-004.jpg",
           "highlight": true,
-          "score": 0.58,
-          "tag": "affinity"
+          "score": 0.54,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art and it's a museum highlight."
         }
       ],
       "lat": 40.779721287,
@@ -201,8 +265,10 @@
       "name": "Chinese Buddhist Art",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 7,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 53120,
@@ -214,8 +280,9 @@
           "alt_text": "Craggy dark stone rock with numerous holes and peaks resting on a tiered bamboo-style wooden stand",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/L37147_2011_575_3ab.jpg",
           "highlight": false,
-          "score": 0.54,
-          "tag": "affinity"
+          "score": 0.46,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art."
         }
       ],
       "lat": 40.77985,
@@ -230,8 +297,10 @@
       "name": "South Asian Hindu-Buddhist and Jain Sculpture",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 2,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38133,
@@ -243,8 +312,9 @@
           "alt_text": "Vertical stone sculpture of a four-armed person seated on a throne in a relaxed posture",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5240.jpg",
           "highlight": true,
-          "score": 0.43,
-          "tag": "affinity"
+          "score": 0.42,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.779898381,
@@ -261,8 +331,10 @@
       "name": "Indian Medieval Sculpture Gallery",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 11,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38146,
@@ -274,8 +346,9 @@
           "alt_text": "Vertical sandstone relief sculpture of a four-armed figure surrounded by smaller figures and decorative carvings",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5052.jpg",
           "highlight": true,
-          "score": 0.43,
-          "tag": "affinity"
+          "score": 0.42,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.779923533,
@@ -293,9 +366,25 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 69,
+      "reason": "You wanted to see Chinese art \u2014 this gallery delivers.",
       "featured_artworks": [
+        {
+          "object_id": 38632,
+          "title": "Ceremonial Ax",
+          "culture": "Indonesia",
+          "date": "ca. 500 BCE\u2013300 CE",
+          "classification": "Hardstone",
+          "medium": "Translucent agate",
+          "alt_text": "A vertical, blade-shaped stone object with translucent brown and tan swirling agate patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102596.jpg",
+          "highlight": false,
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because you said you love jade_hardstone."
+        },
         {
           "object_id": 37404,
           "title": "Vase with Incised and Impressed Designs",
@@ -307,7 +396,8 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP102593.jpg",
           "highlight": false,
           "score": 0.44,
-          "tag": "affinity"
+          "tag": "stretch",
+          "reason": "Same ceramics you love, but from Southeast Asian \u2014 a fresh perspective."
         },
         {
           "object_id": 37407,
@@ -320,20 +410,8 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/h1_1987.424.4.2.jpg",
           "highlight": false,
           "score": 0.44,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 37408,
-          "title": "Jar",
-          "culture": "Thailand (Ban Chiang culture)",
-          "date": "300 BCE\u2013200 CE",
-          "classification": "Ceramics",
-          "medium": "Earthenware with buff slip and red oxide decoration",
-          "alt_text": "Vertical earthenware jar with reddish-brown geometric bands and diamond patterns on an off-white slip background",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/h1_1987.424.9.jpg",
-          "highlight": false,
-          "score": 0.44,
-          "tag": "wildcard"
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.779996135,
@@ -351,8 +429,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 16,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38158,
@@ -364,8 +444,9 @@
           "alt_text": "Vertical sandstone sculpture of a person with a tall hair arrangement and a simple waistcloth",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LK.1987.17_DP310113R1_25W.jpg",
           "highlight": true,
-          "score": 0.43,
-          "tag": "affinity"
+          "score": 0.42,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.780049147,
@@ -383,8 +464,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 28,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 39491,
@@ -396,8 +479,9 @@
           "alt_text": "A terracotta plaque featuring a seated central figure beneath a tree flanked by two smaller standing figures",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1997_131.jpg",
           "highlight": false,
-          "score": 0.48,
-          "tag": "affinity"
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics."
         }
       ],
       "lat": 40.780109477,
@@ -413,8 +497,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 8,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 37434,
@@ -426,8 +512,9 @@
           "alt_text": "Dark stoneware bottle with a globular body, long neck, and incised vertical lines",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/264795_botl.jpg",
           "highlight": false,
-          "score": 0.48,
-          "tag": "affinity"
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics."
         }
       ],
       "lat": 40.780137591,
@@ -442,8 +529,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 25,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 65095,
@@ -455,8 +544,9 @@
           "alt_text": "Reddish-brown stone sculpture of a seated person with an ornate headdress and swirling scroll backdrop",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2003.142.jpg",
           "highlight": true,
-          "score": 0.43,
-          "tag": "affinity"
+          "score": 0.42,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.780199747,
@@ -471,8 +561,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 44,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 40001,
@@ -484,8 +576,9 @@
           "alt_text": "Ceramic dish with a blue-painted spotted elephant surrounded by dense stylized swirling cloud patterns",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT2189.jpg",
           "highlight": true,
-          "score": 0.62,
-          "tag": "affinity"
+          "score": 0.54,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and it's a museum highlight."
         },
         {
           "object_id": 37558,
@@ -497,8 +590,9 @@
           "alt_text": "White ceramic vessel shaped like a bird with blue patterns and an ornate scrolled handle",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5077.jpg",
           "highlight": true,
-          "score": 0.62,
-          "tag": "stretch"
+          "score": 0.54,
+          "tag": "stretch",
+          "reason": "Same ceramics you love, but from Southeast Asian \u2014 a fresh perspective."
         },
         {
           "object_id": 37461,
@@ -510,8 +604,9 @@
           "alt_text": "Circular earthenware dish with a cream glaze and dark brown floral and scroll motifs",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1989_238_3.jpg",
           "highlight": false,
-          "score": 0.52,
-          "tag": "wildcard"
+          "score": 0.44,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.78027289,
@@ -525,8 +620,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 25,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780199747,
       "lng": -73.961833947,
@@ -540,8 +637,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 8,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780137591,
       "lng": -73.96188656,
@@ -555,8 +654,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 28,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780109477,
       "lng": -73.961944863,
@@ -571,8 +672,10 @@
       "name": " Chinese Painting and Calligraphy: Selections from the Collection",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 4,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 910543,
@@ -584,8 +687,9 @@
           "alt_text": "Person in traditional dress sitting at a table while another stands behind and arranges their hair",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34237-002.jpg",
           "highlight": true,
-          "score": 0.61,
-          "tag": "affinity"
+          "score": 0.56,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art and it's a museum highlight."
         }
       ],
       "lat": 40.780148237,
@@ -601,8 +705,10 @@
       "name": " Chinese Painting and Calligraphy: Selections from the Collection",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 10,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 53123,
@@ -614,8 +720,9 @@
           "alt_text": "Vertical dark charcoal gray limestone rock with a pitted surface resting on a carved wooden stand",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT208238.jpg",
           "highlight": false,
-          "score": 0.54,
-          "tag": "affinity"
+          "score": 0.46,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art."
         }
       ],
       "lat": 40.78021068,
@@ -630,8 +737,10 @@
       "name": "Chinese Painting",
       "region": "chinese_painting",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 23,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 47429,
@@ -643,8 +752,9 @@
           "alt_text": "Blue and white porcelain vase featuring a person in robes in a garden landscape",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/79_2_295_O1_sf.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Chinese art."
         },
         {
           "object_id": 50919,
@@ -656,8 +766,9 @@
           "alt_text": "Covered ceramic jar with white blossoms on branches against a blue cracked-ice patterned background",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP234653.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "stretch"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from China adds to your journey."
         },
         {
           "object_id": 51009,
@@ -669,8 +780,9 @@
           "alt_text": "A vertical porcelain vase with a flared rim and bulbous body decorated with flowering plum branches",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/76110.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.7801,
@@ -685,8 +797,10 @@
       "name": "Chinese Painting",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 6,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 49013,
@@ -698,8 +812,9 @@
           "alt_text": "Folding fan with an ink landscape of rocky outcrops and trees on gold paper",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP153871.jpg",
           "highlight": false,
-          "score": 0.51,
-          "tag": "affinity"
+          "score": 0.46,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art."
         }
       ],
       "lat": 40.78015,
@@ -714,8 +829,10 @@
       "name": "Chinese Painting",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 4,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 45673,
@@ -727,8 +844,9 @@
           "alt_text": "Horizontal landscape painting on silk featuring misty mountains, pine trees, small buildings, and a seated person",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP205315_CRD.jpg",
           "highlight": false,
-          "score": 0.49,
-          "tag": "affinity"
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because you're drawn to Chinese art."
         }
       ],
       "lat": 40.7801,
@@ -743,8 +861,10 @@
       "name": " Chinese Painting and Calligraphy: Selections from the Collection",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 28,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 50211,
@@ -756,8 +876,9 @@
           "alt_text": "High-shouldered pottery bottle with a glossy black glaze and numerous mottled amber and tan patches",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-14607-043.jpg",
           "highlight": false,
-          "score": 0.67,
-          "tag": "affinity"
+          "score": 0.56,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Chinese art."
         }
       ],
       "lat": 40.780212407,
@@ -773,8 +894,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 7,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 52284,
@@ -786,8 +909,9 @@
           "alt_text": "A circular porcelain dish featuring a repeating pattern of eight blue scrolls and eight red flowers",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1975_268_562_O1_sf.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Japanese art."
         }
       ],
       "lat": 40.780169066,
@@ -803,8 +927,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 25,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 50342,
@@ -816,8 +942,9 @@
           "alt_text": "Circular porcelain dish featuring three decorated jars with geometric, crackled, and floral patterns on a blue ground",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP222421.jpg",
           "highlight": true,
-          "score": 0.76,
-          "tag": "affinity"
+          "score": 0.68,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Japanese art and it's a museum highlight."
         }
       ],
       "lat": 40.780106867,
@@ -832,8 +959,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 25,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 52211,
@@ -845,8 +974,9 @@
           "alt_text": "A hand-formed stoneware sake cup with a mottled tan glaze, irregular rim, and metallic silver repairs",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-42384-001.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Japanese art."
         },
         {
           "object_id": 63180,
@@ -858,8 +988,9 @@
           "alt_text": "A rounded orange-red ceramic bowl with a crackled glaze and prominent gold-colored repairs along several cracks",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP260410.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "stretch"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from Japan adds to your journey."
         },
         {
           "object_id": 670995,
@@ -871,8 +1002,9 @@
           "alt_text": "Stout ovoid stoneware jar with a rough, mottled brown surface and branching gold lacquer repair lines",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2015_300_274_S2_Burke.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.780153923,
@@ -888,21 +1020,24 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
-          "object_id": 42514,
-          "title": "Dish with Peonies",
-          "culture": "China",
-          "date": "late 14th\u2013early 15th century",
+          "object_id": 52215,
+          "title": "Small Jar",
+          "culture": "Japan",
+          "date": "ca. 1620\u201340",
           "classification": "Ceramics",
-          "medium": "Stoneware with incised decoration under celadon glaze (Longquan ware) \r\n\r\n",
-          "alt_text": "Pale green celadon dish with a scalloped rim, fluted sides, and a large incised center floral medallion",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-1984_358_001.jpg",
+          "medium": "Porcelaneous stoneware with white glaze (Hizen ware, Arita type)",
+          "alt_text": "Small globular ceramic jar with a pale white glaze, vertical ridges on the shoulder, and an unglazed base",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-43726-001.jpg",
           "highlight": false,
-          "score": 0.67,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Japanese art."
         }
       ],
       "lat": 40.780222019,
@@ -918,8 +1053,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 10,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 44929,
@@ -931,8 +1068,9 @@
           "alt_text": "Circular ceramic dish with cream crackle glaze featuring brown and blue bamboo leaves and gold repairs",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP268776.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and you're drawn to Japanese art."
         },
         {
           "object_id": 45514,
@@ -944,8 +1082,9 @@
           "alt_text": "Circular stoneware dish featuring bold dark brown and thin blue bamboo leaf motifs with gold-colored rim repairs",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP260401.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "stretch"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from Japan adds to your journey."
         },
         {
           "object_id": 666594,
@@ -957,8 +1096,9 @@
           "alt_text": "Pair of teardrop-shaped ceramic bottles with blue necks and painted tree motifs in red, green, and gold",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP703067.jpg",
           "highlight": false,
-          "score": 0.66,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.780275745,
@@ -974,8 +1114,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780222019,
       "lng": -73.962713964,
@@ -990,8 +1132,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": true,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 25,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [],
       "lat": 40.780153923,
       "lng": -73.962598275,
@@ -1006,8 +1150,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 25,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780106867,
       "lng": -73.962499034,
@@ -1021,8 +1167,10 @@
       "name": "The Infinite Artistry of Japanese Ceramics",
       "region": "japanese",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 7,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780169066,
       "lng": -73.962431458,
@@ -1037,8 +1185,10 @@
       "name": " Chinese Painting and Calligraphy: Selections from the Collection",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 28,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.780212407,
       "lng": -73.962252558,
@@ -1053,8 +1203,10 @@
       "name": "Chinese Courtyard in the Style of the Ming Dynasty",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 3,
       "object_count": 0,
+      "reason": "The Chinese Garden \u2014 a peaceful oasis everyone should experience.",
       "featured_artworks": [],
       "lat": 40.780140228,
       "lng": -73.962198618,
@@ -1069,8 +1221,10 @@
       "name": " Chinese Painting and Calligraphy: Selections from the Collection",
       "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 2,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 42148,
@@ -1082,8 +1236,9 @@
           "alt_text": "Vertical stone sculpture of a seated person with a fan inside a craggy rock grotto",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP350747.jpg",
           "highlight": false,
-          "score": 0.57,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "affinity",
+          "reason": "Picked because you said you love jade_hardstone and you're drawn to Chinese art."
         }
       ],
       "lat": 40.780057202,
@@ -1100,8 +1255,10 @@
       "name": "Arts of Tibet and Nepal",
       "region": "himalayan",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 34,
+      "reason": "A great stop that complements your interests.",
       "featured_artworks": [
         {
           "object_id": 38332,
@@ -1113,8 +1270,23 @@
           "alt_text": "Gilt copper alloy sculpture of a seated person with a tall crown on a lotus pedestal",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP170265.jpg",
           "highlight": true,
-          "score": 0.49,
-          "tag": "affinity"
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
+        },
+        {
+          "object_id": 682118,
+          "title": "Guru Dragpo, Padmasambhava\u2019s Fierce Emanation",
+          "culture": "Tibet",
+          "date": "18th century",
+          "classification": "Paintings",
+          "medium": "Distemper on cotton",
+          "alt_text": "A large red person with a skull crown stands amid flames, surrounded by numerous smaller figures",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP369217.jpg",
+          "highlight": true,
+          "score": 0.44,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how paintings from Tibet adds to your journey."
         },
         {
           "object_id": 38582,
@@ -1126,21 +1298,9 @@
           "alt_text": "Carved stone stele with a central seated figure surrounded by twenty-one smaller figures on a red background",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP252972.jpg",
           "highlight": true,
-          "score": 0.47,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 78192,
-          "title": "The Spiritual Master Padmasambhava",
-          "culture": "Western Tibet or Ladakh",
-          "date": "14th century",
-          "classification": "Sculpture",
-          "medium": "Copper alloy with copper and silver inlay",
-          "alt_text": "Bronze-toned sculpture of a seated person wearing a tall crown and patterned robes on a tiered base",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP298008.jpg",
-          "highlight": true,
-          "score": 0.47,
-          "tag": "wildcard"
+          "score": 0.42,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.780064764,
@@ -1152,76 +1312,21 @@
       ]
     },
     {
-      "gallery": 252,
-      "name": "Arts of Tibet and Nepal",
-      "region": "himalayan",
-      "is_target": true,
-      "time_estimate_min": 5,
-      "object_count": 34,
-      "featured_artworks": [
-        {
-          "object_id": 50799,
-          "title": "Tara, the Buddhist Savior",
-          "culture": "Nepal, Kathmandu Valley",
-          "date": "14th century",
-          "classification": "Sculpture",
-          "medium": "Gilt copper alloy with color and semiprecious stone inlay",
-          "alt_text": "Gilded metal sculpture of a standing woman wearing a tall crown and holding a flower",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5221.jpg",
-          "highlight": true,
-          "score": 0.47,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 38341,
-          "title": "Durga as Slayer of the Buffalo Demon Mahishasura",
-          "culture": "Nepal",
-          "date": "14th\u201315th century",
-          "classification": "Sculpture",
-          "medium": "Gilt copper alloy, inlaid with semiprecious stones",
-          "alt_text": "Golden twenty-armed woman sculpture thrusting a trident into a buffalo while grabbing a small human figure",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5236.jpg",
-          "highlight": true,
-          "score": 0.47,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 78187,
-          "title": "Bhairava",
-          "culture": "Nepal, Kathmandu Valley",
-          "date": "16th century",
-          "classification": "Sculpture",
-          "medium": "Gilded copper, rock crystal, paint",
-          "alt_text": "Gilded metal mask with three bulging dark eyes, a scrollwork mustache, and a tiered, skull-adorned crown",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP307219.jpg",
-          "highlight": true,
-          "score": 0.47,
-          "tag": "wildcard"
-        }
-      ],
-      "lat": 40.780052854,
-      "lng": -73.96190643,
-      "neighbors": [
-        245,
-        247,
-        253
-      ]
-    },
-    {
-      "gallery": 245,
-      "name": "Southeast Asian Art",
-      "region": "southeast_asian",
+      "gallery": 216,
+      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
+      "region": "chinese_painting",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
-      "object_count": 16,
+      "object_count": 2,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
-      "lat": 40.780049147,
-      "lng": -73.961988858,
+      "lat": 40.780057202,
+      "lng": -73.962077937,
       "neighbors": [
+        215,
+        217,
         244,
-        246,
-        247,
-        252,
         253
       ]
     },
@@ -1230,8 +1335,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": true,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 69,
+      "reason": "You wanted to see Chinese art \u2014 this gallery delivers.",
       "featured_artworks": [],
       "lat": 40.779996135,
       "lng": -73.962027516,
@@ -1248,8 +1355,10 @@
       "name": "Indian Medieval Sculpture Gallery",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 11,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.779923533,
       "lng": -73.962067714,
@@ -1266,8 +1375,10 @@
       "name": "South Asian Hindu-Buddhist and Jain Sculpture",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 2,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.779898381,
       "lng": -73.962193753,
@@ -1283,8 +1394,10 @@
       "name": "Chinese Buddhist Art",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 7,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.77985,
       "lng": -73.9624,
@@ -1298,8 +1411,10 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.779721287,
       "lng": -73.962478484,
@@ -1314,8 +1429,10 @@
       "name": "Flip Sides: Seeing Korean Art Anew",
       "region": "korean",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 42,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 910524,
@@ -1327,8 +1444,23 @@
           "alt_text": "Globular porcelain jar featuring an outer shell carved with openwork peony blossoms and winding leafy vines",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34236-001.jpg",
           "highlight": true,
-          "score": 0.7,
-          "tag": "affinity"
+          "score": 0.56,
+          "tag": "affinity",
+          "reason": "Picked because you said you love ceramics and it's a museum highlight."
+        },
+        {
+          "object_id": 39496,
+          "title": "Bird-shaped vessel",
+          "culture": "Korea",
+          "date": "3rd century",
+          "classification": "Ceramics",
+          "medium": "Earthenware",
+          "alt_text": "Bird-shaped earthenware vessel with a tall crest, long neck, and two circular openings on its back",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT4131.jpg",
+          "highlight": true,
+          "score": 0.52,
+          "tag": "stretch",
+          "reason": "Same ceramics you love, but from Korean \u2014 a fresh perspective."
         },
         {
           "object_id": 57517,
@@ -1340,21 +1472,9 @@
           "alt_text": "Pale blue porcelain jar featuring a rounded body and a flat lid with a small pointed knob",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP323753.jpg",
           "highlight": false,
-          "score": 0.6,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 48136,
-          "title": "Bowl with phoenixes",
-          "culture": "Korea",
-          "date": "19th century",
-          "classification": "Ceramics",
-          "medium": "Porcelain with mold-impressed decoration under glaze",
-          "alt_text": "A wide, conical porcelain bowl with a pale blue-green glaze and a small circular base",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-41795-001.jpg",
-          "highlight": false,
-          "score": 0.6,
-          "tag": "wildcard"
+          "score": 0.46,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.779601942,
@@ -1370,8 +1490,10 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.779721287,
       "lng": -73.962478484,
@@ -1385,9 +1507,11 @@
       "gallery": 207,
       "name": "Chinese Art: Ancient to Tang Dynasty",
       "region": "chinese_ancient",
-      "is_target": false,
+      "is_target": true,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 247,
+      "reason": "You chose this gallery in the survey \u2014 this is your pick.",
       "featured_artworks": [],
       "lat": 40.77945,
       "lng": -73.96285,
@@ -1404,9 +1528,25 @@
       "name": "Chinese Jade & Decorative Arts",
       "region": "chinese_ancient",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 118,
+      "reason": "This gallery is rich in ceramics \u2014 right up your alley.",
       "featured_artworks": [
+        {
+          "object_id": 39844,
+          "title": "Boy with water buffalo",
+          "culture": "China",
+          "date": "18th century",
+          "classification": "Jade",
+          "medium": "Jade (nephrite)",
+          "alt_text": "White jade sculpture of a reclining water buffalo with a small child on its back",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP318968.jpg",
+          "highlight": false,
+          "score": 0.88,
+          "tag": "affinity",
+          "reason": "You picked this in the survey \u2014 come see it in person."
+        },
         {
           "object_id": 49349,
           "title": "Brush Washer",
@@ -1417,8 +1557,9 @@
           "alt_text": "A low, rounded porcelain brush washer with mottled reddish-pink glaze and a white interior",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP326725.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "affinity"
+          "score": 0.58,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how ceramics from China adds to your journey."
         },
         {
           "object_id": 50995,
@@ -1430,21 +1571,9 @@
           "alt_text": "Dome-shaped porcelain vessel with a small flared neck and a circular medallion of swirling patterns",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/76014.jpg",
           "highlight": false,
-          "score": 0.69,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 51041,
-          "title": "Bottle vase",
-          "culture": "China",
-          "date": "",
-          "classification": "Ceramics",
-          "medium": "Porcelain with incised decoration (anhua) under a clair de lune glaze (Jingdezhen ware)",
-          "alt_text": "Pale blue porcelain vase with a garlic-bulb mouth and a rounded body featuring subtle incised patterns",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/33_40_77_O1_sf.jpg",
-          "highlight": false,
-          "score": 0.69,
-          "tag": "wildcard"
+          "score": 0.58,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
       "lat": 40.77935,
@@ -1454,9 +1583,29 @@
         220,
         222
       ]
+    },
+    {
+      "gallery": 207,
+      "name": "Chinese Art: Ancient to Tang Dynasty",
+      "region": "chinese_ancient",
+      "is_target": true,
+      "is_revisit": true,
+      "time_estimate_min": 1,
+      "object_count": 247,
+      "reason": "You chose this gallery in the survey \u2014 this is your pick.",
+      "featured_artworks": [],
+      "lat": 40.77945,
+      "lng": -73.96285,
+      "neighbors": [
+        202,
+        206,
+        208,
+        219,
+        220
+      ]
     }
   ],
-  "total_time_estimate": 111,
+  "total_time_estimate": 110,
   "path_coordinates": [
     {
       "gallery": 202,
@@ -1639,14 +1788,9 @@
       "lng": -73.961979045
     },
     {
-      "gallery": 252,
-      "lat": 40.780052854,
-      "lng": -73.96190643
-    },
-    {
-      "gallery": 245,
-      "lat": 40.780049147,
-      "lng": -73.961988858
+      "gallery": 216,
+      "lat": 40.780057202,
+      "lng": -73.962077937
     },
     {
       "gallery": 244,
@@ -1692,6 +1836,11 @@
       "gallery": 219,
       "lat": 40.77935,
       "lng": -73.96255
+    },
+    {
+      "gallery": 207,
+      "lat": 40.77945,
+      "lng": -73.96285
     }
   ],
   "map_bounds": {

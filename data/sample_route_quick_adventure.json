@@ -2,16 +2,35 @@
   "profile_summary": {
     "time_budget": 30,
     "num_target_galleries": 6,
-    "total_stops": 21
+    "total_stops": 18,
+    "freedom": "free",
+    "depth": "variety",
+    "materials": [
+      "sculpture"
+    ],
+    "regions": [
+      "southeast_asia",
+      "himalayan"
+    ],
+    "emotions": [
+      "Powerful",
+      "Mysterious",
+      "Surprising",
+      "Fierce",
+      "Ancient"
+    ]
   },
+  "route_summary": "Your 30-minute variety-packed tour (free-spirited style) visits 6 key galleries across 18 rooms. We focused on sculpture from Southeast Asian, Himalayan. You're looking for something powerful, mysterious, surprising \u2014 we kept that in mind.",
   "route": [
     {
       "gallery": 200,
       "name": "Chinese Ceramics & More!",
       "region": "chinese_ceramics",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 52,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 42229,
@@ -23,8 +42,9 @@
           "alt_text": "Slender porcelain vase with a white rim, three neck rings, and mottled reddish-pink glaze",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP246426.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.38,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.779262161,
@@ -39,8 +59,10 @@
       "name": "Gallery 202",
       "region": "chinese_ceramics",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 10,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 39666,
@@ -52,8 +74,9 @@
           "alt_text": "Porcelain jar decorated with a blue underglaze dragon among clouds and a band of lotus petals",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-32251-001.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.38,
+          "tag": "affinity",
+          "reason": "Picked because it's a museum highlight."
         }
       ],
       "lat": 40.779239302,
@@ -69,98 +92,55 @@
       "gallery": 207,
       "name": "Chinese Art: Ancient to Tang Dynasty",
       "region": "chinese_ancient",
-      "is_target": false,
-      "time_estimate_min": 2,
-      "object_count": 247,
-      "featured_artworks": [
-        {
-          "object_id": 42183,
-          "title": "Dish in the shape of a leaf",
-          "culture": "China",
-          "date": "late 7th\u2013early 8th century",
-          "classification": "Metalwork",
-          "medium": "Silver with parcel gilding",
-          "alt_text": "Silver leaf-shaped dish with interior motifs of birds and flowers within spiraling stem circles",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP100673.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        }
-      ],
-      "lat": 40.77945,
-      "lng": -73.96285,
-      "neighbors": [
-        202,
-        206,
-        208,
-        219,
-        220
-      ]
-    },
-    {
-      "gallery": 220,
-      "name": "Chinese Decorative Arts",
-      "region": "chinese_ancient",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
-      "object_count": 49,
+      "object_count": 247,
+      "reason": "A great stop that complements your interests.",
       "featured_artworks": [
         {
-          "object_id": 856282,
-          "title": "Table screen with landscape",
-          "culture": "China",
-          "date": "second half 15th century",
-          "classification": "Cloisonn\u00e9",
-          "medium": "Cloisonn\u00e9 enamel, wood frame and stand",
-          "alt_text": "Horizontal table screen with a cloisonn\u00e9 enamel landscape in a carved dark wood frame and stand",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-24553-001.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 46915,
-          "title": "Vase",
+          "object_id": 58942,
+          "title": "Pole Base in the Form of a Tiger",
           "culture": "China",
           "date": "",
-          "classification": "Ceramics",
-          "medium": "Porcelain painted in underglaze cobalt blue and overglaze polychrome enamels (Jingdezhen ware)",
-          "alt_text": "Porcelain vase with a flared rim and base, decorated with colorful floral and geometric vertical panels",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/79_2_1375_S1_sf.jpg",
+          "classification": "Sculpture",
+          "medium": "Steatite",
+          "alt_text": "Dark greenish-brown stone sculpture of a stylized reclining animal with a circular hole in its back",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP158753.jpg",
           "highlight": false,
-          "score": 0.4,
-          "tag": "stretch"
+          "score": 0.44,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture."
         },
         {
-          "object_id": 48559,
-          "title": "Gourd-shaped vase with gourds on vines and bats",
+          "object_id": 53959,
+          "title": "Figure of a charioteer",
           "culture": "China",
-          "date": "early 18th century",
-          "classification": "Ceramics",
-          "medium": "Porcelain painted in underglaze cobalt blue (Jingdezhen ware)\r\n",
-          "alt_text": "A white porcelain double-gourd vase decorated with blue underglaze scrolling vines, small gourd fruits, and bats",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP264293.jpg",
+          "date": "4th\u20133rd century BCE",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Bronze figure of a person with hands outstretched in a gripping gesture wearing a patterned tunic",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT7096.jpg",
           "highlight": false,
-          "score": 0.4,
-          "tag": "wildcard"
+          "score": 0.44,
+          "tag": "stretch",
+          "reason": "Same sculpture you love, but from Chinese \u2014 a fresh perspective."
+        },
+        {
+          "object_id": 49575,
+          "title": "Guardian Lion",
+          "culture": "China",
+          "date": "mid-6th century",
+          "classification": "Sculpture",
+          "medium": "Limestone",
+          "alt_text": "Limestone sculpture of a crouching feline-like creature with bulging eyes and wide, toothy mouth",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP372039.jpg",
+          "highlight": false,
+          "score": 0.42,
+          "tag": "wildcard",
+          "reason": "A hidden gem \u2014 let yourself be surprised."
         }
       ],
-      "lat": 40.7795,
-      "lng": -73.9625,
-      "neighbors": [
-        207,
-        219,
-        221
-      ]
-    },
-    {
-      "gallery": 207,
-      "name": "Chinese Art: Ancient to Tang Dynasty",
-      "region": "chinese_ancient",
-      "is_target": false,
-      "time_estimate_min": 1,
-      "object_count": 247,
-      "featured_artworks": [],
       "lat": 40.77945,
       "lng": -73.96285,
       "neighbors": [
@@ -176,21 +156,24 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
-          "object_id": 42163,
-          "title": "Buddha, probably Amitabha",
+          "object_id": 42733,
+          "title": "Buddha Maitreya (Mile)",
           "culture": "China",
-          "date": "early 7th century",
+          "date": "dated 486 (10th year of Taihe reign)",
           "classification": "Sculpture",
-          "medium": "Dry lacquer with polychrome pigment and gilding",
-          "alt_text": "Seated sculpture of a person with missing hands wearing a robe with red and green patterns",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-004.jpg",
+          "medium": "Gilt bronze with traces of pigment; piece-mold cast",
+          "alt_text": "Gilt bronze standing figure on a petal-decorated base with raised right hand and serene expression",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP170102.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.52,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and it's a museum highlight."
         }
       ],
       "lat": 40.779721287,
@@ -206,22 +189,11 @@
       "name": "Flip Sides: Seeing Korean Art Anew",
       "region": "korean",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 42,
+      "reason": "A great stop that complements your interests.",
       "featured_artworks": [
-        {
-          "object_id": 39496,
-          "title": "Bird-shaped vessel",
-          "culture": "Korea",
-          "date": "3rd century",
-          "classification": "Ceramics",
-          "medium": "Earthenware",
-          "alt_text": "Bird-shaped earthenware vessel with a tall crest, long neck, and two circular openings on its back",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT4131.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        },
         {
           "object_id": 50325,
           "title": "Rafter finial in the shape of a dragon\u2019s head and wind chime",
@@ -233,7 +205,8 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT4423.jpg",
           "highlight": true,
           "score": 0.5,
-          "tag": "stretch"
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and it's a museum highlight."
         },
         {
           "object_id": 72485,
@@ -246,7 +219,22 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP358652.jpg",
           "highlight": true,
           "score": 0.5,
-          "tag": "wildcard"
+          "tag": "stretch",
+          "reason": "Same sculpture you love, but from Korean \u2014 a fresh perspective."
+        },
+        {
+          "object_id": 39496,
+          "title": "Bird-shaped vessel",
+          "culture": "Korea",
+          "date": "3rd century",
+          "classification": "Ceramics",
+          "medium": "Earthenware",
+          "alt_text": "Bird-shaped earthenware vessel with a tall crest, long neck, and two circular openings on its back",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT4131.jpg",
+          "highlight": true,
+          "score": 0.4,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.779601942,
@@ -262,8 +250,10 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": true,
       "time_estimate_min": 1,
       "object_count": 20,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [],
       "lat": 40.779721287,
       "lng": -73.962478484,
@@ -278,21 +268,24 @@
       "name": "Chinese Buddhist Art",
       "region": "chinese_buddhist",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 7,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
-          "object_id": 42721,
-          "title": "Rock in the form of a fantastic mountain",
+          "object_id": 42720,
+          "title": "Monk Sengqie",
           "culture": "China",
-          "date": "20th century",
+          "date": "late 11th\u201312th century",
           "classification": "Sculpture",
-          "medium": "Taihu limestone; wood stand",
-          "alt_text": "A vertical light-colored porous rock with many holes resting on an intricately carved dark base",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2011_575_1ab.jpg",
+          "medium": "Limestone with pigment",
+          "alt_text": "Limestone statue of a person seated cross-legged on a lotus base with a beast-headed lap support",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP213354.jpg",
           "highlight": false,
           "score": 0.4,
-          "tag": "affinity"
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture."
         }
       ],
       "lat": 40.77985,
@@ -307,8 +300,10 @@
       "name": "South Asian Hindu-Buddhist and Jain Sculpture",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 2,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38133,
@@ -321,7 +316,8 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5240.jpg",
           "highlight": true,
           "score": 0.5,
-          "tag": "affinity"
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and it's a museum highlight."
         }
       ],
       "lat": 40.779898381,
@@ -338,8 +334,10 @@
       "name": "Indian Medieval Sculpture Gallery",
       "region": "south_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 11,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38146,
@@ -352,7 +350,8 @@
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5052.jpg",
           "highlight": true,
           "score": 0.5,
-          "tag": "affinity"
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and it's a museum highlight."
         }
       ],
       "lat": 40.779923533,
@@ -370,21 +369,24 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 69,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
-          "object_id": 37743,
-          "title": "Ceremonial Object in the Shape of an Ax",
-          "culture": "Indonesia, possibly Sulawesi",
-          "date": "ca. 100 BCE\u2013300 CE",
-          "classification": "Metalwork",
-          "medium": "Bronze alloy",
-          "alt_text": "Vertical bronze object shaped like an ax with a ridged neck and green patina",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP221496.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "object_id": 54121,
+          "title": "Seated Male Figure",
+          "culture": "Vietnam",
+          "date": "500 BCE\u2013300 CE",
+          "classification": "Sculpture",
+          "medium": "Bronze",
+          "alt_text": "Stylized green bronze figure of a seated person with spiral chest markings and a loop on the head",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP158752.jpg",
+          "highlight": false,
+          "score": 0.56,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Southeast Asian art."
         }
       ],
       "lat": 40.779996135,
@@ -402,8 +404,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 90,
+      "reason": "You chose this gallery in the survey \u2014 this is your pick.",
       "featured_artworks": [
         {
           "object_id": 39020,
@@ -415,8 +419,9 @@
           "alt_text": "Bronze sculpture of a figure with a halo seated in a meditative pose on a lotus base",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5232.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.62,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Southeast Asian art and it's a museum highlight."
         },
         {
           "object_id": 39021,
@@ -428,8 +433,9 @@
           "alt_text": "Green bronze sculpture of a person seated on a throne supported by two stylized animals",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT8665.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "stretch"
+          "score": 0.62,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how sculpture from Indonesia (Java) adds to your journey."
         },
         {
           "object_id": 38994,
@@ -441,8 +447,9 @@
           "alt_text": "Copper alloy sculpture of three figures standing on lotus pedestals atop a rectangular base",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LK.1984.386.4_DP303951R1_25U.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "wildcard"
+          "score": 0.62,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.78003077,
@@ -458,8 +465,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 16,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 51170,
@@ -471,8 +480,9 @@
           "alt_text": "Weathered metal sculpture of a standing figure with a towering headpiece and green oxidation",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP145420.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.64,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Southeast Asian art and it's a museum highlight."
         }
       ],
       "lat": 40.780049147,
@@ -490,8 +500,10 @@
       "name": "Arts of Tibet and Nepal",
       "region": "himalayan",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 34,
+      "reason": "This gallery is rich in sculpture \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 38332,
@@ -503,8 +515,9 @@
           "alt_text": "Gilt copper alloy sculpture of a seated person with a tall crown on a lotus pedestal",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP170265.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.62,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Himalayan art and it's a museum highlight."
         },
         {
           "object_id": 38582,
@@ -516,8 +529,9 @@
           "alt_text": "Carved stone stele with a central seated figure surrounded by twenty-one smaller figures on a red background",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP252972.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "stretch"
+          "score": 0.62,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how sculpture from Tibet adds to your journey."
         },
         {
           "object_id": 78191,
@@ -529,8 +543,9 @@
           "alt_text": "Seated brass sculpture of a person with blue textured hair in a cross-legged pose with downcast eyes",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-015.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "wildcard"
+          "score": 0.62,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.780064764,
@@ -542,90 +557,23 @@
       ]
     },
     {
-      "gallery": 216,
-      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
-      "region": "chinese_painting",
+      "gallery": 245,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
       "is_target": false,
-      "time_estimate_min": 2,
-      "object_count": 2,
-      "featured_artworks": [
-        {
-          "object_id": 42148,
-          "title": "Seated luohan holding a fan",
-          "culture": "China",
-          "date": "late 18th century",
-          "classification": "Jade",
-          "medium": "Jade (nephrite)",
-          "alt_text": "Vertical stone sculpture of a seated person with a fan inside a craggy rock grotto",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP350747.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "affinity"
-        }
-      ],
-      "lat": 40.780057202,
-      "lng": -73.962077937,
+      "is_revisit": true,
+      "time_estimate_min": 1,
+      "object_count": 16,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
+      "featured_artworks": [],
+      "lat": 40.780049147,
+      "lng": -73.961988858,
       "neighbors": [
-        215,
-        217,
         244,
+        246,
+        247,
+        252,
         253
-      ]
-    },
-    {
-      "gallery": 215,
-      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
-      "region": "chinese_painting",
-      "is_target": true,
-      "time_estimate_min": 5,
-      "object_count": 4,
-      "featured_artworks": [
-        {
-          "object_id": 910543,
-          "title": "Woman at her dressing table",
-          "culture": "China",
-          "date": "early 18th century",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on silk",
-          "alt_text": "Person in traditional dress sitting at a table while another stands behind and arranges their hair",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34237-002.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 737733,
-          "title": "Small portrait of Luzhu",
-          "culture": "China",
-          "date": "1823",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on paper",
-          "alt_text": "Person in patterned robes on a vertical scroll surrounded by handwritten characters and red seals",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-41026-002.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 910544,
-          "title": "Beauty about to bathe",
-          "culture": "China",
-          "date": "18th century",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on silk",
-          "alt_text": "Woman in a sheer robe sitting on a bench beside a large basin and flowering plant",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34238-002.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "wildcard"
-        }
-      ],
-      "lat": 40.780148237,
-      "lng": -73.962011552,
-      "neighbors": [
-        214,
-        216,
-        246
       ]
     },
     {
@@ -633,8 +581,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 28,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
           "object_id": 38954,
@@ -646,8 +596,9 @@
           "alt_text": "Bronze sculpture of a standing figure with raised hands and a textured head",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP310136.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.62,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Southeast Asian art and it's a museum highlight."
         }
       ],
       "lat": 40.780109477,
@@ -663,21 +614,24 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": false,
+      "is_revisit": false,
       "time_estimate_min": 2,
       "object_count": 8,
+      "reason": "You'll pass through here on your way \u2014 keep an eye out.",
       "featured_artworks": [
         {
-          "object_id": 37434,
-          "title": "Bottle",
-          "culture": "Thailand (Buriram Province)",
-          "date": "early 12th century",
-          "classification": "Ceramics",
-          "medium": "Stoneware",
-          "alt_text": "Dark stoneware bottle with a globular body, long neck, and incised vertical lines",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/264795_botl.jpg",
+          "object_id": 75279,
+          "title": "The Mother Goddess Men Brajut (Hariti)",
+          "culture": "Indonesia (East Java, Trowulan)",
+          "date": "14th\u201315th century",
+          "classification": "Sculpture",
+          "medium": "Terracotta",
+          "alt_text": "Terracotta sculpture of a kneeling woman with a plate on her head and a child between her legs",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/LC-2009_321-001.jpg",
           "highlight": false,
-          "score": 0.4,
-          "tag": "affinity"
+          "score": 0.52,
+          "tag": "affinity",
+          "reason": "Picked because you said you love sculpture and you're drawn to Southeast Asian art."
         }
       ],
       "lat": 40.780137591,
@@ -691,9 +645,11 @@
       "gallery": 249,
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
-      "is_target": false,
-      "time_estimate_min": 2,
+      "is_target": true,
+      "is_revisit": false,
+      "time_estimate_min": 5,
       "object_count": 25,
+      "reason": "This gallery is rich in sculpture \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 65095,
@@ -705,8 +661,37 @@
           "alt_text": "Reddish-brown stone sculpture of a seated person with an ornate headdress and swirling scroll backdrop",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/2003.142.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.92,
+          "tag": "affinity",
+          "reason": "You picked this in the survey \u2014 come see it in person."
+        },
+        {
+          "object_id": 38265,
+          "title": "Brahma",
+          "culture": "Cambodia",
+          "date": "first quarter of the 10th century",
+          "classification": "Sculpture",
+          "medium": "Sandstone",
+          "alt_text": "Sandstone sculpture of a three-headed, four-armed figure wearing an ornate crown and pleated garment",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT5227.jpg",
+          "highlight": true,
+          "score": 0.62,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how sculpture from Cambodia adds to your journey."
+        },
+        {
+          "object_id": 38905,
+          "title": "Head of Shiva (lingakosha)",
+          "culture": "Vietnam (Champa, probably Quang Nam Province)",
+          "date": "late 9th\u201310th century",
+          "classification": "Sculpture",
+          "medium": "Gold and silver repouss\u00e9",
+          "alt_text": "A metal sculpture of a head with a third eye, a moustache, and a tiered topknot",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP291638.jpg",
+          "highlight": true,
+          "score": 0.62,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.780199747,
@@ -721,8 +706,10 @@
       "name": "Southeast Asian Art",
       "region": "southeast_asian",
       "is_target": true,
+      "is_revisit": false,
       "time_estimate_min": 5,
       "object_count": 44,
+      "reason": "This gallery is rich in sculpture \u2014 right up your alley.",
       "featured_artworks": [
         {
           "object_id": 63532,
@@ -734,8 +721,9 @@
           "alt_text": "Bronze sculpture of a seated person with elongated earlobes and a flame-shaped head protrusion",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-052.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
+          "score": 0.92,
+          "tag": "affinity",
+          "reason": "You picked this in the survey \u2014 come see it in person."
         },
         {
           "object_id": 38318,
@@ -747,8 +735,9 @@
           "alt_text": "Standing wooden sculpture of a person wearing an elaborate tall crown and thin, fitted robes",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1986_207.jpg",
           "highlight": true,
-          "score": 0.5,
-          "tag": "stretch"
+          "score": 0.62,
+          "tag": "stretch",
+          "reason": "Something a little different \u2014 see how sculpture from Burma adds to your journey."
         },
         {
           "object_id": 39107,
@@ -760,8 +749,9 @@
           "alt_text": "Bronze sculpture of a seated person with an ornate mandorla on a multi-tiered pedestal",
           "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/1980_526_1_224099.JPG",
           "highlight": true,
-          "score": 0.5,
-          "tag": "wildcard"
+          "score": 0.62,
+          "tag": "wildcard",
+          "reason": "A museum highlight you'll pass right by \u2014 worth a look."
         }
       ],
       "lat": 40.78027289,
@@ -771,7 +761,7 @@
       ]
     }
   ],
-  "total_time_estimate": 58,
+  "total_time_estimate": 52,
   "path_coordinates": [
     {
       "gallery": 200,
@@ -782,16 +772,6 @@
       "gallery": 202,
       "lat": 40.779239302,
       "lng": -73.962979541
-    },
-    {
-      "gallery": 207,
-      "lat": 40.77945,
-      "lng": -73.96285
-    },
-    {
-      "gallery": 220,
-      "lat": 40.7795,
-      "lng": -73.9625
     },
     {
       "gallery": 207,
@@ -849,14 +829,9 @@
       "lng": -73.961979045
     },
     {
-      "gallery": 216,
-      "lat": 40.780057202,
-      "lng": -73.962077937
-    },
-    {
-      "gallery": 215,
-      "lat": 40.780148237,
-      "lng": -73.962011552
+      "gallery": 245,
+      "lat": 40.780049147,
+      "lng": -73.961988858
     },
     {
       "gallery": 246,

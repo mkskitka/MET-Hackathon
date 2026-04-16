@@ -4,58 +4,86 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Survey Test - Met Museum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* ─── Met-inspired editorial styling ─── */
+  :root {
+    --met-red: #E4002B;
+    --met-red-dark: #B8001F;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --rule: #e5e5e5;
+    --rule-soft: #f0f0f0;
+    --bg: #ffffff;
+    --bg-alt: #f7f5f2;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #eee;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
   }
 
   .container {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
-    background: rgba(26, 26, 46, 0.95);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    background: var(--bg);
+    padding: 56px 48px 64px;
   }
 
+  /* ─── Header ─── */
   .header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid rgba(228, 0, 43, 0.3);
+    text-align: left;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
   }
 
   .header h1 {
-    font-size: 28px;
-    color: #fff;
-    margin-bottom: 8px;
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
   .header .subtitle {
-    color: #aaa;
-    font-size: 14px;
+    color: var(--ink-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
   }
 
+  /* ─── Progress ─── */
   .progress {
-    background: rgba(255,255,255,0.1);
-    height: 6px;
-    border-radius: 3px;
-    margin-bottom: 30px;
+    background: var(--rule-soft);
+    height: 2px;
+    border-radius: 0;
+    margin-bottom: 48px;
     overflow: hidden;
   }
 
   .progress-bar {
-    background: linear-gradient(90deg, #e4002b, #ff4d6d);
+    background: var(--met-red);
     height: 100%;
     width: 0;
-    transition: width 0.3s;
+    transition: width 0.3s ease;
   }
 
+  /* ─── Question ─── */
   .question {
     display: none;
   }
@@ -66,196 +94,264 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .question h2 {
-    font-size: 22px;
-    color: #fff;
-    margin-bottom: 10px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
   }
 
   .question .instruction {
-    color: #999;
-    font-size: 13px;
-    margin-bottom: 25px;
-    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+    font-style: normal;
   }
 
   .question .genai-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
+    background: transparent;
+    color: var(--met-red);
+    padding: 0;
     font-size: 11px;
     font-weight: 600;
-    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    border-left: 2px solid var(--met-red);
+    padding-left: 10px;
   }
 
+  /* ─── Text options (Q1-Q3) ─── */
   .options {
     display: grid;
-    gap: 12px;
-    margin-bottom: 30px;
+    gap: 0;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--rule);
   }
 
   .option {
-    background: rgba(255,255,255,0.05);
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 16px 20px;
+    background: var(--bg);
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 20px 4px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .option::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--met-red);
+    transition: width 0.15s;
   }
 
   .option:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(228, 0, 43, 0.5);
+    background: var(--bg-alt);
+    padding-left: 16px;
   }
 
   .option.selected {
-    background: rgba(228, 0, 43, 0.2);
-    border-color: #e4002b;
+    background: var(--bg-alt);
+    padding-left: 16px;
+  }
+
+  .option.selected::before {
+    width: 3px;
   }
 
   .option-label {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
-    color: #fff;
+    color: var(--ink);
     margin-bottom: 4px;
   }
 
   .option-description {
     font-size: 13px;
-    color: #aaa;
+    color: var(--ink-muted);
   }
 
+  /* ─── Image options (Q4-Q7) ─── */
   .image-option {
-    background: rgba(255,255,255,0.05);
-    border: 3px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 0;
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
 
   .image-option:hover {
-    border-color: rgba(228, 0, 43, 0.5);
-    transform: translateY(-2px);
+    border-color: var(--ink);
   }
 
   .image-option.selected {
-    border-color: #e4002b;
-    box-shadow: 0 0 20px rgba(228, 0, 43, 0.4);
+    border-color: var(--met-red);
+    border-width: 2px;
+  }
+
+  .image-option.selected .info {
+    background: var(--met-red);
+    color: #fff;
+  }
+
+  .image-option.selected .info .title,
+  .image-option.selected .info .meta {
+    color: #fff;
   }
 
   .image-option img {
     width: 100%;
-    height: 200px;
+    height: 260px;
+    object-fit: contain;
+    background: #000;
+    display: block;
+  }
+
+  .image-option img.cover {
     object-fit: cover;
-    background: #2a2a4a;
   }
 
   .image-option .info {
-    padding: 14px;
-    background: rgba(0,0,0,0.3);
+    padding: 14px 16px 16px;
+    background: var(--bg);
+    transition: background 0.2s;
   }
 
   .image-option .title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 6px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.3;
   }
 
   .image-option .meta {
-    font-size: 11px;
-    color: #999;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
   }
 
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
   }
 
+  /* ─── Word pills (Q9) ─── */
   .word-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 8px;
+    margin-bottom: 40px;
   }
 
   .word-pill {
-    background: rgba(100, 116, 255, 0.2);
-    border: 2px solid rgba(100, 116, 255, 0.4);
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    color: var(--ink);
     padding: 10px 18px;
-    border-radius: 20px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    letter-spacing: 0.01em;
   }
 
   .word-pill:hover {
-    background: rgba(100, 116, 255, 0.3);
-    border-color: rgba(100, 116, 255, 0.6);
+    background: var(--ink);
+    color: var(--bg);
   }
 
   .word-pill.selected {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    border-color: #8b5cf6;
-    color: white;
+    background: var(--met-red);
+    border-color: var(--met-red);
+    color: #fff;
   }
 
   .timer {
     text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-    color: #e4002b;
-    margin: 20px 0;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--met-red);
+    margin: 24px 0;
   }
 
+  /* ─── Buttons ─── */
   .nav-buttons {
     display: flex;
     gap: 12px;
-    justify-content: center;
-    margin-top: 30px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .nav-buttons-top {
+    margin-top: 0;
+    margin-bottom: 32px;
+    padding-top: 0;
+    border-top: none;
   }
 
   .btn {
-    background: #e4002b;
-    border: none;
-    color: white;
-    padding: 12px 32px;
-    border-radius: 10px;
-    font-size: 15px;
+    background: var(--met-red);
+    border: 1px solid var(--met-red);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
   }
 
   .btn:hover {
-    background: #c4001b;
-    transform: translateY(-1px);
+    background: var(--met-red-dark);
+    border-color: var(--met-red-dark);
   }
 
   .btn:disabled {
-    background: #555;
+    background: var(--rule);
+    border-color: var(--rule);
+    color: var(--ink-muted);
     cursor: not-allowed;
-    transform: none;
   }
 
   .btn-secondary {
-    background: rgba(255,255,255,0.1);
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
   }
 
   .btn-secondary:hover {
-    background: rgba(255,255,255,0.15);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
   }
 
+  /* ─── Results ─── */
   .results {
     display: none;
   }
@@ -265,44 +361,58 @@
   }
 
   .results h2 {
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 20px;
-    text-align: center;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 28px;
+    text-align: left;
+    letter-spacing: -0.01em;
   }
 
   .result-item {
-    background: rgba(255,255,255,0.05);
-    border-left: 4px solid #e4002b;
-    padding: 16px;
-    margin-bottom: 12px;
-    border-radius: 8px;
+    background: transparent;
+    border-left: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 20px;
+    align-items: baseline;
   }
 
   .result-item strong {
-    color: #e4002b;
+    color: var(--ink-muted);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
   }
 
   .result-item .value {
-    color: #ccc;
-    font-size: 14px;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
   }
 
+  /* ─── Loading ─── */
   .loading {
     text-align: center;
-    padding: 40px;
-    color: #aaa;
+    padding: 80px 20px;
+    color: var(--ink-muted);
   }
 
   .spinner {
-    border: 3px solid rgba(255,255,255,0.1);
-    border-top: 3px solid #e4002b;
+    border: 2px solid var(--rule);
+    border-top: 2px solid var(--met-red);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
+    width: 32px;
+    height: 32px;
+    animation: spin 0.8s linear infinite;
     margin: 0 auto 20px;
   }
 
@@ -324,6 +434,11 @@
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
+  <div class="nav-buttons nav-buttons-top">
+    <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display:none">Back</button>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none">Next</button>
+  </div>
+
   <div id="loading" class="loading">
     <div class="spinner"></div>
     <p>Loading survey data...</p>
@@ -332,11 +447,6 @@
   <div id="questions"></div>
 
   <div id="results" class="results"></div>
-
-  <div class="nav-buttons">
-    <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display:none">Back</button>
-    <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none">Next</button>
-  </div>
 </div>
 
 <script>
@@ -344,6 +454,8 @@
 let surveyData = {
   objects: [],
   embeddings: {},
+  pools: null,
+  config: null,
   currentQuestion: 0,
   totalQuestions: 9,
   answers: {}
@@ -354,14 +466,27 @@ let questions = [];
 // Load data
 async function loadData() {
   try {
-    const [csvResponse, embeddingsResponse] = await Promise.all([
+    const [csvResponse, embeddingsResponse, poolsResponse, configResponse, galleriesResponse] = await Promise.all([
       fetch('../data/asian_art_on_view.csv'),
-      fetch('../data/text_embeddings.json')
+      fetch('../data/text_embeddings.json'),
+      fetch('../data/survey_pools.json'),
+      fetch('../data/survey_config.json'),
+      fetch('../data/all_galleries.json')
     ]);
 
     const csvText = await csvResponse.text();
     surveyData.objects = parseCSV(csvText);
     surveyData.embeddings = await embeddingsResponse.json();
+    surveyData.pools = await poolsResponse.json();
+    surveyData.config = await configResponse.json();
+
+    const galleriesList = await galleriesResponse.json();
+    surveyData.galleryMeta = {};
+    galleriesList.forEach(g => {
+      if (g.gallery_number) {
+        surveyData.galleryMeta[String(g.gallery_number)] = g;
+      }
+    });
 
     document.getElementById('loading').style.display = 'none';
 
@@ -375,6 +500,66 @@ async function loadData() {
       <p style="font-size: 12px; margin-top: 10px;">Make sure the data files exist in ../data/</p>
     `;
   }
+}
+
+function shuffle(arr) {
+  return arr.slice().sort(() => 0.5 - Math.random());
+}
+
+const CULTURE_LABELS = {
+  east_asia: 'China',
+  japan: 'Japan',
+  korea: 'Korea',
+  south_asia: 'South Asia',
+  southeast_asia: 'Southeast Asia',
+  himalayan: 'Himalayan'
+};
+
+const MATERIAL_LABELS = {
+  ceramics: 'ceramics',
+  sculpture: 'sculpture',
+  metalwork: 'metalwork',
+  jade_hardstone: 'jade & hardstone',
+  paintings: 'paintings',
+  textiles: 'textiles',
+  lacquer: 'lacquer',
+  prints: 'prints',
+  calligraphy: 'calligraphy',
+  wood: 'woodwork',
+  glass: 'glass'
+};
+
+function humanizeCulture(key) {
+  return CULTURE_LABELS[key] || key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function humanizeMaterial(key) {
+  return MATERIAL_LABELS[key] || key.replace(/_/g, ' ').toLowerCase();
+}
+
+function joinList(items) {
+  if (items.length <= 1) return items.join('');
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+}
+
+function previewToOption(p, extra = {}) {
+  return {
+    value: extra.value || String(p.id),
+    object_id: p.id,
+    title: p.title,
+    culture: p.culture,
+    medium: p.classification,
+    date: p.date,
+    gallery: p.gallery,
+    alt_text: p.alt_text,
+    image_url: p.image_thumb || p.image_url,
+    class_group: p.class_group,
+    culture_group: p.culture_group,
+    era: p.era,
+    highlight: p.highlight,
+    ...extra
+  };
 }
 
 function parseCSV(text) {
@@ -423,9 +608,9 @@ function generateQuestions() {
     generateQ3(),
     generateQ4(),
     generateQ5(),
-    null, // Q6 - will be generated after Q4 and Q5
-    null, // Q7 - will be generated after Q2, Q3, Q4
-    generateQ8(),
+    null, // Q6 - generated after Q4 + Q5 answered
+    null, // Q7 - generated after Q2, Q3, Q4, Q5 answered
+    null, // Q8 - generated after Q4 + Q5 so gallery previews align
     generateQ9()
   ];
 }
@@ -471,35 +656,30 @@ function generateQ3() {
 }
 
 function generateQ4() {
-  // Get samples from different materials
+  // One card per material group, using a highlight artwork as the representative image
+  // and the material name as the prominent label (mirrors Q5's region cards).
   const materialGroups = [
-    { key: 'ceramic', keywords: ['porcelain', 'ceramic'], count: 2 },
-    { key: 'metal', keywords: ['bronze', 'copper', 'gilt'], count: 2 },
-    { key: 'stone', keywords: ['jade', 'stone', 'nephrite'], count: 2 }
+    { key: 'ceramics', label: 'Ceramics' },
+    { key: 'sculpture', label: 'Sculpture' },
+    { key: 'metalwork', label: 'Metalwork' },
+    { key: 'jade_hardstone', label: 'Jade & Hardstone' },
+    { key: 'paintings', label: 'Paintings' },
+    { key: 'textiles', label: 'Textiles' }
   ];
-
   const options = [];
 
   materialGroups.forEach(group => {
-    const objects = surveyData.objects.filter(obj =>
-      group.keywords.some(kw => obj.medium.toLowerCase().includes(kw))
-    );
-
-    const highlights = objects.filter(obj => obj.is_highlight === 'True');
-    const samplePool = highlights.length >= group.count ? highlights : objects;
-    const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, group.count);
-
-    samples.forEach(obj => {
-      options.push({
-        value: group.key,
-        material_type: group.key,
-        object_id: obj.object_id,
-        title: cleanText(obj.title),
-        culture: cleanText(obj.culture),
-        medium: cleanText(obj.medium),
-        gallery: obj.gallery_number
-      });
-    });
+    const pool = (surveyData.pools.by_classification[group.key] || []);
+    if (!pool.length) return;
+    const highlights = pool.filter(p => p.highlight);
+    const samplePool = highlights.length ? highlights : pool;
+    const p = shuffle(samplePool)[0];
+    options.push(previewToOption(p, {
+      value: group.key,
+      material_type: group.key,
+      headline: group.label,
+      subhead: p.title
+    }));
   });
 
   return {
@@ -508,140 +688,122 @@ function generateQ4() {
     question: 'Which materials speak to you?',
     instruction: 'Select as many as you like (at least 1)',
     minSelect: 1,
-    maxSelect: 6,
-    options: options.sort(() => 0.5 - Math.random())
+    maxSelect: 8,
+    options: shuffle(options)
   };
 }
 
 function generateQ5() {
-  // Show different subjects/themes with images
-  const themeGroups = [
-    { key: 'religious', keywords: ['buddha', 'bodhisattva', 'deity'], count: 2 },
-    { key: 'nature', keywords: ['flower', 'landscape', 'bird'], count: 2 },
-    { key: 'vessels', keywords: ['vase', 'bowl', 'jar', 'dish'], count: 2 }
+  // Sample from survey_pools.by_culture — one preview per culture region
+  const cultureGroups = [
+    { key: 'east_asia', label: 'China' },
+    { key: 'japan', label: 'Japan' },
+    { key: 'korea', label: 'Korea' },
+    { key: 'south_asia', label: 'South Asia' },
+    { key: 'southeast_asia', label: 'Southeast Asia' },
+    { key: 'himalayan', label: 'Himalayan' }
   ];
-
+  const perGroup = 1;
   const options = [];
 
-  themeGroups.forEach(group => {
-    const objects = surveyData.objects.filter(obj =>
-      group.keywords.some(kw => obj.title.toLowerCase().includes(kw))
-    );
-
-    const highlights = objects.filter(obj => obj.is_highlight === 'True');
-    const samplePool = highlights.length >= group.count ? highlights : objects;
-    const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, group.count);
-
-    samples.forEach(obj => {
-      options.push({
-        value: group.key,
-        theme_type: group.key,
-        object_id: obj.object_id,
-        title: cleanText(obj.title),
-        culture: cleanText(obj.culture),
-        medium: cleanText(obj.medium),
-        gallery: obj.gallery_number
-      });
+  cultureGroups.forEach(group => {
+    const pool = (surveyData.pools.by_culture[group.key] || []);
+    const highlights = pool.filter(p => p.highlight);
+    const samplePool = highlights.length >= perGroup ? highlights : pool;
+    shuffle(samplePool).slice(0, perGroup).forEach(p => {
+      options.push(previewToOption(p, { value: group.key, culture_label: group.label }));
     });
   });
 
   return {
     id: 'q5',
     type: 'image_multi',
-    question: 'Which subjects intrigue you?',
+    question: 'Which regions draw you in?',
     instruction: 'Select as many as you like (at least 1)',
     minSelect: 1,
     maxSelect: 6,
-    options: options.sort(() => 0.5 - Math.random())
+    options: shuffle(options)
   };
 }
 
-function generateQ6(material1, material2) {
-  const templates = {
-    'ceramic-stone': {
-      question: "You're drawn to smooth, crafted surfaces. Which refined piece speaks to you?",
-      keywords: ['porcelain', 'jade', 'nephrite']
-    },
-    'ceramic-wood': {
-      question: "You appreciate decorative artistry. Which ornate work captures your eye?",
-      keywords: ['porcelain', 'lacquer', 'decorated']
-    },
-    'metal-stone': {
-      question: "Ancient materials call to you. Which historical piece resonates?",
-      keywords: ['bronze', 'jade', 'stone']
-    },
-    'metal-wood': {
-      question: "You love contrast and fusion. Which mixed-media work intrigues you?",
-      keywords: ['bronze', 'wood', 'gilt']
-    }
-  };
+function generateQ6(materials, cultures) {
+  // materials and cultures are arrays of keys (e.g., ['ceramics','metalwork'], ['japan','korea'])
+  const mats = materials || [];
+  const cults = cultures || [];
 
-  const key = `${material1}-${material2}`;
-  const template = templates[key] || templates['ceramic-stone'];
+  // Union of all objects in selected classifications, deduped by id
+  const seen = new Set();
+  const pool = [];
+  mats.forEach(m => {
+    (surveyData.pools.by_classification[m] || []).forEach(p => {
+      if (!seen.has(p.id)) { seen.add(p.id); pool.push(p); }
+    });
+  });
 
-  const filtered = surveyData.objects.filter(obj =>
-    template.keywords.some(kw => obj.medium.toLowerCase().includes(kw))
-  );
+  // If cultures selected, narrow to items in those culture_groups
+  const filtered = cults.length
+    ? pool.filter(p => cults.includes(p.culture_group))
+    : pool;
 
-  const highlights = filtered.filter(obj => obj.is_highlight === 'True');
-  const samplePool = highlights.length >= 3 ? highlights : filtered;
-  const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, 3);
+  // Fallback if intersection is too thin
+  const base = filtered.length >= 3 ? filtered : (pool.length >= 3 ? pool : surveyData.pools.highlights);
+  const highlights = base.filter(p => p.highlight);
+  const samplePool = highlights.length >= 3 ? highlights : base;
+  const samples = shuffle(samplePool).slice(0, 3);
+
+  const matLabel = mats.length ? joinList(mats.map(humanizeMaterial)) : 'art';
+  const cultLabel = cults.length ? ` from ${joinList(cults.map(humanizeCulture))}` : '';
 
   return {
     id: 'q6',
     type: 'image',
-    question: template.question,
+    question: `You're drawn to ${matLabel}${cultLabel}. Which piece speaks to you?`,
     instruction: 'Choose the one that draws you in',
-    genai: `Generated from materials: ${material1} + ${material2}`,
-    options: samples.map(obj => ({
-      value: obj.object_id,
-      object_id: obj.object_id,
-      title: cleanText(obj.title),
-      culture: cleanText(obj.culture),
-      medium: cleanText(obj.medium),
-      date: cleanText(obj.object_date),
-      gallery: obj.gallery_number
-    }))
+    genai: `Filtered by materials=[${mats.join(',')}] × cultures=[${cults.join(',')}]`,
+    options: samples.map(p => previewToOption(p, { value: String(p.id) }))
   };
 }
 
-function generateQ7(freedom, depth, material) {
-  const materialKeywords = {
-    'ceramic': ['porcelain', 'ceramic'],
-    'metal': ['bronze', 'copper'],
-    'stone': ['jade', 'stone'],
-    'wood': ['wood', 'lacquer']
-  };
+function generateQ7(freedom, depth, materials, cultures) {
+  const mats = materials || [];
+  const cults = cultures || [];
 
-  const keywords = materialKeywords[material] || ['porcelain'];
-  let filtered = surveyData.objects.filter(obj =>
-    keywords.some(kw => obj.medium.toLowerCase().includes(kw))
-  );
+  // Union pool over selected classifications
+  const seen = new Set();
+  const pool = [];
+  mats.forEach(m => {
+    (surveyData.pools.by_classification[m] || []).forEach(p => {
+      if (!seen.has(p.id)) { seen.add(p.id); pool.push(p); }
+    });
+  });
+  const narrowed = cults.length
+    ? pool.filter(p => cults.includes(p.culture_group))
+    : pool;
+  let filtered = narrowed.length >= 4 ? narrowed : (pool.length >= 4 ? pool : surveyData.pools.highlights);
 
   let question = '';
-  let samplePool = [];
+  let samplePool = filtered;
+
+  const matLabel = mats[0] ? humanizeMaterial(mats[0]) : 'these';
 
   if (depth === 'focused') {
     if (freedom === 'curated') {
-      question = `Let's go deep into ${material}. Pick 2 masterpieces to study closely.`;
-      samplePool = filtered.filter(obj => obj.is_highlight === 'True');
+      question = `Let's go deep. Pick 2 masterpieces to study closely.`;
+      samplePool = filtered.filter(p => p.highlight);
     } else if (freedom === 'balanced') {
-      question = `Explore ${material} evolution. Pick 2 from different styles.`;
-      samplePool = filtered;
+      question = `Explore ${matLabel} evolution. Pick 2 from different styles.`;
     } else {
-      question = `Deep dive into ${material} surprises. Pick 2 hidden gems.`;
-      samplePool = filtered.filter(obj => obj.is_highlight === 'False');
+      question = `Deep dive into ${matLabel} surprises. Pick 2 hidden gems.`;
+      samplePool = filtered.filter(p => !p.highlight);
     }
   } else if (depth === 'mixed') {
-    question = `A mix of ${material} pieces. Pick 2 that intrigue you.`;
-    samplePool = filtered;
+    question = `A mix of pieces. Pick 2 that intrigue you.`;
   } else {
-    question = `Different ${material} styles. Pick 2 that surprise you.`;
-    samplePool = filtered;
+    question = `Different styles. Pick 2 that surprise you.`;
   }
 
-  samplePool = samplePool.length > 0 ? samplePool : filtered;
-  const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, 4);
+  samplePool = samplePool.length >= 4 ? samplePool : filtered;
+  const samples = shuffle(samplePool).slice(0, 4);
 
   return {
     id: 'q7',
@@ -649,39 +811,45 @@ function generateQ7(freedom, depth, material) {
     question: question,
     instruction: 'Select 2 artworks',
     maxSelect: 2,
-    genai: `Generated from freedom=${freedom}, depth=${depth}, material=${material}`,
-    options: samples.map(obj => ({
-      value: obj.object_id,
-      object_id: obj.object_id,
-      title: cleanText(obj.title),
-      culture: cleanText(obj.culture),
-      medium: cleanText(obj.medium),
-      date: cleanText(obj.object_date),
-      gallery: obj.gallery_number
-    }))
+    genai: `freedom=${freedom}, depth=${depth}, materials=[${mats.join(',')}], cultures=[${cults.join(',')}]`,
+    options: samples.map(p => previewToOption(p, { value: String(p.id) }))
   };
 }
 
 function generateQ8() {
-  const galleries = ['207', '222', '219', '247'];
-  const options = [];
+  // Use gallery room photos (from livingmap/Met) instead of random object images.
+  const cfgGalleries = surveyData.config.galleries || {};
+  const selectedMaterials = surveyData.answers.q4 || [];
+  const selectedCultures = surveyData.answers.q5 || [];
 
-  galleries.forEach(galleryNum => {
-    const galleryObjects = surveyData.objects.filter(obj => obj.gallery_number === galleryNum);
-    const highlights = galleryObjects.filter(obj => obj.is_highlight === 'True');
-    const sample = (highlights[0] || galleryObjects[0]);
+  // Rank galleries by on-view count, prefer ones matching user's q4/q5 selections,
+  // and keep only galleries that actually have a room photo.
+  const ranked = Object.entries(cfgGalleries)
+    .map(([g, count]) => {
+      const meta = surveyData.galleryMeta[g];
+      const preview = surveyData.pools.gallery_previews[g];
+      if (!meta || !meta.image_url) return null;
+      let score = 0;
+      if (preview) {
+        if (selectedMaterials.includes(preview.class_group)) score += 2;
+        if (selectedCultures.includes(preview.culture_group)) score += 2;
+      }
+      return { gallery: g, meta, preview, score, count };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.score - a.score || b.count - a.count);
 
-    if (sample) {
-      options.push({
-        value: galleryNum,
-        label: `Gallery ${galleryNum}`,
-        object_id: sample.object_id,
-        title: cleanText(sample.title),
-        culture: cleanText(sample.culture),
-        count: galleryObjects.length
-      });
-    }
-  });
+  const picks = ranked.slice(0, 4);
+
+  const options = picks.map(s => ({
+    value: s.gallery,
+    gallery: s.gallery,
+    image_url: s.meta.image_url,
+    alt_text: s.meta.long_name || `Gallery ${s.gallery}`,
+    headline: s.meta.long_name || `Gallery ${s.gallery}`,
+    subhead: `Gallery ${s.gallery} • ${s.meta.floor_name || ''}`.trim(),
+    hideId: true
+  }));
 
   return {
     id: 'q8',
@@ -693,22 +861,15 @@ function generateQ8() {
 }
 
 function generateQ9() {
-  const emotionWords = [
-    'Delicate', 'Smooth', 'Ancient', 'Luminous', 'Elegant',
-    'Peaceful', 'Powerful', 'Tranquil', 'Playful',
-    'Serene', 'Vibrant', 'Pure', 'Intricate', 'Bold',
-    'Subtle', 'Mysterious', 'Harmonious', 'Majestic',
-    'Contemplative', 'Striking'
-  ];
-
-  const shuffled = emotionWords.sort(() => 0.5 - Math.random());
+  const poolWords = (surveyData.pools && surveyData.pools.emotion_words) || [];
+  const capitalized = poolWords.map(w => w.charAt(0).toUpperCase() + w.slice(1));
+  const shuffled = shuffle(capitalized);
 
   return {
     id: 'q9',
     type: 'words',
     question: 'Quick! Pick 5 words that excite you',
-    instruction: '(15 seconds - go with your gut!)',
-    timer: 15,
+    instruction: '(Go with your gut — pick 5)',
     maxSelect: 5,
     options: shuffled.map(word => ({ value: word, label: word }))
   };
@@ -727,7 +888,15 @@ function showQuestion(index) {
     questions[5] = generateQ6(surveyData.answers.q4, surveyData.answers.q5);
   }
   if (index === 6 && !questions[6]) {
-    questions[6] = generateQ7(surveyData.answers.q2, surveyData.answers.q3, surveyData.answers.q4);
+    questions[6] = generateQ7(
+      surveyData.answers.q2,
+      surveyData.answers.q3,
+      surveyData.answers.q4,
+      surveyData.answers.q5
+    );
+  }
+  if (index === 7 && !questions[7]) {
+    questions[7] = generateQ8();
   }
 
   const question = questions[index];
@@ -775,14 +944,32 @@ function renderQuestion(q) {
   if (q.type === 'image' || q.type === 'image_multi') {
     html += `<div class="image-grid">`;
     q.options.forEach((opt, i) => {
-      const imageUrl = `https://collectionapi.metmuseum.org/api/collection/v1/iiif/${opt.object_id}/full/!400,400/0/default.jpg`;
+      const imageUrl = opt.image_url
+        || `https://collectionapi.metmuseum.org/api/collection/v1/iiif/${opt.object_id}/full/!400,400/0/default.jpg`;
+      const altText = opt.alt_text || opt.title || '';
+      const isProminent = !!(opt.headline || opt.culture_label);
+      const primaryLabel = opt.headline || opt.culture_label || opt.title || '';
+      let secondaryLabel;
+      if (opt.subhead !== undefined) {
+        secondaryLabel = opt.subhead;
+      } else if (opt.culture_label) {
+        secondaryLabel = opt.title || '';
+      } else {
+        secondaryLabel = `${opt.culture || ''}${opt.date ? ' • ' + opt.date : ''}`;
+      }
+      const primaryStyle = isProminent
+        ? 'font-size: 22px; font-weight: 600; letter-spacing: -0.01em;'
+        : '';
+      const tertiary = opt.hideId
+        ? ''
+        : `<div class="meta" style="margin-top: 4px; font-size: 10px;">Gallery ${opt.gallery} • ID: ${opt.object_id}</div>`;
       html += `
         <div class="image-option" onclick="selectImageOption('${q.id}', '${opt.value}', this, ${q.minSelect || 1}, ${q.maxSelect || 1})">
-          <img src="${imageUrl}" alt="${opt.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%232a2a4a%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22 font-family=%22sans-serif%22%3ENo Image%3C/text%3E%3C/svg%3E'">
+          <img class="${opt.hideId ? 'cover' : ''}" src="${imageUrl}" alt="${altText}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%232a2a4a%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22 font-family=%22sans-serif%22%3ENo Image%3C/text%3E%3C/svg%3E'">
           <div class="info">
-            <div class="title">${opt.title}</div>
-            <div class="meta">${opt.culture}${opt.date ? ' • ' + opt.date : ''}</div>
-            <div class="meta" style="margin-top: 4px; font-size: 10px;">Gallery ${opt.gallery} • ID: ${opt.object_id}</div>
+            <div class="title" style="${primaryStyle}">${primaryLabel}</div>
+            <div class="meta">${secondaryLabel}</div>
+            ${tertiary}
           </div>
         </div>
       `;
@@ -915,8 +1102,8 @@ function showResults() {
     q1: 'Duration',
     q2: 'Freedom Level',
     q3: 'Depth Preference',
-    q4: 'Material Choice 1',
-    q5: 'Material Choice 2',
+    q4: 'Materials',
+    q5: 'Regions',
     q6: 'GenAI Selection',
     q7: 'GenAI Multi-Select',
     q8: 'Preferred Gallery',
@@ -936,22 +1123,67 @@ function showResults() {
   });
 
   html += `
-    <div style="margin-top: 30px; padding: 20px; background: rgba(100, 200, 100, 0.1); border-radius: 12px; border: 2px solid rgba(100, 200, 100, 0.3);">
-      <h3 style="color: #4ade80; margin-bottom: 10px;">Next Steps:</h3>
-      <p style="color: #aaa; font-size: 14px;">This data would now be sent to the recommendation engine to generate your personalized scavenger hunt!</p>
+    <div style="margin-top: 40px; padding: 28px 0 0; border-top: 1px solid var(--rule);">
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--met-red); font-weight: 600; margin-bottom: 10px;">Next</div>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.5; max-width: 540px;">Your answers have been saved. Continue to the viewer for your personalized tour, or download the JSON.</p>
     </div>
   `;
 
   html += `
-    <div style="margin-top: 20px; text-align: center;">
-      <button class="btn" onclick="location.reload()">Start Over</button>
+    <div style="margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap;">
+      <button class="btn" onclick="goToViewer()">Continue to Viewer</button>
+      <button class="btn btn-secondary" onclick="downloadResults()">Download JSON</button>
+      <button class="btn btn-secondary" onclick="location.reload()">Start Over</button>
     </div>
   `;
 
   resultsContainer.innerHTML = html;
 
-  // Log to console
+  try {
+    localStorage.setItem('metSurveyResults', JSON.stringify(surveyData.answers));
+    localStorage.setItem('metSurveyResultsAt', new Date().toISOString());
+  } catch (e) {
+    console.warn('Could not save to localStorage:', e);
+  }
+
   console.log('Survey Results:', surveyData.answers);
+}
+
+function downloadResults() {
+  const blob = new Blob([JSON.stringify(surveyData.answers, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `met-survey-${Date.now()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function goToViewer() {
+  const btn = document.querySelector('.btn');
+  if (btn) { btn.textContent = 'Generating your tour...'; btn.disabled = true; }
+
+  try {
+    const response = await fetch('/api/route', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(surveyData.answers)
+    });
+
+    if (!response.ok) throw new Error('Server error: ' + response.status);
+
+    const routeData = await response.json();
+    localStorage.setItem('metRouteData', JSON.stringify(routeData));
+    localStorage.setItem('metRouteDataAt', new Date().toISOString());
+
+    window.location.href = '/tour';
+  } catch (error) {
+    console.error('Route generation failed:', error);
+    if (btn) { btn.textContent = 'Continue to Viewer →'; btn.disabled = false; }
+    alert('Route generation failed: ' + error.message + '\nMake sure server is running (python3 server.py)');
+  }
 }
 
 // Initialize

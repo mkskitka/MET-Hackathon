@@ -2,8 +2,8 @@
 """
 Generate a personalized route through the Asian Art wing.
 
-Given a user profile (from survey), selects galleries and artworks,
-then builds an ordered walking path.
+Uses physical doorway adjacency so the path always goes through
+connected rooms — no jumping across the map.
 
 Usage:
   python3 scripts/generate_route.py [--time 60] [--profile sample]
@@ -13,7 +13,161 @@ import json
 import math
 import pandas as pd
 from collections import defaultdict
+from itertools import permutations
 import argparse
+
+
+# --- Physical adjacency (from build_gallery_graph.py) ---
+
+PHYSICAL_ADJACENCY = {
+    200: [201, 202], 201: [200], 202: [200, 203, 204, 207],
+    203: [202, 204], 204: [202, 203, 205, 234], 205: [204, 206],
+    206: [205, 207], 207: [202, 206, 208, 219, 220],
+    208: [207, 209, 233], 209: [208, 239],
+    210: [211, 217, 232], 211: [210, 212], 212: [211, 213],
+    213: [212, 214], 214: [213, 215], 215: [214, 216, 246],
+    216: [215, 217, 244, 253], 217: [210, 216, 218],
+    218: [217, 213],
+    219: [207, 220, 222], 220: [207, 219, 221],
+    221: [220, 222], 222: [219, 221],
+    223: [224, 232], 224: [223, 225, 231],
+    225: [224, 226, 230], 226: [225, 227, 229],
+    227: [226, 228], 228: [227, 229],
+    229: [226, 228, 230], 230: [225, 229, 231],
+    231: [224, 230, 232], 232: [210, 223, 231],
+    233: [208, 234, 235],
+    234: [204, 233, 235], 235: [233, 234, 236],
+    236: [235, 237], 237: [236, 238], 238: [237, 239],
+    239: [209, 238, 240, 241],
+    240: [239, 241], 241: [239, 240, 242, 243, 244],
+    242: [241, 243], 243: [241, 242, 244],
+    244: [216, 241, 243, 245, 247],
+    245: [244, 246, 247, 252, 253],
+    246: [215, 245, 248], 247: [244, 245, 252],
+    248: [246, 249], 249: [248, 250], 250: [249],
+    251: [250, 249], 252: [245, 247, 253], 253: [216, 245, 252],
+}
+
+
+# --- BFS path finding ---
+
+def find_shortest_path(start, end):
+    """BFS shortest path using physical adjacency."""
+    if start == end:
+        return [start]
+    visited = {start}
+    queue = [[start]]
+    while queue:
+        path = queue.pop(0)
+        current = path[-1]
+        for neighbor in PHYSICAL_ADJACENCY.get(current, []):
+            if neighbor == end:
+                return path + [neighbor]
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(path + [neighbor])
+    return None
+
+
+def path_cost(start, end):
+    """Number of rooms to walk through to get from start to end."""
+    path = find_shortest_path(start, end)
+    return len(path) - 1 if path else 999
+
+
+# --- Route ordering ---
+
+def order_targets_optimal(targets, start=200):
+    """
+    Find the best ordering of target galleries to minimize total rooms walked.
+    For small sets (<= 10), try all permutations.
+    For larger sets, use nearest-neighbor with 2-opt improvement.
+    """
+    if len(targets) <= 1:
+        return targets
+
+    # Precompute distances between all pairs
+    all_points = [start] + list(targets)
+    dist_cache = {}
+    for a in all_points:
+        for b in all_points:
+            if a != b:
+                dist_cache[(a, b)] = path_cost(a, b)
+
+    target_list = list(targets)
+
+    if len(target_list) <= 8:
+        # Brute force best ordering
+        best_order = None
+        best_cost = float("inf")
+        for perm in permutations(target_list):
+            cost = dist_cache.get((start, perm[0]), 999)
+            for i in range(len(perm) - 1):
+                cost += dist_cache.get((perm[i], perm[i + 1]), 999)
+            if cost < best_cost:
+                best_cost = cost
+                best_order = list(perm)
+        return best_order
+
+    # Nearest-neighbor for larger sets
+    remaining = set(target_list)
+    order = []
+    current = start
+    while remaining:
+        best = min(remaining, key=lambda t: dist_cache.get((current, t), 999))
+        order.append(best)
+        remaining.remove(best)
+        current = best
+
+    # 2-opt improvement
+    improved = True
+    while improved:
+        improved = False
+        for i in range(len(order) - 1):
+            for j in range(i + 2, len(order)):
+                # Try reversing the segment between i and j
+                new_order = order[:i] + order[i:j+1][::-1] + order[j+1:]
+                old_cost = _route_cost(start, order, dist_cache)
+                new_cost = _route_cost(start, new_order, dist_cache)
+                if new_cost < old_cost:
+                    order = new_order
+                    improved = True
+
+    return order
+
+
+def _route_cost(start, order, dist_cache):
+    if not order:
+        return 0
+    cost = dist_cache.get((start, order[0]), 999)
+    for i in range(len(order) - 1):
+        cost += dist_cache.get((order[i], order[i + 1]), 999)
+    return cost
+
+
+def build_walking_route(target_galleries, start=200):
+    """
+    Build an optimal walking route through connected rooms.
+    Returns list of ALL rooms to walk through (targets + pass-throughs).
+    """
+    # Find optimal target ordering
+    ordered_targets = order_targets_optimal(target_galleries, start)
+
+    # Build the full path by connecting consecutive targets
+    route = [start] if start not in ordered_targets else []
+    current = start
+
+    for target in ordered_targets:
+        path = find_shortest_path(current, target)
+        if path:
+            # Skip first element (it's current, already in route)
+            for g in path[1:]:
+                route.append(g)
+            current = target
+
+    # Deduplicate while preserving order (rooms visited twice stay twice — that's backtracking)
+    return route
+
 
 # --- Data loading ---
 
@@ -26,7 +180,6 @@ def load_data():
     hf = desc[desc.is_primary == True][["object_id", "source_image_url", "output_alt_text"]]
     merged = merged.merge(hf, on="object_id", how="left")
 
-    # Add dimension tags
     merged["culture_group"] = merged.culture.apply(get_culture_group)
     merged["era"] = merged.object_begin_date.apply(get_era)
     merged["class_group"] = merged.classification.apply(get_class_group)
@@ -69,7 +222,6 @@ CLASS_MAP = {
     "Prints": "prints", "Furniture": "furnishings", "Lacquer": "furnishings",
 }
 
-
 def get_class_group(c):
     if pd.isna(c): return "other"
     return CLASS_MAP.get(c, "other")
@@ -78,127 +230,41 @@ def get_class_group(c):
 # --- Scoring ---
 
 def score_object(obj, profile):
-    """Score a single artwork against a user profile. Returns 0-1."""
     weights = profile["weights"]
     score = 0.0
-
-    # Culture match
-    cg = obj["culture_group"]
-    score += weights.get("culture", {}).get(cg, 0.3) * 0.3
-
-    # Classification match
-    cl = obj["class_group"]
-    score += weights.get("classification", {}).get(cl, 0.3) * 0.3
-
-    # Era match
-    era = obj["era"]
-    score += weights.get("era", {}).get(era, 0.3) * 0.2
-
-    # Highlight bonus
+    score += weights.get("culture", {}).get(obj["culture_group"], 0.3) * 0.3
+    score += weights.get("classification", {}).get(obj["class_group"], 0.3) * 0.3
+    score += weights.get("era", {}).get(obj["era"], 0.3) * 0.2
     if obj.get("is_highlight"):
         score += 0.1
-
-    # Selected object bonus (if user picked this in survey)
     if obj.get("object_id") in profile.get("selected_object_ids", []):
         score += 0.3
-
     return min(score, 1.0)
 
 
 def score_gallery(gallery_objects, profile):
-    """Score a gallery based on its objects and the user profile."""
     if len(gallery_objects) == 0:
         return 0.0
-
     scores = [score_object(obj, profile) for _, obj in gallery_objects.iterrows()]
-    # Gallery score: mean of top 5 objects (not all — we highlight the best)
     top_scores = sorted(scores, reverse=True)[:5]
     return sum(top_scores) / len(top_scores)
 
 
-# --- Route building ---
-
-def find_path_bfs(graph, start, end):
-    """BFS shortest path using the gallery graph."""
-    galleries = graph["galleries"]
-    if str(start) not in galleries or str(end) not in galleries:
-        return None
-
-    visited = {start}
-    queue = [[start]]
-
-    while queue:
-        path = queue.pop(0)
-        current = path[-1]
-        gal = galleries.get(str(current), {})
-
-        for neighbor in gal.get("neighbors", []):
-            if neighbor == end:
-                return path + [neighbor]
-            if neighbor not in visited:
-                visited.add(neighbor)
-                queue.append(path + [neighbor])
-
-    return None
-
-
-def build_walking_route(graph, target_galleries, start=200):
-    """Nearest-neighbor walk through target galleries."""
-    remaining = set(target_galleries)
-    route = []
-    current = start
-
-    if current in remaining:
-        remaining.remove(current)
-    route.append(current)
-
-    while remaining:
-        best = None
-        best_path = None
-        best_len = float("inf")
-
-        for target in remaining:
-            path = find_path_bfs(graph, current, target)
-            if path and len(path) < best_len:
-                best_len = len(path)
-                best = target
-                best_path = path
-
-        if best is None:
-            # Can't reach remaining galleries, just append them
-            route.extend(sorted(remaining))
-            break
-
-        for g in best_path[1:]:
-            if g not in route:
-                route.append(g)
-
-        remaining.remove(best)
-        current = best
-
-    return route
-
-
-def select_galleries(merged, graph, profile, num_galleries):
-    """
-    Select galleries to visit based on profile, with diversity constraints.
-    """
+def select_galleries(merged, profile, num_galleries):
     gallery_scores = {}
     gallery_data = {}
 
     for gnum in merged.gallery_number.unique():
-        if gnum > 253:  # Skip non-Asian-Art galleries
+        if gnum > 253:
             continue
         g_objs = merged[merged.gallery_number == gnum]
         gallery_data[int(gnum)] = g_objs
         gallery_scores[int(gnum)] = score_gallery(g_objs, profile)
 
-    # Greedy selection with diversity penalty
     selected = []
     used_cultures = defaultdict(int)
     used_classes = defaultdict(int)
 
-    # Always include Chinese Garden (217) and preferred gallery
     must_visit = [217]
     if profile.get("preferred_gallery") and profile["preferred_gallery"] in gallery_scores:
         must_visit.append(profile["preferred_gallery"])
@@ -225,7 +291,6 @@ def select_galleries(merged, graph, profile, num_galleries):
             if gallery_data.get(gnum) is None or len(gallery_data[gnum]) == 0:
                 continue
 
-            # Diversity penalty
             g_objs = gallery_data[gnum]
             top_culture = g_objs.culture_group.mode()
             top_class = g_objs.class_group.mode()
@@ -258,7 +323,6 @@ def select_galleries(merged, graph, profile, num_galleries):
 
 
 def pick_artworks_for_gallery(gallery_objects, profile, max_picks=3):
-    """Pick 2-3 featured artworks per gallery."""
     scored = []
     for _, obj in gallery_objects.iterrows():
         s = score_object(obj, profile)
@@ -272,7 +336,7 @@ def pick_artworks_for_gallery(gallery_objects, profile, max_picks=3):
         img = obj.source_image_url if pd.notna(obj.source_image_url) else ""
         picks.append({
             "object_id": int(obj.object_id),
-            "title": obj.title,
+            "title": obj.title.strip(),
             "culture": obj.culture if pd.notna(obj.culture) else "",
             "date": obj.object_date if pd.notna(obj.object_date) else "",
             "classification": obj.classification if pd.notna(obj.classification) else "",
@@ -292,39 +356,58 @@ def pick_artworks_for_gallery(gallery_objects, profile, max_picks=3):
 def generate_route(profile):
     merged, graph = load_data()
 
-    # Calculate number of galleries from time budget
     time_minutes = profile.get("time_budget_minutes", 60)
     num_galleries = max(4, min(time_minutes // 5, 30))
 
-    print(f"Time budget: {time_minutes} min → {num_galleries} galleries\n")
+    print(f"Time budget: {time_minutes} min → targeting {num_galleries} galleries\n")
 
-    # Select galleries
-    target_galleries = select_galleries(merged, graph, profile, num_galleries)
-    print(f"Selected {len(target_galleries)} target galleries: {sorted(target_galleries)}\n")
+    # Select target galleries
+    target_galleries = select_galleries(merged, profile, num_galleries)
+    print(f"Selected targets: {sorted(target_galleries)}\n")
 
-    # Build walking route
-    route = build_walking_route(graph, target_galleries, start=200)
-    print(f"Walking route ({len(route)} total stops):\n")
+    # Build route (physical path through connected rooms)
+    route = build_walking_route(target_galleries, start=200)
 
-    # Pick artworks for each gallery on route
+    # Verify adjacency
+    for i in range(len(route) - 1):
+        a, b = route[i], route[i + 1]
+        if b not in PHYSICAL_ADJACENCY.get(a, []):
+            print(f"  WARNING: jump between {a} and {b}")
+
+    print(f"Walking path: {' → '.join(str(g) for g in route)}\n")
+
+    # Build output with artworks for each stop
     route_output = []
     total_time = 0
+    seen_objects = set()  # Don't repeat artwork picks if we revisit a room
+    visited_rooms = set()  # Track rooms already visited to handle backtracking
 
     for gnum in route:
         g_objs = merged[merged.gallery_number == gnum]
         is_target = gnum in target_galleries
         gal_info = graph["galleries"].get(str(gnum), {})
+        is_revisit = gnum in visited_rooms
+        visited_rooms.add(gnum)
 
-        # Pick artworks (more for target galleries, 1 for pass-through)
-        if is_target and len(g_objs) > 0:
+        if is_revisit:
+            # Walking back through — no time, no picks
+            picks = []
+            time_est = 1  # just passing through
+        elif is_target and len(g_objs) > 0:
             picks = pick_artworks_for_gallery(g_objs, profile, max_picks=3)
+            picks = [p for p in picks if p["object_id"] not in seen_objects]
+            for p in picks:
+                seen_objects.add(p["object_id"])
             time_est = 5
         elif len(g_objs) > 0:
             picks = pick_artworks_for_gallery(g_objs, profile, max_picks=1)
+            picks = [p for p in picks if p["object_id"] not in seen_objects]
+            for p in picks:
+                seen_objects.add(p["object_id"])
             time_est = 2
         else:
             picks = []
-            time_est = 2 if gnum == 217 else 1  # Garden gets extra time
+            time_est = 3 if gnum == 217 else 1
 
         total_time += time_est
 
@@ -336,19 +419,28 @@ def generate_route(profile):
             "time_estimate_min": time_est,
             "object_count": len(g_objs),
             "featured_artworks": picks,
+            "lat": gal_info.get("lat"),
+            "lng": gal_info.get("lng"),
+            "neighbors": gal_info.get("neighbors", []),
         }
         route_output.append(stop)
 
-        # Print
         marker = "★" if is_target else "→"
-        print(f"  {marker} Gallery {gnum}: {stop['name']} ({len(g_objs)} objects, ~{time_est} min)")
-        for p in picks:
-            tag_icon = {"affinity": "♥", "stretch": "◆", "wildcard": "✦"}.get(p["tag"], "·")
-            print(f"      {tag_icon} {p['title']} ({p['culture']}, {p['date']}) [{p['score']}]")
+        art_str = f" | {picks[0]['title'][:40]}" if picks else ""
+        print(f"  {marker} {gnum} {stop['name'][:35]:35s} ({len(g_objs):>3} obj, ~{time_est}m){art_str}")
 
-    print(f"\n  Total estimated time: {total_time} minutes")
+    print(f"\n  Total: {total_time} min estimated")
 
-    result = {
+    # Build path coordinates for map polyline
+    path_coords = [
+        {"gallery": s["gallery"], "lat": s["lat"], "lng": s["lng"]}
+        for s in route_output if s["lat"] and s["lng"]
+    ]
+
+    lats = [s["lat"] for s in route_output if s["lat"]]
+    lngs = [s["lng"] for s in route_output if s["lng"]]
+
+    return {
         "profile_summary": {
             "time_budget": time_minutes,
             "num_target_galleries": len(target_galleries),
@@ -356,9 +448,14 @@ def generate_route(profile):
         },
         "route": route_output,
         "total_time_estimate": total_time,
+        "path_coordinates": path_coords,
+        "map_bounds": {
+            "north": max(lats) + 0.0002,
+            "south": min(lats) - 0.0002,
+            "east": max(lngs) + 0.0002,
+            "west": min(lngs) - 0.0002,
+        } if lats else {},
     }
-
-    return result
 
 
 SAMPLE_PROFILES = {

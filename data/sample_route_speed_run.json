@@ -1,8 +1,8 @@
 {
   "profile_summary": {
-    "time_budget": 30,
-    "num_target_galleries": 6,
-    "total_stops": 21
+    "time_budget": 20,
+    "num_target_galleries": 4,
+    "total_stops": 18
   },
   "route": [
     {
@@ -66,139 +66,64 @@
       ]
     },
     {
-      "gallery": 207,
-      "name": "Chinese Art: Ancient to Tang Dynasty",
-      "region": "chinese_ancient",
+      "gallery": 204,
+      "name": "Chinese Ceramics",
+      "region": "chinese_ceramics",
       "is_target": false,
       "time_estimate_min": 2,
-      "object_count": 247,
+      "object_count": 63,
       "featured_artworks": [
         {
-          "object_id": 42183,
-          "title": "Dish in the shape of a leaf",
-          "culture": "China",
-          "date": "late 7th\u2013early 8th century",
-          "classification": "Metalwork",
-          "medium": "Silver with parcel gilding",
-          "alt_text": "Silver leaf-shaped dish with interior motifs of birds and flowers within spiraling stem circles",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP100673.jpg",
+          "object_id": 37557,
+          "title": "Bottle with Birds and Peony Scroll",
+          "culture": "Vietnam",
+          "date": "15th century",
+          "classification": "Ceramics",
+          "medium": "Stoneware painted with cobalt blue under transparent glaze\r\n\r\n",
+          "alt_text": "Blue-and-white ceramic vase with bird medallions, floral scrolls, and vertical panels of stylized clouds",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DT6789.jpg",
           "highlight": true,
           "score": 0.5,
           "tag": "affinity"
         }
       ],
-      "lat": 40.77945,
-      "lng": -73.96285,
+      "lat": 40.779134944,
+      "lng": -73.962731959,
       "neighbors": [
         202,
-        206,
-        208,
-        219,
-        220
+        203,
+        205,
+        234
       ]
     },
     {
-      "gallery": 220,
-      "name": "Chinese Decorative Arts",
-      "region": "chinese_ancient",
-      "is_target": true,
-      "time_estimate_min": 5,
-      "object_count": 49,
-      "featured_artworks": [
-        {
-          "object_id": 856282,
-          "title": "Table screen with landscape",
-          "culture": "China",
-          "date": "second half 15th century",
-          "classification": "Cloisonn\u00e9",
-          "medium": "Cloisonn\u00e9 enamel, wood frame and stand",
-          "alt_text": "Horizontal table screen with a cloisonn\u00e9 enamel landscape in a carved dark wood frame and stand",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-24553-001.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 46915,
-          "title": "Vase",
-          "culture": "China",
-          "date": "",
-          "classification": "Ceramics",
-          "medium": "Porcelain painted in underglaze cobalt blue and overglaze polychrome enamels (Jingdezhen ware)",
-          "alt_text": "Porcelain vase with a flared rim and base, decorated with colorful floral and geometric vertical panels",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/79_2_1375_S1_sf.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 48559,
-          "title": "Gourd-shaped vase with gourds on vines and bats",
-          "culture": "China",
-          "date": "early 18th century",
-          "classification": "Ceramics",
-          "medium": "Porcelain painted in underglaze cobalt blue (Jingdezhen ware)\r\n",
-          "alt_text": "A white porcelain double-gourd vase decorated with blue underglaze scrolling vines, small gourd fruits, and bats",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP264293.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "wildcard"
-        }
-      ],
-      "lat": 40.7795,
-      "lng": -73.9625,
-      "neighbors": [
-        207,
-        219,
-        221
-      ]
-    },
-    {
-      "gallery": 207,
-      "name": "Chinese Art: Ancient to Tang Dynasty",
-      "region": "chinese_ancient",
-      "is_target": false,
-      "time_estimate_min": 1,
-      "object_count": 247,
-      "featured_artworks": [],
-      "lat": 40.77945,
-      "lng": -73.96285,
-      "neighbors": [
-        202,
-        206,
-        208,
-        219,
-        220
-      ]
-    },
-    {
-      "gallery": 208,
-      "name": "Chinese Buddhist Art ",
-      "region": "chinese_buddhist",
+      "gallery": 234,
+      "name": "South Asian Hindu-Buddhist and Jain Sculpture",
+      "region": "south_asian",
       "is_target": false,
       "time_estimate_min": 2,
-      "object_count": 20,
+      "object_count": 51,
       "featured_artworks": [
         {
-          "object_id": 42163,
-          "title": "Buddha, probably Amitabha",
-          "culture": "China",
-          "date": "early 7th century",
+          "object_id": 38468,
+          "title": "Patravahaka yaksha",
+          "culture": "India, Madhya Pradesh",
+          "date": "ca. 50 BCE",
           "classification": "Sculpture",
-          "medium": "Dry lacquer with polychrome pigment and gilding",
-          "alt_text": "Seated sculpture of a person with missing hands wearing a robe with red and green patterns",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-004.jpg",
+          "medium": "Sandstone",
+          "alt_text": "A weathered stone sculpture of a stout person with missing limbs and a protruding belly",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-18910-001.jpg",
           "highlight": true,
           "score": 0.5,
           "tag": "affinity"
         }
       ],
-      "lat": 40.779721287,
-      "lng": -73.962478484,
+      "lat": 40.77953248,
+      "lng": -73.962460574,
       "neighbors": [
-        207,
-        209,
-        233
+        204,
+        233,
+        235
       ]
     },
     {
@@ -262,9 +187,23 @@
       "name": "Chinese Buddhist Art ",
       "region": "chinese_buddhist",
       "is_target": false,
-      "time_estimate_min": 1,
+      "time_estimate_min": 2,
       "object_count": 20,
-      "featured_artworks": [],
+      "featured_artworks": [
+        {
+          "object_id": 42163,
+          "title": "Buddha, probably Amitabha",
+          "culture": "China",
+          "date": "early 7th century",
+          "classification": "Sculpture",
+          "medium": "Dry lacquer with polychrome pigment and gilding",
+          "alt_text": "Seated sculpture of a person with missing hands wearing a robe with red and green patterns",
+          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-15581-004.jpg",
+          "highlight": true,
+          "score": 0.5,
+          "tag": "affinity"
+        }
+      ],
       "lat": 40.779721287,
       "lng": -73.962478484,
       "neighbors": [
@@ -542,90 +481,21 @@
       ]
     },
     {
-      "gallery": 216,
-      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
-      "region": "chinese_painting",
+      "gallery": 245,
+      "name": "Southeast Asian Art",
+      "region": "southeast_asian",
       "is_target": false,
-      "time_estimate_min": 2,
-      "object_count": 2,
-      "featured_artworks": [
-        {
-          "object_id": 42148,
-          "title": "Seated luohan holding a fan",
-          "culture": "China",
-          "date": "late 18th century",
-          "classification": "Jade",
-          "medium": "Jade (nephrite)",
-          "alt_text": "Vertical stone sculpture of a seated person with a fan inside a craggy rock grotto",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP350747.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "affinity"
-        }
-      ],
-      "lat": 40.780057202,
-      "lng": -73.962077937,
+      "time_estimate_min": 1,
+      "object_count": 16,
+      "featured_artworks": [],
+      "lat": 40.780049147,
+      "lng": -73.961988858,
       "neighbors": [
-        215,
-        217,
         244,
+        246,
+        247,
+        252,
         253
-      ]
-    },
-    {
-      "gallery": 215,
-      "name": " Chinese Painting and Calligraphy: Selections from the Collection",
-      "region": "chinese_painting",
-      "is_target": true,
-      "time_estimate_min": 5,
-      "object_count": 4,
-      "featured_artworks": [
-        {
-          "object_id": 910543,
-          "title": "Woman at her dressing table",
-          "culture": "China",
-          "date": "early 18th century",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on silk",
-          "alt_text": "Person in traditional dress sitting at a table while another stands behind and arranges their hair",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34237-002.jpg",
-          "highlight": true,
-          "score": 0.5,
-          "tag": "affinity"
-        },
-        {
-          "object_id": 737733,
-          "title": "Small portrait of Luzhu",
-          "culture": "China",
-          "date": "1823",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on paper",
-          "alt_text": "Person in patterned robes on a vertical scroll surrounded by handwritten characters and red seals",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-41026-002.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "stretch"
-        },
-        {
-          "object_id": 910544,
-          "title": "Beauty about to bathe",
-          "culture": "China",
-          "date": "18th century",
-          "classification": "Paintings",
-          "medium": "Hanging scroll; ink and color on silk",
-          "alt_text": "Woman in a sheer robe sitting on a bench beside a large basin and flowering plant",
-          "image_url": "https://images.metmuseum.org/CRDImages/as/mobile-large/DP-34238-002.jpg",
-          "highlight": false,
-          "score": 0.4,
-          "tag": "wildcard"
-        }
-      ],
-      "lat": 40.780148237,
-      "lng": -73.962011552,
-      "neighbors": [
-        214,
-        216,
-        246
       ]
     },
     {
@@ -771,7 +641,7 @@
       ]
     }
   ],
-  "total_time_estimate": 58,
+  "total_time_estimate": 47,
   "path_coordinates": [
     {
       "gallery": 200,
@@ -784,24 +654,14 @@
       "lng": -73.962979541
     },
     {
-      "gallery": 207,
-      "lat": 40.77945,
-      "lng": -73.96285
+      "gallery": 204,
+      "lat": 40.779134944,
+      "lng": -73.962731959
     },
     {
-      "gallery": 220,
-      "lat": 40.7795,
-      "lng": -73.9625
-    },
-    {
-      "gallery": 207,
-      "lat": 40.77945,
-      "lng": -73.96285
-    },
-    {
-      "gallery": 208,
-      "lat": 40.779721287,
-      "lng": -73.962478484
+      "gallery": 234,
+      "lat": 40.77953248,
+      "lng": -73.962460574
     },
     {
       "gallery": 233,
@@ -849,14 +709,9 @@
       "lng": -73.961979045
     },
     {
-      "gallery": 216,
-      "lat": 40.780057202,
-      "lng": -73.962077937
-    },
-    {
-      "gallery": 215,
-      "lat": 40.780148237,
-      "lng": -73.962011552
+      "gallery": 245,
+      "lat": 40.780049147,
+      "lng": -73.961988858
     },
     {
       "gallery": 246,
@@ -881,7 +736,7 @@
   ],
   "map_bounds": {
     "north": 40.78047289,
-    "south": 40.779039302,
+    "south": 40.778934944,
     "east": -73.961587896,
     "west": -73.963384305
   }
