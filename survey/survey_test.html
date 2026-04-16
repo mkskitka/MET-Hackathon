@@ -1505,6 +1505,7 @@ let floorOutlineData = null;
 let sectionData = null;
 let otherRoomsData = null;
 let roomConnections = null;
+let roomDoors = null;
 
 function filterByFloor(gj, floor) {
   return { type: 'FeatureCollection', features: gj.features.filter(f => (f.properties.floor_name || f.properties.floor) === floor) };
@@ -1524,6 +1525,165 @@ function getGalleryCentroid(galleryNum) {
   return [cx, cy];
 }
 
+// --- Pathing logic (from /viewer) ---
+
+function getDoorBetween(a, b) {
+  if (!roomDoors) return null;
+  return roomDoors[`${a}-${b}`] || roomDoors[`${b}-${a}`] || null;
+}
+
+let adjacencyMap = null;
+function getAdjacencyMap() {
+  if (adjacencyMap) return adjacencyMap;
+  adjacencyMap = {};
+  roomConnections.features.forEach(f => {
+    const a = f.properties.from, b = f.properties.to;
+    if (!adjacencyMap[a]) adjacencyMap[a] = [];
+    if (!adjacencyMap[b]) adjacencyMap[b] = [];
+    if (!adjacencyMap[a].includes(b)) adjacencyMap[a].push(b);
+    if (!adjacencyMap[b].includes(a)) adjacencyMap[b].push(a);
+  });
+  return adjacencyMap;
+}
+
+function findPathBFS(from, to) {
+  if (from === to) return [from];
+  const adj = getAdjacencyMap();
+  const queue = [[from]];
+  const visited = new Set([from]);
+  while (queue.length > 0) {
+    const path = queue.shift();
+    const node = path[path.length - 1];
+    for (const nb of (adj[node] || [])) {
+      if (nb === to) return [...path, nb];
+      if (!visited.has(nb)) { visited.add(nb); queue.push([...path, nb]); }
+    }
+  }
+  return null;
+}
+
+// Smooth orthogonal pathing
+const BLDG_ANGLE = -119 * Math.PI / 180;
+const BLDG_COS = Math.cos(BLDG_ANGLE);
+const BLDG_SIN = Math.sin(BLDG_ANGLE);
+const LNG_SCALE = 0.7572;
+
+function toBldg(p) {
+  const x = p[0] * LNG_SCALE, y = p[1];
+  return [x * BLDG_COS + y * BLDG_SIN, -x * BLDG_SIN + y * BLDG_COS];
+}
+function fromBldg(b) {
+  const x = b[0] * BLDG_COS - b[1] * BLDG_SIN;
+  const y = b[0] * BLDG_SIN + b[1] * BLDG_COS;
+  return [x / LNG_SCALE, y];
+}
+
+function makeOrthogonal(coords) {
+  const result = [coords[0]];
+  for (let i = 1; i < coords.length; i++) {
+    const prev = coords[i - 1], curr = coords[i];
+    const bp = toBldg(prev), bc = toBldg(curr);
+    const dx = bc[0] - bp[0], dy = bc[1] - bp[1];
+    if (Math.abs(dx) < 0.0000001 || Math.abs(dy) < 0.0000001) { result.push(curr); continue; }
+    const nextPt = i < coords.length - 1 ? coords[i + 1] : null;
+    let hFirst;
+    if (nextPt) { const bn = toBldg(nextPt); hFirst = Math.abs(bn[1] - bc[1]) >= Math.abs(bn[0] - bc[0]); }
+    else { hFirst = Math.abs(dx) > Math.abs(dy); }
+    result.push(hFirst ? fromBldg([bc[0], bp[1]]) : fromBldg([bp[0], bc[1]]));
+    result.push(curr);
+  }
+  return result;
+}
+
+function roundCorners(coords) {
+  if (coords.length < 3) return coords;
+  const RADIUS = 0.00012, STEPS = 8;
+  const result = [coords[0]];
+  for (let i = 1; i < coords.length - 1; i++) {
+    const prev = coords[i - 1], curr = coords[i], next = coords[i + 1];
+    let dx1 = prev[0] - curr[0], dy1 = prev[1] - curr[1];
+    let dx2 = next[0] - curr[0], dy2 = next[1] - curr[1];
+    const len1 = Math.sqrt(dx1*dx1 + dy1*dy1), len2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+    if (len1 === 0 || len2 === 0) { result.push(curr); continue; }
+    const r = Math.min(RADIUS, len1 * 0.4, len2 * 0.4);
+    dx1 /= len1; dy1 /= len1; dx2 /= len2; dy2 /= len2;
+    const start = [curr[0] + dx1*r, curr[1] + dy1*r];
+    const end = [curr[0] + dx2*r, curr[1] + dy2*r];
+    result.push(start);
+    for (let s = 1; s < STEPS; s++) {
+      const t = s/STEPS, u = 1-t;
+      result.push([u*u*start[0] + 2*u*t*curr[0] + t*t*end[0], u*u*start[1] + 2*u*t*curr[1] + t*t*end[1]]);
+    }
+    result.push(end);
+  }
+  result.push(coords[coords.length - 1]);
+  return result;
+}
+
+function smoothPath(coords) {
+  if (coords.length < 2) return coords;
+  return roundCorners(makeOrthogonal(coords));
+}
+
+function buildRouteLineCoords(routeData) {
+  const stops = routeData.route;
+  const stopGalleries = new Set(stops.map(s => String(s.gallery)));
+
+  // Expand into full room-by-room path
+  const fullPath = [];
+  for (let i = 0; i < stops.length; i++) {
+    const a = String(stops[i].gallery);
+    if (i === 0) fullPath.push({ room: a, isStop: true });
+    if (i < stops.length - 1) {
+      const b = String(stops[i + 1].gallery);
+      const direct = getDoorBetween(a, b);
+      if (direct) {
+        fullPath.push({ room: b, isStop: true });
+      } else {
+        const path = findPathBFS(a, b);
+        if (path && path.length > 1) {
+          for (let j = 1; j < path.length; j++)
+            fullPath.push({ room: path[j], isStop: stopGalleries.has(path[j]) });
+        } else {
+          fullPath.push({ room: b, isStop: true });
+        }
+      }
+    }
+  }
+
+  // Remove backtracking
+  const usedEdges = new Set();
+  const cleanPath = [fullPath[0]];
+  for (let i = 1; i < fullPath.length; i++) {
+    const prevRoom = cleanPath[cleanPath.length - 1].room;
+    const currRoom = fullPath[i].room;
+    const edge = [prevRoom, currRoom].sort().join('|');
+    if (usedEdges.has(edge) && !fullPath[i].isStop) continue;
+    usedEdges.add(edge);
+    cleanPath.push(fullPath[i]);
+  }
+
+  // Build coordinates with door waypoints
+  const lineCoords = [];
+  for (let i = 0; i < cleanPath.length; i++) {
+    const curr = cleanPath[i];
+    const prev = i > 0 ? cleanPath[i - 1] : null;
+    const next = i < cleanPath.length - 1 ? cleanPath[i + 1] : null;
+    const entryDoor = prev ? getDoorBetween(prev.room, curr.room) : null;
+    const exitDoor = next ? getDoorBetween(curr.room, next.room) : null;
+    if (curr.isStop) {
+      if (entryDoor) lineCoords.push([entryDoor.lng, entryDoor.lat]);
+      const c = getGalleryCentroid(curr.room);
+      if (c) lineCoords.push(c);
+      if (exitDoor) lineCoords.push([exitDoor.lng, exitDoor.lat]);
+    } else {
+      if (entryDoor) lineCoords.push([entryDoor.lng, entryDoor.lat]);
+    }
+  }
+
+  return smoothPath(lineCoords);
+}
+
 async function loadTourMap(routeData) {
   const script = document.createElement('script');
   script.src = 'https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js';
@@ -1534,18 +1694,20 @@ async function loadTourMap(routeData) {
 
   script.onload = async () => {
     // Load all geojson layers (same as viewer)
-    const [galleries, floors, sections, others, connections] = await Promise.all([
+    const [galleries, floors, sections, others, connections, doors] = await Promise.all([
       fetch('/data/gallery_rooms.geojson').then(r => r.json()),
       fetch('/data/floor_outlines.geojson').then(r => r.json()),
       fetch('/data/section_areas.geojson').then(r => r.json()),
       fetch('/data/other_rooms.geojson').then(r => r.json()),
       fetch('/data/room_connections.geojson').then(r => r.json()),
+      fetch('/data/room_doors.json').then(r => r.json()).catch(() => ({})),
     ]);
     galleryGeoData = galleries;
     floorOutlineData = floors;
     sectionData = sections;
     otherRoomsData = others;
     roomConnections = connections;
+    roomDoors = doors;
 
     const floor = 'Floor 2';
 
@@ -1622,7 +1784,8 @@ async function loadTourMap(routeData) {
           const stepNum = galleryStepNum[num] || '';
           const el = document.createElement('div');
           const size = isTarget ? 30 : 22;
-          el.style.cssText = 'box-sizing:border-box;width:' + size + 'px;height:' + size + 'px;background:' + (isTarget ? '#e4002b' : '#999') + ';border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:' + (isTarget ? '11' : '9') + 'px;color:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-family:IBM Plex Sans,sans-serif;text-align:center;line-height:1;padding:0;';
+          const inner = size - 6; // subtract border
+          el.style.cssText = 'box-sizing:border-box;width:' + size + 'px;height:' + size + 'px;background:' + (isTarget ? '#e4002b' : '#999') + ';border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:' + (isTarget ? '11' : '9') + 'px;color:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-family:IBM Plex Sans,sans-serif;text-align:center;line-height:' + inner + 'px;padding:0;padding-top:1px;';
           el.textContent = stepNum;
           if (idx >= 0) el.onclick = () => focusTourStop(idx);
           const marker = new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(c).addTo(tourMap);
@@ -1637,12 +1800,8 @@ async function loadTourMap(routeData) {
         }
       });
 
-      // Route line — using geojson centroids
-      const lineCoords = [];
-      routeData.route.forEach(stop => {
-        const c = getGalleryCentroid(stop.gallery);
-        if (c) lineCoords.push(c);
-      });
+      // Route line — smooth orthogonal path through doors (same as viewer)
+      const lineCoords = buildRouteLineCoords(routeData);
 
       if (lineCoords.length >= 2) {
         tourMap.getSource('route-line').setData({
