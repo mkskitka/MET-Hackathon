@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Met Museum Floor Plan Viewer</title>
+<script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: #1a1a2e; color: #eee; }
+  #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+  #controls {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #floor-selector {
+    background: rgba(26, 26, 46, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  .floor-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #aaa;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .floor-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .floor-btn.active {
+    background: #e4002b;
+    border-color: #e4002b;
+    color: #fff;
+  }
+
+  #legend {
+    background: rgba(26, 26, 46, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    font-size: 12px;
+    max-width: 200px;
+  }
+  #legend h3 { font-size: 13px; margin-bottom: 8px; color: #fff; }
+  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .legend-swatch {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  #info-panel {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    max-width: 480px;
+    display: none;
+    text-align: center;
+  }
+  #info-panel.visible { display: block; }
+  #info-panel h2 { font-size: 20px; margin-bottom: 4px; color: #fff; }
+  #info-panel .subtitle { font-size: 14px; color: #aaa; margin-bottom: 8px; }
+  #info-panel .description {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+    max-height: 120px;
+    overflow-y: auto;
+    text-align: left;
+  }
+  #info-panel img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  #info-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  #info-close:hover { color: #fff; }
+
+  #title-bar {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: rgba(26, 26, 46, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 10px 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    text-align: center;
+  }
+  #title-bar h1 { font-size: 18px; font-weight: 600; color: #fff; }
+  #title-bar .stats { font-size: 12px; color: #888; margin-top: 2px; }
+
+  #hover-tooltip {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    background: rgba(20, 20, 40, 0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    max-width: 300px;
+    min-width: 200px;
+    overflow: hidden;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  #hover-tooltip img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  #hover-tooltip .tooltip-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    padding: 10px 14px 2px;
+  }
+  #hover-tooltip .tooltip-subtitle {
+    font-size: 12px;
+    color: #e4002b;
+    padding: 0 14px 6px;
+    font-weight: 500;
+  }
+  #hover-tooltip .tooltip-desc {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.5;
+    padding: 0 14px 12px;
+  }
+
+  .gallery-label {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6);
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .maplibregl-popup-content {
+    background: rgba(26, 26, 46, 0.95) !important;
+    color: #eee !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+  }
+  .maplibregl-popup-tip {
+    border-top-color: rgba(26, 26, 46, 0.95) !important;
+  }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div id="title-bar">
+  <h1>The Metropolitan Museum of Art</h1>
+  <div class="stats" id="stats"></div>
+</div>
+
+<div id="controls">
+  <div id="floor-selector"></div>
+  <div id="legend">
+    <h3>Room Types</h3>
+    <div id="legend-items"></div>
+  </div>
+</div>
+
+<div id="hover-tooltip"></div>
+
+<div id="info-panel">
+  <button id="info-close">&times;</button>
+  <img id="info-image" src="" alt="" />
+  <h2 id="info-title"></h2>
+  <div class="subtitle" id="info-subtitle"></div>
+  <div class="description" id="info-description"></div>
+</div>
+
+<script>
+const FLOORS = [
+  { id: 'Floor G', label: 'G', level: '0.0' },
+  { id: 'Floor 1', label: '1', level: '1.0' },
+  { id: 'Floor 1M', label: '1M', level: '1.5' },
+  { id: 'Floor 2', label: '2', level: '2.0' },
+  { id: 'Floor 3', label: '3', level: '3.0' },
+];
+
+// Color scheme for section/department areas
+const SECTION_COLORS = {
+  'Egyptian Art': '#c4943e',
+  'The American Wing': '#3d7a5f',
+  'Greek and Roman Art': '#7a5c3d',
+  'Arms and Armor': '#5c5c5c',
+  'Medieval Art': '#6b4c8a',
+  'European Sculpture and Decorative Arts': '#4a7a9b',
+  'Modern and Contemporary Art': '#9b4a6b',
+  'Robert Lehman Wing': '#8a6b4c',
+  'Robert Lehman Collection': '#8a6b4c',
+  'The Great Hall': '#888',
+  'Michael C. Rockefeller Wing': '#4c8a6b',
+  'Arts of Africa': '#8a4c4c',
+  'Arts of Oceania': '#4c6b8a',
+  'Arts of the Ancient Americas': '#6b8a4c',
+  'The Costume Institute': '#8a4c8a',
+  '19th and Early 20th Century European Paintings and Sculpture': '#4a7a9b',
+  'Art of the Arab Lands, Turkey, Iran, Central Asia, and Later South Asia': '#3d6b7a',
+  'Asian Art': '#7a3d3d',
+  'European Paintings, 1250\u20131800': '#3d5a7a',
+  'Musical Instruments': '#7a6b3d',
+  'Photographs': '#5a5a5a',
+  'Drawings, Prints, and Photographs': '#5a5a5a',
+  'Drawings and Prints': '#5a5a5a',
+  'Art of Ancient West Asia and the Art of Ancient Cyprus': '#7a5c3d',
+  'Ruth and Harold D. Uris Center for Education': '#3d7a7a',
+  'The Iris and B.Gerald Cantor Roof Garden': '#4c8a4c',
+};
+
+let currentFloor = 'Floor 1';
+let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata;
+let map;
+
+async function loadData() {
+  const [galleries, sections, otherRooms, metadata, floorOutlines] = await Promise.all([
+    fetch('../data/gallery_rooms.geojson').then(r => r.json()),
+    fetch('../data/section_areas.geojson').then(r => r.json()),
+    fetch('../data/other_rooms.geojson').then(r => r.json()),
+    fetch('../data/all_galleries.json').then(r => r.json()),
+    fetch('../data/floor_outlines.geojson').then(r => r.json()),
+  ]);
+  galleryData = galleries;
+  sectionData = sections;
+  otherRoomsData = otherRooms;
+  floorOutlineData = floorOutlines;
+  galleryMetadata = {};
+  metadata.forEach(g => {
+    if (g.gallery_number) galleryMetadata[g.gallery_number] = g;
+  });
+  return { galleries, sections, otherRooms };
+}
+
+function filterByFloor(geojson, floor) {
+  return {
+    type: 'FeatureCollection',
+    features: geojson.features.filter(f => f.properties.floor_name === floor)
+  };
+}
+
+function initMap() {
+  map = new maplibregl.Map({
+    container: 'map',
+    style: {
+      version: 8,
+      sources: {},
+      layers: [{
+        id: 'background',
+        type: 'background',
+        paint: { 'background-color': '#16213e' }
+      }],
+      glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf'
+    },
+    center: [-73.9635, 40.7794],
+    zoom: 17.5,
+    bearing: -61,
+    pitch: 0,
+    maxZoom: 21,
+    minZoom: 15,
+  });
+
+  map.on('load', () => {
+    // Add sources
+    map.addSource('floor-outline', {
+      type: 'geojson',
+      data: filterByFloor(floorOutlineData, currentFloor)
+    });
+    map.addSource('sections', {
+      type: 'geojson',
+      data: filterByFloor(sectionData, currentFloor)
+    });
+    map.addSource('other-rooms', {
+      type: 'geojson',
+      data: filterByFloor(otherRoomsData, currentFloor)
+    });
+    map.addSource('galleries', {
+      type: 'geojson',
+      data: filterByFloor(galleryData, currentFloor)
+    });
+
+    // Floor outline (building footprint)
+    map.addLayer({
+      id: 'floor-outline-fill',
+      type: 'fill',
+      source: 'floor-outline',
+      paint: {
+        'fill-color': '#1e2444',
+        'fill-opacity': 0.9,
+      }
+    });
+    map.addLayer({
+      id: 'floor-outline-stroke',
+      type: 'line',
+      source: 'floor-outline',
+      paint: {
+        'line-color': '#3a4070',
+        'line-width': 2,
+      }
+    });
+
+    // Section fills (department areas)
+    map.addLayer({
+      id: 'section-fills',
+      type: 'fill',
+      source: 'sections',
+      paint: {
+        'fill-color': buildSectionColorExpr(),
+        'fill-opacity': 0.15,
+      }
+    });
+    map.addLayer({
+      id: 'section-outlines',
+      type: 'line',
+      source: 'sections',
+      paint: {
+        'line-color': buildSectionColorExpr(),
+        'line-width': 2,
+        'line-opacity': 0.5,
+      }
+    });
+
+    // Other rooms (corridors, back of house)
+    map.addLayer({
+      id: 'other-room-fills',
+      type: 'fill',
+      source: 'other-rooms',
+      paint: {
+        'fill-color': '#2a2a4a',
+        'fill-opacity': 0.6,
+      }
+    });
+    map.addLayer({
+      id: 'other-room-outlines',
+      type: 'line',
+      source: 'other-rooms',
+      paint: {
+        'line-color': '#444466',
+        'line-width': 0.5,
+      }
+    });
+
+    // Gallery fills
+    map.addLayer({
+      id: 'gallery-fills',
+      type: 'fill',
+      source: 'galleries',
+      paint: {
+        'fill-color': '#e4002b',
+        'fill-opacity': 0.25,
+      }
+    });
+    map.addLayer({
+      id: 'gallery-outlines',
+      type: 'line',
+      source: 'galleries',
+      paint: {
+        'line-color': '#e4002b',
+        'line-width': 1.5,
+        'line-opacity': 0.8,
+      }
+    });
+
+    // Gallery hover state
+    map.addLayer({
+      id: 'gallery-hover',
+      type: 'fill',
+      source: 'galleries',
+      paint: {
+        'fill-color': '#e4002b',
+        'fill-opacity': 0.5,
+      },
+      filter: ['==', 'gallery_number', '']
+    });
+
+    // Gallery labels as HTML markers
+    addGalleryLabels();
+
+    // Re-add labels when floor switches
+    map._addGalleryLabels = addGalleryLabels;
+
+    // Hover tooltip
+    const tooltip = document.getElementById('hover-tooltip');
+    let hoveredNum = null;
+
+    map.on('mousemove', 'gallery-fills', (e) => {
+      map.getCanvas().style.cursor = 'pointer';
+      const props = e.features[0].properties;
+      const num = props.gallery_number;
+      map.setFilter('gallery-hover', ['==', 'gallery_number', num]);
+
+      // Update tooltip content only when gallery changes
+      if (num !== hoveredNum) {
+        hoveredNum = num;
+        const meta = galleryMetadata[num];
+        const title = props.popup_header || `Gallery ${num}`;
+        const subtitle = props.popup_subheader || `Gallery ${num}`;
+        const imgUrl = props.popup_image_url || (meta && meta.image_url);
+        const desc = props.popup_body && props.popup_body !== 'This gallery has no description.'
+          ? props.popup_body
+          : (meta && meta.description ? meta.description : '');
+
+        let html = '';
+        if (imgUrl) {
+          html += `<img src="${imgUrl}" />`;
+        }
+        html += `<div class="tooltip-title">${title}</div>`;
+        html += `<div class="tooltip-subtitle">${subtitle}</div>`;
+        if (desc) {
+          const shortDesc = desc.length > 200 ? desc.substring(0, 200) + '...' : desc;
+          html += `<div class="tooltip-desc">${shortDesc}</div>`;
+        }
+        tooltip.innerHTML = html;
+      }
+
+      // Position tooltip near cursor
+      tooltip.style.display = 'block';
+      const x = e.originalEvent.clientX;
+      const y = e.originalEvent.clientY;
+      const rect = tooltip.getBoundingClientRect();
+      const mapRect = map.getContainer().getBoundingClientRect();
+
+      let left = x + 16;
+      let top = y - 16;
+      // Keep tooltip on screen
+      if (left + 320 > mapRect.right) left = x - 320 - 16;
+      if (top + rect.height > mapRect.bottom - 20) top = mapRect.bottom - rect.height - 20;
+      if (top < mapRect.top + 10) top = mapRect.top + 10;
+
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    });
+
+    map.on('mouseleave', 'gallery-fills', () => {
+      map.getCanvas().style.cursor = '';
+      map.setFilter('gallery-hover', ['==', 'gallery_number', '']);
+      tooltip.style.display = 'none';
+      hoveredNum = null;
+    });
+
+    // Click to pin the info panel
+    map.on('click', 'gallery-fills', (e) => {
+      const props = e.features[0].properties;
+      showInfoPanel(props);
+    });
+
+    map.on('click', (e) => {
+      const features = map.queryRenderedFeatures(e.point, { layers: ['gallery-fills'] });
+      if (!features.length) {
+        document.getElementById('info-panel').classList.remove('visible');
+      }
+    });
+
+    updateStats();
+  });
+}
+
+let galleryMarkers = [];
+
+function addGalleryLabels() {
+  // Remove existing markers
+  galleryMarkers.forEach(m => m.remove());
+  galleryMarkers = [];
+
+  const floorFeatures = galleryData.features.filter(f => f.properties.floor_name === currentFloor);
+
+  floorFeatures.forEach(feat => {
+    const num = feat.properties.gallery_number;
+    if (!num) return;
+
+    // Compute centroid of polygon
+    const coords = feat.geometry.type === 'Polygon'
+      ? feat.geometry.coordinates[0]
+      : feat.geometry.coordinates[0][0]; // MultiPolygon
+
+    let sumLng = 0, sumLat = 0;
+    // Exclude last point (same as first in closed ring)
+    const n = coords.length - 1;
+    for (let i = 0; i < n; i++) {
+      sumLng += coords[i][0];
+      sumLat += coords[i][1];
+    }
+    const center = [sumLng / n, sumLat / n];
+
+    const el = document.createElement('div');
+    el.className = 'gallery-label';
+    el.textContent = num;
+
+    const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
+      .setLngLat(center)
+      .addTo(map);
+
+    galleryMarkers.push(marker);
+  });
+}
+
+function buildSectionColorExpr() {
+  const expr = ['match', ['get', 'name']];
+  for (const [name, color] of Object.entries(SECTION_COLORS)) {
+    expr.push(name, color);
+  }
+  expr.push('#555'); // default
+  return expr;
+}
+
+function showInfoPanel(props) {
+  const panel = document.getElementById('info-panel');
+  const num = props.gallery_number;
+  const meta = galleryMetadata[num];
+
+  document.getElementById('info-title').textContent =
+    props.popup_header || `Gallery ${num}`;
+  document.getElementById('info-subtitle').textContent =
+    props.popup_subheader || `Gallery ${num} \u2022 ${props.floor_name}`;
+
+  const img = document.getElementById('info-image');
+  const imgUrl = props.popup_image_url || (meta && meta.image_url);
+  if (imgUrl) {
+    img.src = imgUrl;
+    img.style.display = 'block';
+  } else {
+    img.style.display = 'none';
+  }
+
+  const desc = props.popup_body || (meta && meta.description) || '';
+  document.getElementById('info-description').textContent =
+    desc === 'This gallery has no description.' ? '' : desc;
+
+  panel.classList.add('visible');
+}
+
+function switchFloor(floor) {
+  currentFloor = floor;
+
+  // Update buttons
+  document.querySelectorAll('.floor-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.floor === floor);
+  });
+
+  // Update sources
+  map.getSource('floor-outline').setData(filterByFloor(floorOutlineData, floor));
+  map.getSource('galleries').setData(filterByFloor(galleryData, floor));
+  map.getSource('sections').setData(filterByFloor(sectionData, floor));
+  map.getSource('other-rooms').setData(filterByFloor(otherRoomsData, floor));
+
+  // Refresh labels
+  addGalleryLabels();
+
+  // Hide info panel & tooltip
+  document.getElementById('info-panel').classList.remove('visible');
+  document.getElementById('hover-tooltip').style.display = 'none';
+
+  updateStats();
+}
+
+function updateStats() {
+  const floorGalleries = galleryData.features.filter(f => f.properties.floor_name === currentFloor);
+  const total = galleryData.features.length;
+  document.getElementById('stats').textContent =
+    `${currentFloor} \u2022 ${floorGalleries.length} galleries \u2022 ${total} total`;
+}
+
+function buildUI() {
+  // Floor buttons
+  const selector = document.getElementById('floor-selector');
+  FLOORS.forEach(floor => {
+    const btn = document.createElement('button');
+    btn.className = 'floor-btn' + (floor.id === currentFloor ? ' active' : '');
+    btn.dataset.floor = floor.id;
+    btn.textContent = `Floor ${floor.label}`;
+    btn.onclick = () => switchFloor(floor.id);
+    selector.appendChild(btn);
+  });
+
+  // Legend
+  const legendItems = document.getElementById('legend-items');
+  const legendEntries = [
+    { color: '#e4002b', label: 'Gallery' },
+    { color: '#2a2a4a', label: 'Other rooms' },
+  ];
+  // Add a few section colors
+  const sectionSamples = [
+    ['Egyptian Art', SECTION_COLORS['Egyptian Art']],
+    ['American Wing', SECTION_COLORS['The American Wing']],
+    ['Greek & Roman', SECTION_COLORS['Greek and Roman Art']],
+    ['Medieval Art', SECTION_COLORS['Medieval Art']],
+    ['Modern Art', SECTION_COLORS['Modern and Contemporary Art']],
+  ];
+  sectionSamples.forEach(([label, color]) => {
+    legendEntries.push({ color, label });
+  });
+
+  legendEntries.forEach(({ color, label }) => {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
+    legendItems.appendChild(item);
+  });
+
+  // Close button
+  document.getElementById('info-close').onclick = () => {
+    document.getElementById('info-panel').classList.remove('visible');
+  };
+}
+
+async function main() {
+  await loadData();
+  buildUI();
+  initMap();
+}
+
+main();
+</script>
+</body>
+</html>

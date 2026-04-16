@@ -1,0 +1,18 @@
+# Large datasets (>10MB) — fetch separately, don't commit
+data/descriptions.csv
+data/color_annotations.csv
+data/neighbors.csv
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
