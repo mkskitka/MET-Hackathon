@@ -18,6 +18,19 @@ def main():
     with open("data/augment_progress.json") as f:
         augment_data = json.load(f)
 
+    # Load HuggingFace descriptions for image URLs (best coverage)
+    desc_by_id = {}
+    try:
+        with open("data/descriptions.csv") as f:
+            for row in csv.DictReader(f):
+                oid = row.get("object_id", "")
+                url = row.get("source_image_url", "")
+                if oid and url and row.get("is_primary", "") == "True":
+                    desc_by_id[oid] = url
+                    desc_by_id[int(oid) if oid.isdigit() else oid] = url
+    except FileNotFoundError:
+        pass
+
     # Index augment by object_id
     aug_by_id = {}
     for a in augment_data:
@@ -41,12 +54,16 @@ def main():
         # Merge augment data
         aug = aug_by_id.get(oid, aug_by_id.get(str(oid), {}))
 
-        # Pick best image: augment has full-res, API has small
+        # Pick best image: augment has full-res, API has small, HF has primary
         images = aug.get("all_image_urls", [])
         if not images and obj.get("primaryImage"):
             images = [obj["primaryImage"]]
             if obj.get("additionalImages"):
                 images.extend(obj["additionalImages"])
+        if not images:
+            hf_url = desc_by_id.get(oid, desc_by_id.get(str(oid), ""))
+            if hf_url:
+                images = [hf_url]
 
         galleries[gnum]["objects"].append({
             "id": oid,
@@ -60,7 +77,7 @@ def main():
             "classification": aug.get("classification", obj.get("classification", "")),
             "dimensions": aug.get("dimensions", obj.get("dimensions", "")),
             "description": aug.get("curatorial_description", ""),
-            "image": obj.get("primaryImageSmall", ""),
+            "image": obj.get("primaryImageSmall", "") or (images[0].replace("/original/", "/web-large/") if images else ""),
             "images": images,
             "url": obj.get("objectURL", ""),
             "highlight": obj.get("isHighlight", False),
@@ -80,6 +97,10 @@ def main():
         aug = aug_by_id.get(oid, aug_by_id.get(int(oid) if oid.isdigit() else oid, {}))
 
         images = aug.get("all_image_urls", [])
+        if not images:
+            hf_url = desc_by_id.get(oid, desc_by_id.get(int(oid) if oid.isdigit() else oid, ""))
+            if hf_url:
+                images = [hf_url]
         # Use first image as thumbnail
         thumb = images[0] if images else ""
         # Convert original URLs to small thumbnails for the list view

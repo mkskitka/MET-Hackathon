@@ -553,29 +553,31 @@ const SECTION_COLORS = {
 
 let currentFloor = 'Floor 1';
 let selectedGallery = null;
-let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata, galleryObjects;
+let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata, galleryObjects, roomConnections;
 let map;
 
 async function loadData() {
-  const [galleries, sections, otherRooms, metadata, floorOutlines, objects] = await Promise.all([
+  const [galleries, sections, otherRooms, metadata, floorOutlines, objects, connections] = await Promise.all([
     fetch('../data/gallery_rooms.geojson').then(r => r.json()),
     fetch('../data/section_areas.geojson').then(r => r.json()),
     fetch('../data/other_rooms.geojson').then(r => r.json()),
     fetch('../data/all_galleries.json').then(r => r.json()),
     fetch('../data/floor_outlines.geojson').then(r => r.json()),
     fetch('../data/gallery_objects.json').then(r => r.json()),
+    fetch('../data/room_connections.geojson').then(r => r.json()),
   ]);
   galleryData = galleries;
   sectionData = sections;
   otherRoomsData = otherRooms;
   floorOutlineData = floorOutlines;
   galleryObjects = objects;
+  roomConnections = connections;
   galleryMetadata = {};
   metadata.forEach(g => { if (g.gallery_number) galleryMetadata[g.gallery_number] = g; });
 }
 
 function filterByFloor(gj, floor) {
-  return { type: 'FeatureCollection', features: gj.features.filter(f => f.properties.floor_name === floor) };
+  return { type: 'FeatureCollection', features: gj.features.filter(f => (f.properties.floor_name || f.properties.floor) === floor) };
 }
 function buildSectionColorExpr() {
   const e = ['match', ['get', 'name']];
@@ -879,6 +881,14 @@ function selectGallery(num) {
   if (map && map.getLayer('gallery-hover')) {
     map.setFilter('gallery-hover', num ? ['==', 'gallery_number', num] : ['==', 'gallery_number', '']);
   }
+  // Highlight connections for selected gallery
+  if (map && map.getLayer('connections-highlight')) {
+    if (num) {
+      map.setFilter('connections-highlight', ['any', ['==', 'from', num], ['==', 'to', num]]);
+    } else {
+      map.setFilter('connections-highlight', ['==', 'from', '__none__']);
+    }
+  }
 
   // Scroll gallery list item into view
   if (num) {
@@ -900,6 +910,7 @@ function switchFloor(floor) {
   map.getSource('galleries').setData(filterByFloor(galleryData, floor));
   map.getSource('sections').setData(filterByFloor(sectionData, floor));
   map.getSource('other-rooms').setData(filterByFloor(otherRoomsData, floor));
+  map.getSource('connections').setData(filterByFloor(roomConnections, floor));
 
   addGalleryLabels();
   renderGalleryList();
@@ -917,7 +928,7 @@ function initMap() {
       layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#16213e' } }],
       glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf'
     },
-    center: [-73.9635, 40.7794], zoom: 17.5, bearing: -61, pitch: 0, maxZoom: 21, minZoom: 15,
+    center: [-73.9635, 40.7794], zoom: 17.5, bearing: 118.5, pitch: 0, maxZoom: 21, minZoom: 15,
   });
 
   map.on('load', () => {
@@ -925,6 +936,7 @@ function initMap() {
     map.addSource('sections', { type: 'geojson', data: filterByFloor(sectionData, currentFloor) });
     map.addSource('other-rooms', { type: 'geojson', data: filterByFloor(otherRoomsData, currentFloor) });
     map.addSource('galleries', { type: 'geojson', data: filterByFloor(galleryData, currentFloor) });
+    map.addSource('connections', { type: 'geojson', data: filterByFloor(roomConnections, currentFloor) });
 
     map.addLayer({ id: 'floor-outline-fill', type: 'fill', source: 'floor-outline', paint: { 'fill-color': '#1e2444', 'fill-opacity': 0.9 } });
     map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#3a4070', 'line-width': 2 } });
@@ -939,6 +951,14 @@ function initMap() {
     // Data galleries: red
     map.addLayer({ id: 'gallery-fills-data', type: 'fill', source: 'galleries', paint: { 'fill-color': '#e4002b', 'fill-opacity': 0.35 }, filter: buildHasDataFilter() });
     map.addLayer({ id: 'gallery-outlines-data', type: 'line', source: 'galleries', paint: { 'line-color': '#e4002b', 'line-width': 1.5, 'line-opacity': 0.9 }, filter: buildHasDataFilter() });
+    // Room connections
+    map.addLayer({ id: 'connections-line', type: 'line', source: 'connections',
+      paint: { 'line-color': 'rgba(255,255,255,0.08)', 'line-width': 1, 'line-dasharray': [3, 3] } });
+    // Highlighted connections (for selected gallery)
+    map.addLayer({ id: 'connections-highlight', type: 'line', source: 'connections',
+      paint: { 'line-color': '#e4002b', 'line-width': 2, 'line-opacity': 0.6 },
+      filter: ['==', 'from', '__none__'] });
+
     // Hover/select
     map.addLayer({ id: 'gallery-hover', type: 'fill', source: 'galleries', paint: { 'fill-color': '#ff4466', 'fill-opacity': 0.6 }, filter: ['==', 'gallery_number', ''] });
 
