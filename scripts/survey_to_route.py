@@ -115,21 +115,29 @@ def survey_to_profile(answers):
     if any(w in emotion_lower for w in ["spiritual", "peaceful", "haunting"]):
         era_weights["medieval"] += 0.2
 
-    # Selected object IDs
+    # Selected object IDs — survey may send strings, lists, or ints
     selected_ids = []
-    if q6_pick:
+
+    # Flatten q6 (might be a list or a string)
+    q6_items = q6_pick if isinstance(q6_pick, list) else [q6_pick] if q6_pick else []
+    for item in q6_items:
         try:
-            selected_ids.append(int(q6_pick))
-        except ValueError:
-            pass
-    for pick in q7_picks:
-        try:
-            selected_ids.append(int(pick))
-        except ValueError:
+            selected_ids.append(int(item))
+        except (ValueError, TypeError):
             pass
 
-    # Preferred gallery
+    # Flatten q7
+    q7_items = q7_picks if isinstance(q7_picks, list) else [q7_picks] if q7_picks else []
+    for pick in q7_items:
+        try:
+            selected_ids.append(int(pick))
+        except (ValueError, TypeError):
+            pass
+
+    # Preferred gallery — might be a list too
     pref_gallery = None
+    if isinstance(preferred_gallery, list):
+        preferred_gallery = preferred_gallery[0] if preferred_gallery else ""
     if preferred_gallery:
         try:
             pref_gallery = int(preferred_gallery.replace("Gallery ", ""))

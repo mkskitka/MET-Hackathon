@@ -73,10 +73,16 @@ def api_generate_route():
         if not answers:
             return jsonify({"error": "No JSON body provided"}), 400
 
+        import traceback
+        print(f"[API] Received survey answers: {json.dumps(answers)[:500]}")
+
         result = generate_route_with_reasons(answers)
+        print(f"[API] Success: {result.get('route_summary', '')[:100]}")
         return jsonify(result)
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 

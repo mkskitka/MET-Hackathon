@@ -509,6 +509,60 @@
   .map-floor-btn:hover { background: rgba(0,0,0,0.04); color: #555; }
   .map-floor-btn.active { background: #e4002b; border-color: #e4002b; color: #fff; }
 
+  /* Trace mode toggle */
+  #trace-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    background: rgba(255, 253, 247, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid #ddd5c8;
+    border-radius: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    color: #888;
+    font-family: inherit;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #trace-toggle:hover { border-color: #bbb; color: #555; }
+  #trace-toggle.active { background: #e4002b; border-color: #e4002b; color: #fff; }
+  #trace-toggle .trace-icon { font-size: 16px; }
+
+  /* Trace mode: hide sidebar, show only route */
+  body.trace-mode #col-galleries,
+  body.trace-mode #col-objects,
+  body.trace-mode #col-image,
+  body.trace-mode #map-floor-selector,
+  body.trace-mode #hover-tooltip { display: none !important; }
+
+  body.trace-mode #trace-toggle { background: #e4002b; border-color: #e4002b; color: #fff; }
+
+  /* Route step labels in trace mode */
+  .trace-label {
+    background: #e4002b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .trace-label.passthrough {
+    background: #fff;
+    color: #888;
+    border: 1px solid #ddd;
+  }
+
   #hover-tooltip {
     display: none;
     position: fixed;
@@ -546,11 +600,11 @@
 
 <!-- Survey status badge -->
 <div id="survey-badge" style="
-  position: fixed; top: 12px; right: 12px; z-index: 9999;
-  background: rgba(14,14,34,0.95); color: #eee;
-  border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+  position: fixed; bottom: 12px; right: 12px; z-index: 9999;
+  background: rgba(255,253,247,0.95); color: #1a1008;
+  border: 1px solid #ddd5c8; border-radius: 10px;
   padding: 10px 14px; font-size: 12px; font-family: inherit;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 280px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 280px;
 ">
   <div id="survey-badge-content">
     <div style="color: #888; margin-bottom: 6px;">No survey loaded</div>
@@ -588,6 +642,7 @@
   <div id="map-wrap">
     <div id="map"></div>
     <div id="map-floor-selector"></div>
+    <button id="trace-toggle"><span class="trace-icon">&#9698;</span> Trace Mode</button>
     <div id="hover-tooltip"></div>
   </div>
 </div>
@@ -1071,15 +1126,10 @@ function initMap() {
     // OSM context (Central Park, roads)
     map.addSource('osm', { type: 'vector', url: 'https://tiles.openfreemap.org/planet' });
 
-    map.addLayer({ id: 'ctx-parks', type: 'fill', source: 'osm', 'source-layer': 'landuse',
-      filter: ['in', ['get', 'class'], ['literal', ['park', 'garden', 'grass', 'recreation_ground']]],
-      paint: { 'fill-color': '#c8ddb0', 'fill-opacity': 0.55 } });
-    map.addLayer({ id: 'ctx-landcover', type: 'fill', source: 'osm', 'source-layer': 'landcover',
-      filter: ['in', ['get', 'class'], ['literal', ['grass', 'wood', 'scrub']]],
-      paint: { 'fill-color': '#c8ddb0', 'fill-opacity': 0.4 } });
+    // Roads only (no green parks/landcover)
     map.addLayer({ id: 'ctx-roads', type: 'line', source: 'osm', 'source-layer': 'transportation',
       filter: ['in', ['get', 'class'], ['literal', ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor', 'service']]],
-      paint: { 'line-color': '#1a1008', 'line-width': ['interpolate', ['linear'], ['zoom'], 14, 0.3, 18, 1.5], 'line-opacity': 0.15 } });
+      paint: { 'line-color': '#c0b8a8', 'line-width': ['interpolate', ['linear'], ['zoom'], 14, 0.3, 18, 1.5], 'line-opacity': 0.4 } });
 
     map.addSource('floor-outline', { type: 'geojson', data: filterByFloor(floorOutlineData, currentFloor) });
     map.addSource('sections', { type: 'geojson', data: filterByFloor(sectionData, currentFloor) });
@@ -1089,22 +1139,22 @@ function initMap() {
     map.addSource('route-line', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
     map.addSource('route-stops', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
 
-    // Floor outline - warm white with dark ink stroke
+    // Floor outline - warm white with soft wall color
     map.addLayer({ id: 'floor-outline-fill', type: 'fill', source: 'floor-outline', paint: { 'fill-color': '#fffdf7', 'fill-opacity': 1.0 } });
-    map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#1a1008', 'line-width': 4 } });
+    map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#8a8078', 'line-width': 3 } });
     // Sections
     map.addLayer({ id: 'section-fills', type: 'fill', source: 'sections', paint: { 'fill-color': buildSectionColorExpr(), 'fill-opacity': 0.25 } });
-    map.addLayer({ id: 'section-outlines', type: 'line', source: 'sections', paint: { 'line-color': '#1a1008', 'line-width': 2.5, 'line-opacity': 0.9 } });
+    map.addLayer({ id: 'section-outlines', type: 'line', source: 'sections', paint: { 'line-color': '#8a8078', 'line-width': 2, 'line-opacity': 0.7 } });
     // Other rooms - warm beige
     map.addLayer({ id: 'other-room-fills', type: 'fill', source: 'other-rooms', paint: { 'fill-color': '#e8e0d0', 'fill-opacity': 0.8 } });
-    map.addLayer({ id: 'other-room-outlines', type: 'line', source: 'other-rooms', paint: { 'line-color': '#1a1008', 'line-width': 1.5 } });
+    map.addLayer({ id: 'other-room-outlines', type: 'line', source: 'other-rooms', paint: { 'line-color': '#a09888', 'line-width': 1 } });
 
     // No-data galleries: light parchment
     map.addLayer({ id: 'gallery-fills-nodata', type: 'fill', source: 'galleries', paint: { 'fill-color': '#f5f0e8', 'fill-opacity': 1.0 }, filter: buildNoDataFilter() });
-    map.addLayer({ id: 'gallery-outlines-nodata', type: 'line', source: 'galleries', paint: { 'line-color': '#1a1008', 'line-width': 1.5, 'line-opacity': 0.6 }, filter: buildNoDataFilter() });
+    map.addLayer({ id: 'gallery-outlines-nodata', type: 'line', source: 'galleries', paint: { 'line-color': '#a09888', 'line-width': 1, 'line-opacity': 0.6 }, filter: buildNoDataFilter() });
     // Data galleries: warm orange
     map.addLayer({ id: 'gallery-fills-data', type: 'fill', source: 'galleries', paint: { 'fill-color': '#f4a261', 'fill-opacity': 0.45 }, filter: buildHasDataFilter() });
-    map.addLayer({ id: 'gallery-outlines-data', type: 'line', source: 'galleries', paint: { 'line-color': '#1a1008', 'line-width': 2, 'line-opacity': 1.0 }, filter: buildHasDataFilter() });
+    map.addLayer({ id: 'gallery-outlines-data', type: 'line', source: 'galleries', paint: { 'line-color': '#8a8078', 'line-width': 1.5, 'line-opacity': 0.8 }, filter: buildHasDataFilter() });
     // Room connections
     map.addLayer({ id: 'connections-line', type: 'line', source: 'connections',
       paint: { 'line-color': 'rgba(0,0,0,0.06)', 'line-width': 1, 'line-dasharray': [3, 3] } });
@@ -1116,16 +1166,16 @@ function initMap() {
     // Hover/select
     map.addLayer({ id: 'gallery-hover', type: 'fill', source: 'galleries', paint: { 'fill-color': '#e4002b', 'fill-opacity': 0.3 }, filter: ['==', 'gallery_number', ''] });
 
-    // Route layers
+    // Route layers - bold and prominent
     map.addLayer({ id: 'route-line-outline', type: 'line', source: 'route-line',
-      paint: { 'line-color': '#fff', 'line-width': 5, 'line-opacity': 0.15 } });
+      paint: { 'line-color': '#fff', 'line-width': 8, 'line-opacity': 0.7 } });
     map.addLayer({ id: 'route-line-main', type: 'line', source: 'route-line',
-      paint: { 'line-color': '#ff6b35', 'line-width': 3, 'line-opacity': 0.9 } });
+      paint: { 'line-color': '#e4002b', 'line-width': 4, 'line-opacity': 1.0 } });
     map.addLayer({ id: 'route-stops-circle', type: 'circle', source: 'route-stops',
       paint: {
-        'circle-radius': ['case', ['get', 'is_target'], 10, 6],
-        'circle-color': ['case', ['get', 'is_target'], '#ff6b35', '#444'],
-        'circle-stroke-width': 2,
+        'circle-radius': ['case', ['get', 'is_target'], 12, 7],
+        'circle-color': ['case', ['get', 'is_target'], '#e4002b', '#999'],
+        'circle-stroke-width': 3,
         'circle-stroke-color': '#fff',
       } });
 
@@ -1324,6 +1374,112 @@ function buildUI() {
   });
 
   renderGalleryList();
+
+  // Trace mode toggle
+  document.getElementById('trace-toggle').addEventListener('click', toggleTraceMode);
+}
+
+// ─── Trace Mode ───
+
+let traceMode = false;
+let traceMarkers = [];
+
+function toggleTraceMode() {
+  traceMode = !traceMode;
+  document.body.classList.toggle('trace-mode', traceMode);
+  document.getElementById('trace-toggle').classList.toggle('active', traceMode);
+
+  if (traceMode) {
+    enterTraceMode();
+  } else {
+    exitTraceMode();
+  }
+}
+
+function enterTraceMode() {
+  if (!currentRoute || !map) return;
+
+  // Hide all non-route layers
+  const hideLayers = [
+    'floor-outline-fill', 'floor-outline-stroke',
+    'section-fills', 'section-outlines',
+    'other-room-fills', 'other-room-outlines',
+    'gallery-fills-nodata', 'gallery-outlines-nodata',
+    'gallery-fills-data', 'gallery-outlines-data',
+    'connections-line', 'connections-highlight',
+    'gallery-hover', 'ctx-roads',
+  ];
+  hideLayers.forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+  });
+
+  // Make background white for tracing
+  map.setPaintProperty('background', 'background-color', '#ffffff');
+
+  // Make route even bolder for trace
+  map.setPaintProperty('route-line-outline', 'line-width', 12);
+  map.setPaintProperty('route-line-outline', 'line-opacity', 0.3);
+  map.setPaintProperty('route-line-outline', 'line-color', '#e4002b');
+  map.setPaintProperty('route-line-main', 'line-width', 5);
+  map.setPaintProperty('route-stops-circle', 'circle-radius', ['case', ['get', 'is_target'], 14, 8]);
+  map.setPaintProperty('route-stops-circle', 'circle-stroke-width', 3);
+
+  // Hide gallery number labels
+  galleryMarkers.forEach(m => m.getElement().style.display = 'none');
+
+  // Add numbered labels at each stop
+  traceMarkers.forEach(m => m.remove());
+  traceMarkers = [];
+
+  currentRoute.route.forEach((stop, i) => {
+    const c = getGalleryCentroid(stop.gallery);
+    if (!c) return;
+
+    const el = document.createElement('div');
+    el.className = 'trace-label' + (stop.is_target ? '' : ' passthrough');
+    el.textContent = `${i + 1}. ${stop.gallery}`;
+
+    const marker = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, -18] })
+      .setLngLat(c)
+      .addTo(map);
+    traceMarkers.push(marker);
+  });
+}
+
+function exitTraceMode() {
+  if (!map) return;
+
+  // Show all layers again
+  const showLayers = [
+    'floor-outline-fill', 'floor-outline-stroke',
+    'section-fills', 'section-outlines',
+    'other-room-fills', 'other-room-outlines',
+    'gallery-fills-nodata', 'gallery-outlines-nodata',
+    'gallery-fills-data', 'gallery-outlines-data',
+    'connections-line', 'connections-highlight',
+    'gallery-hover', 'ctx-roads',
+  ];
+  showLayers.forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'visible');
+  });
+
+  // Restore background
+  map.setPaintProperty('background', 'background-color', '#e8e0d0');
+
+  // Restore route styling
+  map.setPaintProperty('route-line-outline', 'line-width', 8);
+  map.setPaintProperty('route-line-outline', 'line-opacity', 0.7);
+  map.setPaintProperty('route-line-outline', 'line-color', '#fff');
+  map.setPaintProperty('route-line-main', 'line-width', 4);
+  map.setPaintProperty('route-stops-circle', 'circle-radius', ['case', ['get', 'is_target'], 12, 7]);
+  map.setPaintProperty('route-stops-circle', 'circle-stroke-width', 3);
+
+  // Show gallery labels again
+  galleryMarkers.forEach(m => m.getElement().style.display = '');
+
+  // Remove trace labels
+  traceMarkers.forEach(m => m.remove());
+  traceMarkers = [];
 }
 
 // ---- Survey results loading ----
