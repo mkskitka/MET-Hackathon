@@ -2,6 +2,8 @@
 data/descriptions.csv
 data/color_annotations.csv
 data/neighbors.csv
+research/archive/
+museum_map/
 
 # Python
 .venv/

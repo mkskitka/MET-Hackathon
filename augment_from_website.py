@@ -56,8 +56,8 @@ def extract_classification(html):
 
 
 def extract_image_urls(html):
-    """Extract all image URLs from the embedded data"""
-    urls = re.findall(r'"(?:originalImageUrl|webImageUrl)":"(https://[^"]+)"', html)
+    """Extract all image URLs from the embedded data (handles escaped quotes)"""
+    urls = re.findall(r'originalImageUrl[\\"]+"?:?[\\"]+(https://images\.metmuseum\.org/[^"\\]+)', html)
     # Dedupe while preserving order
     seen = set()
     unique = []
