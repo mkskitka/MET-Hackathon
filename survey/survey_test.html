@@ -38,7 +38,7 @@
     max-width: 960px;
     margin: 0 auto;
     background: var(--bg);
-    padding: 56px 48px 64px;
+    padding: 40px 32px 48px;
   }
 
   /* ─── Header ─── */
@@ -230,7 +230,7 @@
 
   .image-option img {
     width: 100%;
-    height: 260px;
+    height: 180px;
     object-fit: contain;
     background: #000;
     display: block;
@@ -241,31 +241,31 @@
   }
 
   .image-option .info {
-    padding: 14px 16px 16px;
+    padding: 10px 12px 12px;
     background: var(--bg);
     transition: background 0.2s;
   }
 
   .image-option .title {
     font-family: 'Lora', Georgia, serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--ink);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     line-height: 1.3;
   }
 
   .image-option .meta {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--ink-muted);
     letter-spacing: 0.02em;
   }
 
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
   }
 
   /* ─── Word pills (Q9) ─── */
@@ -433,6 +433,96 @@
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px 16px 32px;
+    }
+    .header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 24px;
+    }
+    .progress {
+      margin-bottom: 24px;
+    }
+    .question h2 {
+      font-size: 22px;
+    }
+    .question .instruction {
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .image-option img {
+      height: 120px;
+    }
+    .image-option .info {
+      padding: 8px 8px 10px;
+    }
+    .image-option .title {
+      font-size: 12px;
+    }
+    .image-option .meta {
+      font-size: 10px;
+    }
+    .option {
+      padding: 14px 4px;
+    }
+    .option-label {
+      font-size: 15px;
+    }
+    .option-description {
+      font-size: 12px;
+    }
+    .word-cloud {
+      gap: 6px;
+    }
+    .word-pill {
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .nav-buttons {
+      margin-top: 20px;
+      padding-top: 16px;
+    }
+    .btn {
+      padding: 10px 20px;
+      font-size: 12px;
+    }
+    .timer {
+      font-size: 32px;
+      margin: 16px 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 16px 12px 24px;
+    }
+    .header h1 {
+      font-size: 20px;
+    }
+    .question h2 {
+      font-size: 18px;
+    }
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .image-option img {
+      height: 100px;
+    }
+    .image-option .title {
+      font-size: 11px;
+    }
   }
 </style>
 </head>
@@ -1329,7 +1419,23 @@ function showTour(routeData) {
     .map-btn.active { background: #1a1008; color: #fff; }
 
     @media (max-width: 768px) {
-      .tour-layout { grid-template-columns: 1fr; grid-template-rows: 50vh 50vh; }
+      .tour-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 45vh 1fr;
+      }
+      .tour-sidebar {
+        padding: 16px 14px;
+        order: 2;
+      }
+      .tour-map { order: 1; }
+      .tour-header h1 { font-size: 15px; }
+      .stop-gallery-name { font-size: 13px; }
+      .stop-reason { font-size: 11px; }
+      .artwork-card img { width: 44px; height: 44px; }
+      .artwork-title { font-size: 12px; }
+      .artwork-reason { font-size: 10px; }
+      .map-controls { top: 8px; right: 8px; }
+      .map-btn { padding: 6px 12px; font-size: 11px; }
     }
   `;
   document.head.appendChild(style);

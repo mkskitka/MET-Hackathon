@@ -696,11 +696,11 @@ const CENTER_LNG = -73.963517; // for mirroring
 let currentFloor = 'Floor 2'; // routes are on floor 2 mostly
 let selectedGallery = null;
 let currentRoute = null;
-let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata, galleryObjects, roomConnections;
+let galleryData, sectionData, otherRoomsData, floorOutlineData, galleryMetadata, galleryObjects, roomConnections, roomDoors;
 let map;
 
 async function loadData() {
-  const [galleries, sections, otherRooms, metadata, floorOutlines, objects, connections] = await Promise.all([
+  const [galleries, sections, otherRooms, metadata, floorOutlines, objects, connections, doors] = await Promise.all([
     fetch('../data/gallery_rooms.geojson').then(r => r.json()),
     fetch('../data/section_areas.geojson').then(r => r.json()),
     fetch('../data/other_rooms.geojson').then(r => r.json()),
@@ -708,6 +708,7 @@ async function loadData() {
     fetch('../data/floor_outlines.geojson').then(r => r.json()),
     fetch('../data/gallery_objects.json').then(r => r.json()),
     fetch('../data/room_connections.geojson').then(r => r.json()),
+    fetch('../data/room_doors.json').then(r => r.json()),
   ]);
   galleryData = galleries;
   sectionData = sections;
@@ -715,6 +716,7 @@ async function loadData() {
   floorOutlineData = floorOutlines;
   galleryObjects = objects;
   roomConnections = connections;
+  roomDoors = doors;
   galleryMetadata = {};
   metadata.forEach(g => { if (g.gallery_number) galleryMetadata[g.gallery_number] = g; });
 }
@@ -1291,6 +1293,180 @@ function getGalleryCentroid(galleryNum) {
   return [cx, cy];
 }
 
+function getDoorBetween(a, b) {
+  const key1 = `${a}-${b}`;
+  const key2 = `${b}-${a}`;
+  return roomDoors[key1] || roomDoors[key2] || null;
+}
+
+// BFS to find shortest path between two rooms through the adjacency graph
+let adjacencyMap = null;
+function getAdjacencyMap() {
+  if (adjacencyMap) return adjacencyMap;
+  // Build from room_connections geojson
+  adjacencyMap = {};
+  roomConnections.features.forEach(f => {
+    const a = f.properties.from, b = f.properties.to;
+    if (!adjacencyMap[a]) adjacencyMap[a] = [];
+    if (!adjacencyMap[b]) adjacencyMap[b] = [];
+    if (!adjacencyMap[a].includes(b)) adjacencyMap[a].push(b);
+    if (!adjacencyMap[b].includes(a)) adjacencyMap[b].push(a);
+  });
+  return adjacencyMap;
+}
+
+function findPath(from, to) {
+  if (from === to) return [from];
+  const adj = getAdjacencyMap();
+  const queue = [[from]];
+  const visited = new Set([from]);
+  while (queue.length > 0) {
+    const path = queue.shift();
+    const node = path[path.length - 1];
+    const neighbors = adj[node] || [];
+    for (const nb of neighbors) {
+      if (nb === to) return [...path, nb];
+      if (!visited.has(nb)) {
+        visited.add(nb);
+        queue.push([...path, nb]);
+      }
+    }
+  }
+  return null; // no path found
+}
+
+// Build coords for a path segment: centroid -> door -> centroid -> door -> centroid
+function buildPathCoords(roomSequence) {
+  const coords = [];
+  for (let i = 0; i < roomSequence.length; i++) {
+    const c = getGalleryCentroid(roomSequence[i]);
+    if (!c) continue;
+    coords.push(c);
+    if (i < roomSequence.length - 1) {
+      const door = getDoorBetween(roomSequence[i], roomSequence[i + 1]);
+      if (door) coords.push([door.lng, door.lat]);
+    }
+  }
+  return coords;
+}
+
+// Convert a path into orthogonal (N/S + E/W) segments with rounded corners.
+// The map is rotated so screen-horizontal = building's long axis.
+// We work in screen coordinates by rotating lng/lat by the bearing angle.
+function smoothPath(coords) {
+  if (coords.length < 2) return coords;
+
+  // First make all segments orthogonal
+  const ortho = makeOrthogonal(coords);
+  // Then round the corners
+  return roundCorners(ortho);
+}
+
+// Make all path segments align with the building walls.
+// The building's axes are at ~119 degrees from the lng/lat axes.
+// We rotate into building-space, do L-shaped routing, then rotate back.
+const BLDG_ANGLE = -119 * Math.PI / 180; // building axis angle in coord space
+const BLDG_COS = Math.cos(BLDG_ANGLE);
+const BLDG_SIN = Math.sin(BLDG_ANGLE);
+const LNG_SCALE = 0.7572; // cos(40.779) - scale lng to match lat distances
+
+function toBldg(p) {
+  // Scale lng, then rotate into building-aligned coordinates
+  const x = p[0] * LNG_SCALE;
+  const y = p[1];
+  return [x * BLDG_COS + y * BLDG_SIN, -x * BLDG_SIN + y * BLDG_COS];
+}
+function fromBldg(b) {
+  // Rotate back, then unscale lng
+  const x = b[0] * BLDG_COS - b[1] * BLDG_SIN;
+  const y = b[0] * BLDG_SIN + b[1] * BLDG_COS;
+  return [x / LNG_SCALE, y];
+}
+
+function makeOrthogonal(coords) {
+  const result = [coords[0]];
+
+  for (let i = 1; i < coords.length; i++) {
+    const prev = coords[i - 1];
+    const curr = coords[i];
+
+    const bp = toBldg(prev);
+    const bc = toBldg(curr);
+    const dx = bc[0] - bp[0];
+    const dy = bc[1] - bp[1];
+
+    // Already axis-aligned in building space
+    if (Math.abs(dx) < 0.0000001 || Math.abs(dy) < 0.0000001) {
+      result.push(curr);
+      continue;
+    }
+
+    // Pick horizontal-first vs vertical-first
+    const nextPt = i < coords.length - 1 ? coords[i + 1] : null;
+    let hFirst;
+    if (nextPt) {
+      const bn = toBldg(nextPt);
+      const dxN = bn[0] - bc[0];
+      const dyN = bn[1] - bc[1];
+      hFirst = Math.abs(dyN) >= Math.abs(dxN);
+    } else {
+      hFirst = Math.abs(dx) > Math.abs(dy);
+    }
+
+    // L-bend in building space, then convert back to lng/lat
+    const corner = hFirst
+      ? fromBldg([bc[0], bp[1]])  // move along building-horizontal first
+      : fromBldg([bp[0], bc[1]]); // move along building-vertical first
+
+    result.push(corner);
+    result.push(curr);
+  }
+
+  return result;
+}
+
+function roundCorners(coords) {
+  if (coords.length < 3) return coords;
+
+  const RADIUS = 0.00012; // corner radius in degrees (~12m)
+  const STEPS = 8;
+  const result = [coords[0]];
+
+  for (let i = 1; i < coords.length - 1; i++) {
+    const prev = coords[i - 1];
+    const curr = coords[i];
+    const next = coords[i + 1];
+
+    let dx1 = prev[0] - curr[0], dy1 = prev[1] - curr[1];
+    let dx2 = next[0] - curr[0], dy2 = next[1] - curr[1];
+    const len1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+    const len2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+
+    if (len1 === 0 || len2 === 0) { result.push(curr); continue; }
+
+    const r = Math.min(RADIUS, len1 * 0.4, len2 * 0.4);
+    dx1 /= len1; dy1 /= len1;
+    dx2 /= len2; dy2 /= len2;
+
+    const start = [curr[0] + dx1 * r, curr[1] + dy1 * r];
+    const end = [curr[0] + dx2 * r, curr[1] + dy2 * r];
+
+    result.push(start);
+    for (let s = 1; s < STEPS; s++) {
+      const t = s / STEPS;
+      const u = 1 - t;
+      result.push([
+        u * u * start[0] + 2 * u * t * curr[0] + t * t * end[0],
+        u * u * start[1] + 2 * u * t * curr[1] + t * t * end[1],
+      ]);
+    }
+    result.push(end);
+  }
+
+  result.push(coords[coords.length - 1]);
+  return result;
+}
+
 function updateRouteOnMap() {
   if (!map || !map.getSource('route-line')) return;
 
@@ -1300,23 +1476,83 @@ function updateRouteOnMap() {
     return;
   }
 
-  // Build route line using actual room polygon centroids
-  const lineCoords = [];
-  currentRoute.route.forEach(stop => {
-    const c = getGalleryCentroid(stop.gallery);
-    if (c) lineCoords.push(c);
-  });
+  // Step 1: Expand route into full room-by-room sequence
+  const stops = currentRoute.route;
+  const stopGalleries = new Set(stops.map(s => String(s.gallery)));
 
-  const lineFeatures = lineCoords.length >= 2 ? [{
+  const fullPath = []; // [{room, isStop}]
+  for (let i = 0; i < stops.length; i++) {
+    const a = String(stops[i].gallery);
+    if (i === 0) fullPath.push({ room: a, isStop: true });
+
+    if (i < stops.length - 1) {
+      const b = String(stops[i + 1].gallery);
+      const direct = getDoorBetween(a, b);
+      if (direct) {
+        fullPath.push({ room: b, isStop: true });
+      } else {
+        const path = findPath(a, b);
+        if (path && path.length > 1) {
+          for (let j = 1; j < path.length; j++)
+            fullPath.push({ room: path[j], isStop: stopGalleries.has(path[j]) });
+        } else {
+          fullPath.push({ room: b, isStop: true });
+        }
+      }
+    }
+  }
+
+  // Step 2: Remove backtracking at the room level.
+  // Track which room-to-room edges we've used. If we'd traverse the same
+  // edge again, skip the redundant rooms (just jump to the destination).
+  const usedEdges = new Set();
+  const cleanPath = [fullPath[0]];
+
+  for (let i = 1; i < fullPath.length; i++) {
+    const prevRoom = cleanPath[cleanPath.length - 1].room;
+    const currRoom = fullPath[i].room;
+    const edge = [prevRoom, currRoom].sort().join('|');
+
+    if (usedEdges.has(edge) && !fullPath[i].isStop) {
+      // Skip this transit room - we've already drawn this edge
+      continue;
+    }
+    usedEdges.add(edge);
+    cleanPath.push(fullPath[i]);
+  }
+
+  // Step 3: Build coordinates from clean path
+  const lineCoords = [];
+  for (let i = 0; i < cleanPath.length; i++) {
+    const curr = cleanPath[i];
+    const prev = i > 0 ? cleanPath[i - 1] : null;
+    const next = i < cleanPath.length - 1 ? cleanPath[i + 1] : null;
+
+    const entryDoor = prev ? getDoorBetween(prev.room, curr.room) : null;
+    const exitDoor = next ? getDoorBetween(curr.room, next.room) : null;
+
+    if (curr.isStop) {
+      if (entryDoor) lineCoords.push([entryDoor.lng, entryDoor.lat]);
+      const c = getGalleryCentroid(curr.room);
+      if (c) lineCoords.push(c);
+      if (exitDoor) lineCoords.push([exitDoor.lng, exitDoor.lat]);
+    } else {
+      // Transit: just add entry door (exit door will be added by next room)
+      if (entryDoor) lineCoords.push([entryDoor.lng, entryDoor.lat]);
+    }
+  }
+
+  const smoothed = smoothPath(lineCoords);
+  const lineFeatures = smoothed.length >= 2 ? [{
     type: 'Feature',
-    geometry: { type: 'LineString', coordinates: lineCoords },
+    geometry: { type: 'LineString', coordinates: smoothed },
     properties: {}
   }] : [];
   map.getSource('route-line').setData({ type: 'FeatureCollection', features: lineFeatures });
 
   // Build stop markers at room centroids
   const stopFeatures = [];
-  currentRoute.route.forEach((stop, i) => {
+  stops.forEach((stop, i) => {
     const c = getGalleryCentroid(stop.gallery);
     if (c) {
       stopFeatures.push({
