@@ -1,0 +1,1184 @@
+{
+  "total_on_view": 107,
+  "total_with_gallery": 107,
+  "total_without_gallery": 0,
+  "num_galleries": 53,
+  "galleries": {
+    "124": [
+      {
+        "objectID": 547704,
+        "title": "Head of a goddess",
+        "artistDisplayName": "",
+        "department": "Egyptian Art",
+        "medium": "quartzite",
+        "objectDate": "ca. 1295\u20131270 B.C.",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/eg/web-large/DT4632.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/547704"
+      }
+    ],
+    "134": [
+      {
+        "objectID": 547699,
+        "title": "Head Attributed to Arsinoe II",
+        "artistDisplayName": "",
+        "department": "Egyptian Art",
+        "medium": "Limestone (Indurated)",
+        "objectDate": "278\u2013270 B.C.",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/eg/web-large/DT10849.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/547699"
+      }
+    ],
+    "219": [
+      {
+        "objectID": 781822,
+        "title": "Brush holder with flowers and poems",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Molded gourd, black lacquer",
+        "objectDate": "19th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP-16215-075.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/781822"
+      }
+    ],
+    "238": [
+      {
+        "objectID": 74502,
+        "title": "The Goddess Durga Slaying the Demon Buffalo Mahisha",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Brass",
+        "objectDate": "12th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP231297.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/74502"
+      }
+    ],
+    "244": [
+      {
+        "objectID": 50781,
+        "title": "Vessel in the Form of a Horn",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Stone",
+        "objectDate": "ca. 500 BCE\u2013100 CE",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP102595.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/50781"
+      },
+      {
+        "objectID": 37404,
+        "title": "Vase with Incised and Impressed Designs",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Earthenware (blackware)",
+        "objectDate": "3600\u20131000 BCE",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP102593.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/37404"
+      }
+    ],
+    "250": [
+      {
+        "objectID": 56784,
+        "title": "The Buddhist Disciple Phra Sankachai",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Bronze with traces of gilt; eyes inlaid with shell and garnet",
+        "objectDate": "ca. late 17th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP105148.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/56784"
+      },
+      {
+        "objectID": 37588,
+        "title": "Dish",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Earthenware with underglaze iron-brown decoration (Kalong ware)",
+        "objectDate": "14th\u2013mid-16th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP102270.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/37588"
+      }
+    ],
+    "252": [
+      {
+        "objectID": 38307,
+        "title": "Yakshas Relief",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Stone",
+        "objectDate": "8th\u20139th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP101030.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/38307"
+      },
+      {
+        "objectID": 38322,
+        "title": "Bodhisattva, Probably Amoghapasa Lokeshvara",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Wood with traces of gesso and color",
+        "objectDate": "14th\u201315th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/h1_1982.247.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/38322"
+      }
+    ],
+    "253": [
+      {
+        "objectID": 38600,
+        "title": "An Arhat, a Buddhist Saint",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Stone with color",
+        "objectDate": "14th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP102611.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/38600"
+      }
+    ],
+    "372": [
+      {
+        "objectID": 7866,
+        "title": "Spur",
+        "artistDisplayName": "Paul Revere Jr.",
+        "department": "The American Wing",
+        "medium": "Silver",
+        "objectDate": "1770\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/98013.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7866"
+      },
+      {
+        "objectID": 7867,
+        "title": "Spur",
+        "artistDisplayName": "Paul Revere Jr.",
+        "department": "The American Wing",
+        "medium": "Silver",
+        "objectDate": "1770\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/98014.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7867"
+      }
+    ],
+    "379": [
+      {
+        "objectID": 24991,
+        "title": "Dagger (Kindjal) with Sheath",
+        "artistDisplayName": "",
+        "department": "Arms and Armor",
+        "medium": "Steel, wood, silver, niello",
+        "objectDate": "ca. 1840\u201350",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/81.1.599ab_001july2014.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/24991"
+      }
+    ],
+    "500": [
+      {
+        "objectID": 193506,
+        "title": "Processional cross",
+        "artistDisplayName": "",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Partly gilt silver, niello, and copper with traces of gilding, over wood",
+        "objectDate": "ca. 1460\u201380",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT566.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/193506"
+      }
+    ],
+    "503": [
+      {
+        "objectID": 194432,
+        "title": "Ewer (Brocca)",
+        "artistDisplayName": "Medici Porcelain Manufactory",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Soft-paste porcelain decorated in underglaze blue",
+        "objectDate": "ca. 1575\u201387",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP169163.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/194432"
+      }
+    ],
+    "509": [
+      {
+        "objectID": 195223,
+        "title": "Display dish with Charles II (1630\u20131685) in a tree",
+        "artistDisplayName": "Thomas Toft",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Slip-decorated earthenware",
+        "objectDate": "ca. 1680",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-15518-013.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/195223"
+      },
+      {
+        "objectID": 209028,
+        "title": "Monteith with the Gibbs and Nelthorpe coats of arms",
+        "artistDisplayName": "",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Engraved glass",
+        "objectDate": "1700",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-17308-019.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/209028"
+      }
+    ],
+    "514": [
+      {
+        "objectID": 202130,
+        "title": "Allegory of Water (Neptune Rescuing Amymone)",
+        "artistDisplayName": "Jacques Germain Soufflot",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Wool, silk (22-24 warps per inch, 9-10 per cm)",
+        "objectDate": "designed 1758\u201367, woven 1764\u201371",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT236862.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/202130"
+      }
+    ],
+    "515": [
+      {
+        "objectID": 196910,
+        "title": "Dining room from Lansdowne House",
+        "artistDisplayName": "Robert Adam",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Wood, plaster, stone",
+        "objectDate": "1766\u201369",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-19162-024-JPG_TMS_4000px_300dpi.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/196910"
+      }
+    ],
+    "516": [
+      {
+        "objectID": 207754,
+        "title": "Spoon holder",
+        "artistDisplayName": "Christopher Dresser",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Silver-plated brass, ebony",
+        "objectDate": "ca. 1878\u201381",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-16078-047.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207754"
+      }
+    ],
+    "526": [
+      {
+        "objectID": 197475,
+        "title": "F\u00e9licit\u00e9 Sophie de Lannion, Duchesse de La Rochefoucauld, at the Age of 29 Years (1745\u20131830)",
+        "artistDisplayName": "Jean-Baptiste Lemoyne the Younger",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "White marble",
+        "objectDate": "1774",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES5995.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/197475"
+      }
+    ],
+    "529": [
+      {
+        "objectID": 202192,
+        "title": "Potpourri vase (pot-pourri gondole)",
+        "artistDisplayName": "S\u00e8vres Manufactory",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Soft-paste porcelain decorated in polychrome enamels, gold",
+        "objectDate": "1757",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP149951.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/202192"
+      },
+      {
+        "objectID": 205250,
+        "title": "Bottle cooler from the Louis XV service (seau \u00e0 bouteille)",
+        "artistDisplayName": "Vincennes Manufactory",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Soft-paste porcelain decorated in polychrome enamels, gold",
+        "objectDate": "1754",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT585.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/205250"
+      }
+    ],
+    "533": [
+      {
+        "objectID": 206587,
+        "title": "Rosewater ewer",
+        "artistDisplayName": "Johann Erhard Heiglen",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Silver gilt",
+        "objectDate": "ca. 1730",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT581.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206587"
+      }
+    ],
+    "534": [
+      {
+        "objectID": 206399,
+        "title": "Bacchanal: A Faun Teased by Children",
+        "artistDisplayName": "Gian Lorenzo Bernini",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Marble",
+        "objectDate": "ca. 1616\u201317",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP248148.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206399"
+      }
+    ],
+    "535": [
+      {
+        "objectID": 199674,
+        "title": "The Holy Family with Saints Anne and Joachim",
+        "artistDisplayName": "Diego de Pesquera",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Wood, painted and gilt",
+        "objectDate": "1567\u201368",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP220481.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/199674"
+      }
+    ],
+    "536": [
+      {
+        "objectID": 206918,
+        "title": "Striding Pan",
+        "artistDisplayName": "Andrea Briosco, called Riccio",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Bronze",
+        "objectDate": "1530\u20131539",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP217090.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206918"
+      }
+    ],
+    "539": [
+      {
+        "objectID": 206976,
+        "title": "Mechanical table",
+        "artistDisplayName": "Jean-Fran\u00e7ois Oeben",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Oak veneered with mahogany, kingwood, and tulipwood, with marquetry of mahogany, rosewood, holly, and various other woods; gilt-bronze mounts; imitation Japanese lacquer; replaced silk",
+        "objectDate": "ca. 1761\u201363",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP108867.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206976"
+      },
+      {
+        "objectID": 206989,
+        "title": "Commode \u00e0 vantaux",
+        "artistDisplayName": "David Roentgen",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Oak, pine, walnut, mahogany, and cherry veneered with hornbeam (partially stained), tulipwood, walnut, holly and maple (both partially stained), boxwood, mahogany, and other woods; red brocatelle marble; gilt bronze; iron, steel, and brass",
+        "objectDate": "ca. 1775\u201379 with later alterations",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT8910.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206989"
+      }
+    ],
+    "542": [
+      {
+        "objectID": 206990,
+        "title": "Commode",
+        "artistDisplayName": "Andr\u00e9 Charles Boulle",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Walnut veneered with ebony, marquetry of engraved brass and tortoiseshell, gilt-bronze mounts, verd antique marble",
+        "objectDate": "ca. 1710\u201320",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP108742.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/206990"
+      }
+    ],
+    "543": [
+      {
+        "objectID": 207072,
+        "title": "Female Shaman",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6532.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207072"
+      },
+      {
+        "objectID": 207066,
+        "title": "Samoyed Man",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6550.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207066"
+      },
+      {
+        "objectID": 207067,
+        "title": "Man from Kamchatka",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6545.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207067"
+      },
+      {
+        "objectID": 207053,
+        "title": "Kalmuk Man",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6537.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207053"
+      },
+      {
+        "objectID": 207065,
+        "title": "Karbadian Man",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6539.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207065"
+      },
+      {
+        "objectID": 207051,
+        "title": "Kalmuk Woman",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "ca. 1780\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES6538.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/207051"
+      }
+    ],
+    "544": [
+      {
+        "objectID": 192741,
+        "title": "Isaac and Rebecca",
+        "artistDisplayName": "Suzanne de Court",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Painted enamel on copper, partly gilt",
+        "objectDate": "first quarter 17th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/150240.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/192741"
+      },
+      {
+        "objectID": 194243,
+        "title": "Ewer",
+        "artistDisplayName": "",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Lead-glazed earthenware inlaid with slip, with molded ornament",
+        "objectDate": "ca. 1550",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP252731.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/194243"
+      }
+    ],
+    "548": [
+      {
+        "objectID": 204720,
+        "title": "Andromeda and the Sea Monster",
+        "artistDisplayName": "Domenico Guidi",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Marble",
+        "objectDate": "1694",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP248137.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/204720"
+      },
+      {
+        "objectID": 195221,
+        "title": "Herakles the Archer",
+        "artistDisplayName": "Antoine-Emile Bourdelle",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Gilt bronze",
+        "objectDate": "1909",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/195221"
+      }
+    ],
+    "549": [
+      {
+        "objectID": 204706,
+        "title": "Samuel Bernard (1651\u20131739)",
+        "artistDisplayName": "Guillaume Coustou the Elder",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Marble",
+        "objectDate": "ca. 1727",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP234067.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/204706"
+      }
+    ],
+    "550": [
+      {
+        "objectID": 709109,
+        "title": "The Entombment of Christ",
+        "artistDisplayName": "Luisa Rold\u00e1n, called La Roldana",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Polychrome terracotta",
+        "objectDate": "1700\u20131701",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-12850-001.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/709109"
+      }
+    ],
+    "551": [
+      {
+        "objectID": 229569,
+        "title": "The Elephant from a set of five Grotesques",
+        "artistDisplayName": "Jean-Baptiste Monnoyer",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Wool, silk (21-27 warps per inch, 8-9 per cm.)",
+        "objectDate": "designed ca. 1688, woven ca. 1690\u20131711",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT1843.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/229569"
+      }
+    ],
+    "552": [
+      {
+        "objectID": 200668,
+        "title": "Sabine Houdon (1787\u20131836)",
+        "artistDisplayName": "Jean Antoine Houdon",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "White marble on gray marble socle",
+        "objectDate": "1788",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP242660.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/200668"
+      },
+      {
+        "objectID": 202266,
+        "title": "Children and satyr children leading a goat to sacrifice (part of a group)",
+        "artistDisplayName": "Clodion (Claude Michel)",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Stucco",
+        "objectDate": "ca. 1781",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES1805.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/202266"
+      }
+    ],
+    "553": [
+      {
+        "objectID": 211383,
+        "title": "Center table",
+        "artistDisplayName": "Imperial Armory, Tula (south of Moscow), Russia",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Steel, silver, gilt copper, gilt brass, basswood; replaced mirror glass",
+        "objectDate": "ca. 1780\u201385",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP106726.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/211383"
+      },
+      {
+        "objectID": 204533,
+        "title": "Plate",
+        "artistDisplayName": "Imperial Porcelain Manufactory, St. Petersburg",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain",
+        "objectDate": "1755\u201360",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/es65.47.R.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/204533"
+      },
+      {
+        "objectID": 208895,
+        "title": "Bowl from the Rambouillet service (Jatte \u00e9cuelle)",
+        "artistDisplayName": "S\u00e8vres Manufactory",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Hard-paste porcelain decorated in polychrome enamels",
+        "objectDate": "1787",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP169254.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/208895"
+      }
+    ],
+    "554": [
+      {
+        "objectID": 208558,
+        "title": "Side chair (one of a pair)",
+        "artistDisplayName": "Josef Danhauser",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Beech and pine wood, cherrywood veneer, ebonized mahogany framing strips; modern silk upholstery",
+        "objectDate": "ca. 1815\u201320",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP106555.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/208558"
+      }
+    ],
+    "556": [
+      {
+        "objectID": 212209,
+        "title": "Vase",
+        "artistDisplayName": "Philippe Wolfers",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Silver, partly gilded",
+        "objectDate": "ca. 1896",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/212209"
+      },
+      {
+        "objectID": 208035,
+        "title": "Vase",
+        "artistDisplayName": "Factory of Olivier de Sorra",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Stoneware",
+        "objectDate": "ca. 1885",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DT6741.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/208035"
+      },
+      {
+        "objectID": 209315,
+        "title": "Liberty",
+        "artistDisplayName": "Fr\u00e9d\u00e9ric-Auguste Bartholdi",
+        "department": "European Sculpture and Decorative Arts",
+        "medium": "Bronzed terracotta",
+        "objectDate": "1875",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/ES7939.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/209315"
+      }
+    ],
+    "681": [
+      {
+        "objectID": 503502,
+        "title": "Accordion",
+        "artistDisplayName": "Alexandre Pere & Fils",
+        "department": "Musical Instruments",
+        "medium": "Wood, metal, mastic, brass, tortoiseshell, gilt brass, mother-of-pearl, silver foil",
+        "objectDate": "1850\u201355",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP105215.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/503502"
+      }
+    ],
+    "684": [
+      {
+        "objectID": 503615,
+        "title": "Bassoon",
+        "artistDisplayName": "Giosue Esposito",
+        "department": "Musical Instruments",
+        "medium": "Maple, nickel-silver",
+        "objectDate": "1881",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP218094.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/503615"
+      },
+      {
+        "objectID": 503348,
+        "title": "Dung-Chen",
+        "artistDisplayName": "",
+        "department": "Musical Instruments",
+        "medium": "Brass, copper, cloisonn\u00e9",
+        "objectDate": "1368\u20131644",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/mi1988.349.R.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/503348"
+      },
+      {
+        "objectID": 505798,
+        "title": "Cor Solo",
+        "artistDisplayName": "Dubois et Couturier",
+        "department": "Musical Instruments",
+        "medium": "Brass, silver",
+        "objectDate": "1829",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP161518.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/505798"
+      }
+    ],
+    "701": [
+      {
+        "objectID": 7877,
+        "title": "Staircase from Chicago Stock Exchange Building, Chicago",
+        "artistDisplayName": "Louis Henry Sullivan",
+        "department": "The American Wing",
+        "medium": "Cast iron, electroplate copper finish, mahogany railing",
+        "objectDate": "1893",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7877"
+      }
+    ],
+    "704": [
+      {
+        "objectID": 9968,
+        "title": "Wine glass",
+        "artistDisplayName": "Jersey Glass Company of George Dummer",
+        "department": "The American Wing",
+        "medium": "Blown and cut glass",
+        "objectDate": "ca. 1824\u201340",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9968"
+      },
+      {
+        "objectID": 9969,
+        "title": "Wine glass",
+        "artistDisplayName": "Jersey Glass Company of George Dummer",
+        "department": "The American Wing",
+        "medium": "Blown and cut glass",
+        "objectDate": "ca. 1824\u201340",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9969"
+      },
+      {
+        "objectID": 9967,
+        "title": "Wine glass",
+        "artistDisplayName": "Jersey Glass Company of George Dummer",
+        "department": "The American Wing",
+        "medium": "Blown and cut glass",
+        "objectDate": "ca. 1824\u201340",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9967"
+      },
+      {
+        "objectID": 9965,
+        "title": "Wine glass",
+        "artistDisplayName": "Jersey Glass Company of George Dummer",
+        "department": "The American Wing",
+        "medium": "Blown and cut glass",
+        "objectDate": "ca. 1824\u201340",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9965"
+      },
+      {
+        "objectID": 9970,
+        "title": "Wine glass",
+        "artistDisplayName": "Jersey Glass Company of George Dummer",
+        "department": "The American Wing",
+        "medium": "Blown and cut glass",
+        "objectDate": "ca. 1824\u201340",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9970"
+      },
+      {
+        "objectID": 9166,
+        "title": "Two-quart Flagon",
+        "artistDisplayName": "Boardman and Company",
+        "department": "The American Wing",
+        "medium": "Pewter",
+        "objectDate": "1825\u201327",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/131993.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9166"
+      }
+    ],
+    "706": [
+      {
+        "objectID": 9319,
+        "title": "Vase",
+        "artistDisplayName": "John Bennett",
+        "department": "The American Wing",
+        "medium": "Painted and glazed earthenware",
+        "objectDate": "1879",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA5573.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9319"
+      }
+    ],
+    "722": [
+      {
+        "objectID": 9667,
+        "title": "Wallpaper Panel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Paper, painted by hand and mounted on linen",
+        "objectDate": "1700\u20131730",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/25609.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9667"
+      },
+      {
+        "objectID": 9669,
+        "title": "Wallpaper Panel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Paper, painted by hand and mounted on linen",
+        "objectDate": "1700\u20131730",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/25900.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9669"
+      },
+      {
+        "objectID": 7880,
+        "title": "Round stand",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Mahogany",
+        "objectDate": "1760\u201390",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7880"
+      },
+      {
+        "objectID": 9668,
+        "title": "Wallpaper Panel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Paper, painted by hand and mounted on linen",
+        "objectDate": "1700\u20131730",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/25903.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9668"
+      },
+      {
+        "objectID": 9666,
+        "title": "Wallpaper Panel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Paper, painted by hand and mounted on linen",
+        "objectDate": "1700\u20131730",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/25610.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9666"
+      }
+    ],
+    "723": [
+      {
+        "objectID": 7497,
+        "title": "Side-light from Craig House, Baltimore, Maryland",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Wood, metal, glass",
+        "objectDate": "ca. 1810",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/48170.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7497"
+      }
+    ],
+    "724": [
+      {
+        "objectID": 7492,
+        "title": "Shovel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Brass",
+        "objectDate": "1795\u20131810",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/172135.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7492"
+      }
+    ],
+    "725": [
+      {
+        "objectID": 10012,
+        "title": "Work Table",
+        "artistDisplayName": "Duncan Phyfe",
+        "department": "The American Wing",
+        "medium": "Mahogany veneer, mahogany, gilt-brass ornament, white pine, yellow poplar",
+        "objectDate": "1810\u201320",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/184876.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/10012"
+      }
+    ],
+    "733": [
+      {
+        "objectID": 9926,
+        "title": "Wine Glass",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Blown lead glass",
+        "objectDate": "1820\u201340",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/63695.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9926"
+      },
+      {
+        "objectID": 9914,
+        "title": "Wine Goblet",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Blown lead glass",
+        "objectDate": "19th century",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9914"
+      },
+      {
+        "objectID": 9929,
+        "title": "Wine Glass",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Blown lead glass",
+        "objectDate": "1820\u201340",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/63695.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9929"
+      },
+      {
+        "objectID": 9915,
+        "title": "Wine Goblet",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Blown lead glass",
+        "objectDate": "19th century",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9915"
+      },
+      {
+        "objectID": 9927,
+        "title": "Wine Glass",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Blown lead glass",
+        "objectDate": "1820\u201340",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/63695.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9927"
+      },
+      {
+        "objectID": 9156,
+        "title": "Tumbler",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Cut blown glass",
+        "objectDate": "1770\u20131800",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/63694.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9156"
+      },
+      {
+        "objectID": 7504,
+        "title": "Sideboard Table",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Mahogany, marble, gilt bronze, white pine, poplar",
+        "objectDate": "1815\u201320",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA3235.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7504"
+      }
+    ],
+    "734": [
+      {
+        "objectID": 7489,
+        "title": "Shovel",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Iron",
+        "objectDate": "1820\u201340",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/188200.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7489"
+      },
+      {
+        "objectID": 7405,
+        "title": "Sewing steps",
+        "artistDisplayName": "United Society of Believers in Christ\u2019s Second Appearing (\u201cShakers\u201d)",
+        "department": "The American Wing",
+        "medium": "Pine",
+        "objectDate": "ca. 1842",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA5177.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/7405"
+      },
+      {
+        "objectID": 9734,
+        "title": "Wash Stand",
+        "artistDisplayName": "United Society of Believers in Christ\u2019s Second Appearing (\u201cShakers\u201d)",
+        "department": "The American Wing",
+        "medium": "Pine",
+        "objectDate": "1810\u201330",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA3200.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9734"
+      }
+    ],
+    "737": [
+      {
+        "objectID": 10381,
+        "title": "Mountain Lake Scene",
+        "artistDisplayName": "John William Casilear",
+        "department": "The American Wing",
+        "medium": "Oil on canvas",
+        "objectDate": "1883",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/APS1620.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/10381"
+      }
+    ],
+    "738": [
+      {
+        "objectID": 132,
+        "title": "Architectural elements from Halsted House, Rye, New York",
+        "artistDisplayName": "",
+        "department": "The American Wing",
+        "medium": "Wood, marble",
+        "objectDate": "ca. 1825",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/132"
+      }
+    ],
+    "739": [
+      {
+        "objectID": 3979,
+        "title": "Girandole",
+        "artistDisplayName": "New England Glass Company",
+        "department": "The American Wing",
+        "medium": "Cased and cut blown and engraved glass, marble",
+        "objectDate": "1850\u201360",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA5243.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/3979"
+      },
+      {
+        "objectID": 9718,
+        "title": "Wallpaper",
+        "artistDisplayName": "Jules Desfosse",
+        "department": "The American Wing",
+        "medium": "Paper",
+        "objectDate": "1857",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9718"
+      },
+      {
+        "objectID": 9717,
+        "title": "Wallpaper",
+        "artistDisplayName": "Jules Desfosse",
+        "department": "The American Wing",
+        "medium": "Paper",
+        "objectDate": "1857",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9717"
+      },
+      {
+        "objectID": 9719,
+        "title": "Wallpaper",
+        "artistDisplayName": "Jules Desfosse",
+        "department": "The American Wing",
+        "medium": "Paper",
+        "objectDate": "1857",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9719"
+      }
+    ],
+    "743": [
+      {
+        "objectID": 9465,
+        "title": "Vase",
+        "artistDisplayName": "Louis C. Tiffany",
+        "department": "The American Wing",
+        "medium": "Favrile glass",
+        "objectDate": "ca. 1900",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9465"
+      },
+      {
+        "objectID": 9469,
+        "title": "Vase",
+        "artistDisplayName": "Louis C. Tiffany",
+        "department": "The American Wing",
+        "medium": "Favrile glass",
+        "objectDate": "ca. 1900",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9469"
+      },
+      {
+        "objectID": 9476,
+        "title": "Vase",
+        "artistDisplayName": "Louis C. Tiffany",
+        "department": "The American Wing",
+        "medium": "Glass",
+        "objectDate": "ca. 1893\u201397",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9476"
+      },
+      {
+        "objectID": 9466,
+        "title": "Vase",
+        "artistDisplayName": "Louis C. Tiffany",
+        "department": "The American Wing",
+        "medium": "Favrile glass",
+        "objectDate": "1893\u20131900",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9466"
+      },
+      {
+        "objectID": 9464,
+        "title": "Vase",
+        "artistDisplayName": "Louis C. Tiffany",
+        "department": "The American Wing",
+        "medium": "Favrile glass",
+        "objectDate": "ca. 1900",
+        "primaryImageSmall": "",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/9464"
+      }
+    ],
+    "899": [
+      {
+        "objectID": 48741,
+        "title": "Vase with Immortals Offering the Peaches of Longevity",
+        "artistDisplayName": "",
+        "department": "Asian Art",
+        "medium": "Porcelain, overglaze enamels",
+        "objectDate": "",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP225243.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/48741"
+      }
+    ],
+    "950": [
+      {
+        "objectID": 460204,
+        "title": "Plate (piatto): The story of Aeneas",
+        "artistDisplayName": "Francesco Xanto Avelli da Rovigo",
+        "department": "Robert Lehman Collection",
+        "medium": "Maiolica (tin-glazed earthenware)",
+        "objectDate": "1532",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/sf-rlc-1975-1-1131.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/460204"
+      }
+    ],
+    "951": [
+      {
+        "objectID": 461346,
+        "title": "Adoration of the Shepherds",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Rock crystal. Cut, polished, reverse painted, reverse gilt.",
+        "objectDate": "late 16th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1556.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461346"
+      },
+      {
+        "objectID": 460554,
+        "title": "The Temptation of St. Anthony",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures of lampworked glass (opaque and translucent white, brown, yellowish brown, black, yellow, blue, light blue, turquoise blue, amethyst, green, pink, gray, tan, and colorless), composition material (plaster ?), glass mirror plate, wood, wire, shells, feathers, paper, paint. Assembled.",
+        "objectDate": "18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1577.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/460554"
+      },
+      {
+        "objectID": 460549,
+        "title": "Susanna and the Elders",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures and flowers of lampworked glass (opaque whitwe, pink, dark blue, bright blue, brown, reddish brown, red, green, black, yellow and tan), composition material, glass mirror plate, paint, coral, seashells. Assembled.",
+        "objectDate": "18th century, reassembled last half 19th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1576.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/460549"
+      },
+      {
+        "objectID": 461718,
+        "title": "The Good Shepherd",
+        "artistDisplayName": "Haly workshop",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures of lampworked glass (opaque white, pink, black, blue, green, waxlike colorless, and transparent amethyst), papier-m\u00e2ch\u00e9, wood, mirror plate, paper, composition material, paint, metal sequins, metal wire. Assembled.",
+        "objectDate": "last half 18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1579.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461718"
+      },
+      {
+        "objectID": 461715,
+        "title": "The Supper at Emmaus",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures and flowers of lampworked glass (opaque white, pink, lavender, green, brown, purple, black, blue, light blue, and colorless), cardboard, paper, shells, glass mirror plate, glass chips, imitation leather (paper), cloth, paint, composition material, wire, fabric. Assembled.",
+        "objectDate": "18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1573.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461715"
+      },
+      {
+        "objectID": 461472,
+        "title": "The Deposition",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Rock crystal. Cut, polished, reverse painted, reverse gilt.",
+        "objectDate": "late 16th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1557.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461472"
+      },
+      {
+        "objectID": 461001,
+        "title": "The Life of Christ",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures of lampworked glass (opaque white, turquoise blue, bright blue, light blue, green, yellow, orange, yellow-orange, brown, yellowish brown, dark brown, black, gray, gold aventurine, and colorless), mirror and glass plate (some reverse painted),  wood, cardboard, paper, fabric, shells, glass bead, paint, wire, composition material, cork, metal. Assembled.",
+        "objectDate": "18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1578.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461001"
+      },
+      {
+        "objectID": 461279,
+        "title": "A Female Saint (possibly Rosalia)",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Colorless nonlead glass. Cut, polished, reverse gilt, painted.",
+        "objectDate": "second half 18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1555.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461279"
+      },
+      {
+        "objectID": 461717,
+        "title": "The Crucifixion and the Entombment",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures of lampworked glass (opaque white, black, red, yellow, brown, pink, green, light green, blue, bright blue, light blue, gold aventurine, and colorless), cardboard, papier-m\u00e2ch\u00e9, glass mirror plate, glass seed beads, shells, paper, ivory(?), wire, wood, cork, paint. Assembled.",
+        "objectDate": "18th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1575.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/461717"
+      },
+      {
+        "objectID": 460813,
+        "title": "The Finding of Moses",
+        "artistDisplayName": "",
+        "department": "Robert Lehman Collection",
+        "medium": "Figures of lampworked glass (opaque white, pale pink, yellow, turquoise blue, dark blue, bright blue, brown, dark red, green, black, and tan), metal wire, composition material, glass mirror plate, paint, string, coral. Assembled.",
+        "objectDate": "18th century, reassembled last half 19th century",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/SF-1975-1-1580.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/460813"
+      }
+    ],
+    "952": [
+      {
+        "objectID": 459006,
+        "title": "Six Angels",
+        "artistDisplayName": "Jacopo di Cione",
+        "department": "Robert Lehman Collection",
+        "medium": "Tempera on wood, gold ground",
+        "objectDate": "ca. 1365",
+        "primaryImageSmall": "https://images.metmuseum.org/CRDImages/rl/web-large/LC-1975_1_065a-001.jpg",
+        "objectURL": "https://www.metmuseum.org/art/collection/search/459006"
+      }
+    ]
+  }
+}

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Met Museum - Personalized Tour</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .section {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question {
+    margin-bottom: 32px;
+  }
+
+  .question h2 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .time-options, .interest-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .time-options {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .interest-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .option-btn, .interest-btn {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    color: #ccc;
+    padding: 16px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .option-btn:hover, .interest-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(228, 0, 43, 0.5);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .option-btn.selected, .interest-btn.selected {
+    background: #e4002b;
+    border-color: #e4002b;
+    color: #fff;
+  }
+
+  .image-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .image-choice {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .image-choice:hover {
+    border-color: rgba(228, 0, 43, 0.5);
+    transform: scale(1.02);
+  }
+
+  .image-choice.selected {
+    border-color: #e4002b;
+  }
+
+  .image-choice img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-info {
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .image-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .image-meta {
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .btn {
+    background: #e4002b;
+    border: none;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .btn:hover {
+    background: #c4001b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(228, 0, 43, 0.4);
+  }
+
+  .btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #ccc;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #e4002b;
+    transition: width 0.5s ease;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .spinner {
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #e4002b;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <div id="loading" class="loading" style="display: none;">
+    <div class="spinner"></div>
+    <p>Loading your personalized tour...</p>
+  </div>
+
+  <!-- Welcome Section -->
+  <div id="welcome" class="section active">
+    <h1>Welcome to The Met</h1>
+    <p class="subtitle">Create your personalized museum adventure</p>
+    <p style="text-align: center; color: #ccc; margin-bottom: 32px;">
+      Answer a few quick questions to discover artworks tailored to your interests,
+      with a scavenger hunt path and learning connections.
+    </p>
+    <div class="nav-buttons">
+      <button class="btn" onclick="goToSection('time')">Start Your Journey</button>
+    </div>
+  </div>
+
+  <!-- Time Duration Section -->
+  <div id="time" class="section">
+    <div class="question">
+      <h2>How long will you be at The Met today?</h2>
+      <div class="time-options">
+        <button class="option-btn" data-time="30" onclick="selectTime(this, 30)">
+          30 minutes<br>
+          <small style="opacity: 0.7;">Quick highlights</small>
+        </button>
+        <button class="option-btn" data-time="60" onclick="selectTime(this, 60)">
+          1 hour<br>
+          <small style="opacity: 0.7;">Focused tour</small>
+        </button>
+        <button class="option-btn" data-time="120" onclick="selectTime(this, 120)">
+          2 hours<br>
+          <small style="opacity: 0.7;">Deep dive</small>
+        </button>
+        <button class="option-btn" data-time="180" onclick="selectTime(this, 180)">
+          3+ hours<br>
+          <small style="opacity: 0.7;">Full exploration</small>
+        </button>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToSection('welcome')">Back</button>
+      <button class="btn" id="timeNext" disabled onclick="goToSection('interests')">Next</button>
+    </div>
+  </div>
+
+  <!-- Interests Section -->
+  <div id="interests" class="section">
+    <div class="question">
+      <h2>What are you interested in?</h2>
+      <p style="color: #aaa; margin-bottom: 20px;">Select all that apply</p>
+      <div class="interest-grid" id="interestGrid"></div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToSection('time')">Back</button>
+      <button class="btn" id="interestNext" disabled onclick="startImageQuiz()">Next</button>
+    </div>
+  </div>
+
+  <!-- Image Preference Section -->
+  <div id="images" class="section">
+    <div class="question">
+      <h2>Which artwork speaks to you more?</h2>
+      <p style="color: #aaa; margin-bottom: 20px;">Round <span id="roundNum">1</span> of 5</p>
+      <div id="imagePairContainer"></div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goToSection('interests')">Back</button>
+      <button class="btn" id="imageNext" disabled onclick="nextImageRound()">Next</button>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="section">
+    <h2 style="text-align: center; margin-bottom: 24px;">Generating Your Personalized Tour...</h2>
+    <div class="loading">
+      <div class="spinner"></div>
+      <p id="generatingText">Analyzing your preferences...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Survey state
+const survey = {
+  timeMinutes: null,
+  interests: [],
+  imagePreferences: [],
+  currentImageRound: 0
+};
+
+// Interest categories
+const interests = [
+  { id: 'ancient', label: 'Ancient Civilizations', keywords: ['ancient', 'dynasty', 'tomb', 'ritual'] },
+  { id: 'ceramics', label: 'Ceramics & Pottery', keywords: ['porcelain', 'ceramic', 'pottery', 'vase', 'bowl', 'jar'] },
+  { id: 'painting', label: 'Paintings & Scrolls', keywords: ['painting', 'scroll', 'handscroll', 'album'] },
+  { id: 'sculpture', label: 'Sculpture & Statues', keywords: ['sculpture', 'statue', 'figure', 'buddha'] },
+  { id: 'decorative', label: 'Decorative Arts', keywords: ['decorated', 'ornament', 'inlay', 'lacquer'] },
+  { id: 'textiles', label: 'Textiles & Clothing', keywords: ['textile', 'silk', 'robe', 'embroidery'] },
+  { id: 'nature', label: 'Nature & Animals', keywords: ['bird', 'flower', 'dragon', 'landscape', 'horse', 'animal'] },
+  { id: 'religious', label: 'Religious Art', keywords: ['buddha', 'buddhist', 'deity', 'temple', 'shrine'] }
+];
+
+let asianArtData = [];
+
+// Initialize
+async function init() {
+  // Load Asian art data
+  const response = await fetch('../data/asian_art_on_view.csv');
+  const csvText = await response.text();
+  asianArtData = parseCSV(csvText);
+
+  // Build interest grid
+  const grid = document.getElementById('interestGrid');
+  interests.forEach(interest => {
+    const btn = document.createElement('button');
+    btn.className = 'interest-btn';
+    btn.innerHTML = interest.label;
+    btn.onclick = () => toggleInterest(btn, interest.id);
+    grid.appendChild(btn);
+  });
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  return lines.slice(1).map(line => {
+    const values = parseCSVLine(line);
+    const obj = {};
+    headers.forEach((header, i) => {
+      obj[header] = values[i] || '';
+    });
+    return obj;
+  });
+}
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function goToSection(sectionId) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+  updateProgress();
+}
+
+function updateProgress() {
+  const sections = ['welcome', 'time', 'interests', 'images', 'results'];
+  const active = document.querySelector('.section.active').id;
+  const index = sections.indexOf(active);
+  const progress = ((index + 1) / sections.length) * 100;
+  document.getElementById('progress').style.width = progress + '%';
+}
+
+function selectTime(btn, minutes) {
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  survey.timeMinutes = minutes;
+  document.getElementById('timeNext').disabled = false;
+}
+
+function toggleInterest(btn, interestId) {
+  btn.classList.toggle('selected');
+  if (survey.interests.includes(interestId)) {
+    survey.interests = survey.interests.filter(i => i !== interestId);
+  } else {
+    survey.interests.push(interestId);
+  }
+  document.getElementById('interestNext').disabled = survey.interests.length === 0;
+}
+
+async function startImageQuiz() {
+  goToSection('images');
+  survey.currentImageRound = 0;
+  await loadImageRound();
+}
+
+async function loadImageRound() {
+  const round = survey.currentImageRound;
+  document.getElementById('roundNum').textContent = round + 1;
+
+  // Get random artworks with images
+  const artworksWithGalleries = asianArtData.filter(a =>
+    a.gallery_number &&
+    a.title &&
+    a.culture &&
+    a.object_id
+  );
+
+  // Pick 2 random artworks
+  const shuffled = artworksWithGalleries.sort(() => 0.5 - Math.random());
+  const pair = shuffled.slice(0, 2);
+
+  // Fetch full object data with images
+  const container = document.getElementById('imagePairContainer');
+  container.innerHTML = '<div class="image-pair" id="currentPair"></div>';
+
+  const pairDiv = document.getElementById('currentPair');
+
+  for (const artwork of pair) {
+    const objectData = await fetchObjectData(artwork.object_id);
+    if (objectData && objectData.primaryImageSmall) {
+      const choice = document.createElement('div');
+      choice.className = 'image-choice';
+      choice.onclick = () => selectImage(choice, objectData);
+      choice.innerHTML = `
+        <img src="${objectData.primaryImageSmall}" alt="${objectData.title}" />
+        <div class="image-info">
+          <div class="image-title">${objectData.title || 'Untitled'}</div>
+          <div class="image-meta">${objectData.culture || ''} • ${objectData.objectDate || ''}</div>
+        </div>
+      `;
+      pairDiv.appendChild(choice);
+    }
+  }
+
+  document.getElementById('imageNext').disabled = true;
+}
+
+async function fetchObjectData(objectId) {
+  try {
+    const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`);
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching object:', error);
+    return null;
+  }
+}
+
+function selectImage(element, objectData) {
+  document.querySelectorAll('.image-choice').forEach(c => c.classList.remove('selected'));
+  element.classList.add('selected');
+  survey.imagePreferences.push(objectData);
+  document.getElementById('imageNext').disabled = false;
+}
+
+async function nextImageRound() {
+  survey.currentImageRound++;
+  if (survey.currentImageRound < 5) {
+    await loadImageRound();
+  } else {
+    generateTour();
+  }
+}
+
+function generateTour() {
+  goToSection('results');
+  document.getElementById('loading').style.display = 'block';
+
+  // Simulate processing
+  setTimeout(() => {
+    document.getElementById('generatingText').textContent = 'Finding perfect artworks...';
+  }, 1000);
+
+  setTimeout(() => {
+    document.getElementById('generatingText').textContent = 'Creating your scavenger hunt...';
+  }, 2000);
+
+  setTimeout(() => {
+    document.getElementById('generatingText').textContent = 'Mapping your route...';
+  }, 3000);
+
+  setTimeout(() => {
+    // Store survey data and redirect to tour page
+    localStorage.setItem('tourData', JSON.stringify(survey));
+    window.location.href = 'tour.html';
+  }, 4000);
+}
+
+init();
+</script>
+
+</body>
+</html>

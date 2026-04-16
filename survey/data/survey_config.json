@@ -1,0 +1,204 @@
+{
+  "interests": [
+    {
+      "id": "china",
+      "label": "China Art",
+      "type": "culture",
+      "keywords": [
+        "china"
+      ],
+      "count": 885
+    },
+    {
+      "id": "japan",
+      "label": "Japan Art",
+      "type": "culture",
+      "keywords": [
+        "japan"
+      ],
+      "count": 287
+    },
+    {
+      "id": "indonesia_java",
+      "label": "Indonesia (Java) Art",
+      "type": "culture",
+      "keywords": [
+        "indonesia (java)"
+      ],
+      "count": 74
+    },
+    {
+      "id": "india",
+      "label": "India Art",
+      "type": "culture",
+      "keywords": [
+        "india"
+      ],
+      "count": 52
+    },
+    {
+      "id": "korea",
+      "label": "Korea Art",
+      "type": "culture",
+      "keywords": [
+        "korea"
+      ],
+      "count": 42
+    },
+    {
+      "id": "jade_and_stone",
+      "label": "Jade & Stone",
+      "type": "medium",
+      "keywords": [
+        "jade",
+        "&",
+        "stone"
+      ],
+      "count": 408
+    },
+    {
+      "id": "ceramics_and_porcelain",
+      "label": "Ceramics & Porcelain",
+      "type": "medium",
+      "keywords": [
+        "ceramics",
+        "&",
+        "porcelain"
+      ],
+      "count": 351
+    },
+    {
+      "id": "metalwork_and_bronze",
+      "label": "Metalwork & Bronze",
+      "type": "medium",
+      "keywords": [
+        "metalwork",
+        "&",
+        "bronze"
+      ],
+      "count": 330
+    },
+    {
+      "id": "wood_and_lacquer",
+      "label": "Wood & Lacquer",
+      "type": "medium",
+      "keywords": [
+        "wood",
+        "&",
+        "lacquer"
+      ],
+      "count": 122
+    },
+    {
+      "id": "ink_on_paper",
+      "label": "Ink on Paper",
+      "type": "medium",
+      "keywords": [
+        "ink",
+        "on",
+        "paper"
+      ],
+      "count": 71
+    },
+    {
+      "id": "paintings_and_scrolls",
+      "label": "Paintings & Scrolls",
+      "type": "medium",
+      "keywords": [
+        "paintings",
+        "&",
+        "scrolls"
+      ],
+      "count": 51
+    },
+    {
+      "id": "textiles_and_silk",
+      "label": "Textiles & Silk",
+      "type": "medium",
+      "keywords": [
+        "textiles",
+        "&",
+        "silk"
+      ],
+      "count": 36
+    },
+    {
+      "id": "landscapes_and_nature",
+      "label": "Landscapes & Nature",
+      "type": "theme",
+      "keywords": [
+        "landscapes",
+        "&",
+        "nature"
+      ],
+      "count": 50
+    },
+    {
+      "id": "animals_and_mythology",
+      "label": "Animals & Mythology",
+      "type": "theme",
+      "keywords": [
+        "animals",
+        "&",
+        "mythology"
+      ],
+      "count": 135
+    },
+    {
+      "id": "vessels_and_containers",
+      "label": "Vessels & Containers",
+      "type": "theme",
+      "keywords": [
+        "vessels",
+        "&",
+        "containers"
+      ],
+      "count": 460
+    },
+    {
+      "id": "religious_and_spiritual",
+      "label": "Religious & Spiritual",
+      "type": "theme",
+      "keywords": [
+        "religious",
+        "&",
+        "spiritual"
+      ],
+      "count": 231
+    },
+    {
+      "id": "figures_and_sculpture",
+      "label": "Figures & Sculpture",
+      "type": "theme",
+      "keywords": [
+        "figures",
+        "&",
+        "sculpture"
+      ],
+      "count": 45
+    }
+  ],
+  "galleries": {
+    "207": 246,
+    "222": 123,
+    "219": 118,
+    "247": 90,
+    "231": 76,
+    "244": 69,
+    "204": 63,
+    "221": 55,
+    "200": 52,
+    "234": 51,
+    "220": 49,
+    "250": 44,
+    "237": 42,
+    "233": 41,
+    "235": 41
+  },
+  "summary": {
+    "total_cultures": 10,
+    "total_mediums": 7,
+    "total_themes": 5,
+    "total_galleries": 15
+  }
+}

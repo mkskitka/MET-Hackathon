@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Met Museum Adventure - Welcome</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .hero .tagline {
+    font-size: 20px;
+    color: #aaa;
+    margin-bottom: 32px;
+  }
+
+  .hero .description {
+    font-size: 16px;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+  }
+
+  .feature-card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-4px);
+    border-color: rgba(228, 0, 43, 0.5);
+  }
+
+  .feature-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .feature-card h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  .action-section {
+    text-align: center;
+    background: rgba(228, 0, 43, 0.1);
+    border: 2px solid #e4002b;
+    border-radius: 24px;
+    padding: 48px;
+    margin-bottom: 40px;
+  }
+
+  .action-section h2 {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .action-section p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 32px;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    background: #e4002b;
+    border: none;
+    color: #fff;
+    padding: 16px 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn:hover {
+    background: #c4001b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(228, 0, 43, 0.4);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 8px 24px rgba(255,255,255,0.1);
+  }
+
+  .how-it-works {
+    margin-bottom: 48px;
+  }
+
+  .how-it-works h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    position: relative;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #e4002b, #c4001b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(228, 0, 43, 0.3);
+  }
+
+  .step h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.5;
+  }
+
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #888;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 36px;
+    }
+
+    .hero .tagline {
+      font-size: 16px;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <h1>🎨 Your Personalized Met Adventure</h1>
+    <p class="tagline">Discover Asian Art Through an Interactive Scavenger Hunt</p>
+    <p class="description">
+      Transform your museum visit into an engaging journey. Answer a few questions about your interests and time, then receive a custom scavenger hunt with learning connections, surprise discoveries, and a printable map to guide your adventure.
+    </p>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h3>Quick Survey</h3>
+      <p>Tell us about your interests, preferred visit duration, and visual preferences through an interactive quiz.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Smart Recommendations</h3>
+      <p>Our algorithm matches you with artworks from the Asian Art collection based on your unique preferences.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🗺️</div>
+      <h3>Personalized Route</h3>
+      <p>Get an optimized path through the galleries with an interactive map showing your custom tour.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <h3>Scavenger Hunt</h3>
+      <p>Each stop includes engaging clues and questions to deepen your appreciation of the artwork.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <h3>Learning Connections</h3>
+      <p>Discover how pieces relate to each other through cultural, historical, and artistic links.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <h3>Surprise Elements</h3>
+      <p>We'll include unexpected discoveries to expand your horizons beyond your stated interests.</p>
+    </div>
+  </div>
+
+  <div class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Take the Survey</h3>
+        <p>Answer questions about your visit duration and interests</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Choose Your Favorites</h3>
+        <p>Select artworks that appeal to you visually</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Get Your Tour</h3>
+        <p>Receive a personalized scavenger hunt with map</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Explore & Learn</h3>
+        <p>Follow your route and discover amazing art</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-section">
+    <h2>Ready to Begin?</h2>
+    <p>Your personalized Met adventure awaits. Start the survey now!</p>
+    <div class="btn-group">
+      <a href="survey.html" class="btn">🚀 Start Survey</a>
+      <a href="index.html" class="btn btn-secondary">🗺️ View Floor Plan</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Built for The Metropolitan Museum of Art Hackathon</p>
+    <p>Explore Asian Art • Create Connections • Learn & Discover</p>
+  </div>
+</div>
+
+</body>
+</html>

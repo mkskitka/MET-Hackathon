@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Your Met Adventure</title>
+<style>
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #222;
+    background: #fff;
+  }
+
+  .print-page {
+    max-width: 8in;
+    margin: 0 auto;
+    background: white;
+  }
+
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #e4002b;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    color: #e4002b;
+    margin-bottom: 8px;
+  }
+
+  .header .tagline {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+  }
+
+  .tour-info {
+    background: #f8f8f8;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .info-item {
+    border-right: 1px solid #ccc;
+  }
+
+  .info-item:last-child {
+    border-right: none;
+  }
+
+  .info-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e4002b;
+  }
+
+  .stops-list {
+    margin-bottom: 30px;
+  }
+
+  .stop-item {
+    border: 2px solid #e4002b;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+    position: relative;
+  }
+
+  .stop-number {
+    position: absolute;
+    top: -12px;
+    left: 16px;
+    background: #e4002b;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .stop-number.surprise {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  }
+
+  .stop-content {
+    padding-left: 40px;
+  }
+
+  .stop-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+  }
+
+  .stop-meta {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .stop-quest {
+    background: #fff5f5;
+    border-left: 3px solid #e4002b;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .stop-quest strong {
+    color: #e4002b;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .notes-area {
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    min-height: 60px;
+    background: #fafafa;
+  }
+
+  .notes-label {
+    font-size: 10px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .checkbox {
+    float: right;
+    margin-top: 8px;
+  }
+
+  .checkbox input {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+  }
+
+  .checkbox label {
+    font-size: 12px;
+    color: #666;
+    vertical-align: top;
+  }
+
+  .map-section {
+    page-break-before: always;
+    text-align: center;
+  }
+
+  .map-section h2 {
+    font-size: 24px;
+    color: #e4002b;
+    margin-bottom: 20px;
+  }
+
+  .map-placeholder {
+    border: 3px solid #e4002b;
+    border-radius: 12px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    margin-bottom: 20px;
+  }
+
+  .gallery-checklist {
+    text-align: left;
+    columns: 2;
+    column-gap: 30px;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .gallery-item input {
+    margin-right: 8px;
+  }
+
+  .tips-section {
+    background: #fffbf0;
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 30px;
+  }
+
+  .tips-section h3 {
+    font-size: 16px;
+    color: #d4a000;
+    margin-bottom: 12px;
+  }
+
+  .tips-section ul {
+    margin-left: 20px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+  }
+
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .no-print {
+      display: none;
+    }
+  }
+
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #e4002b;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(228, 0, 43, 0.3);
+    z-index: 1000;
+  }
+
+  .print-btn:hover {
+    background: #c4001b;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Print This Page</button>
+
+<div class="print-page">
+  <div class="header">
+    <h1>Your Metropolitan Museum Adventure</h1>
+    <p class="tagline">A Personalized Scavenger Hunt Through Asian Art</p>
+  </div>
+
+  <div class="tour-info" id="tourInfo"></div>
+
+  <div class="stops-list" id="stopsList"></div>
+
+  <div class="tips-section">
+    <h3>💡 Tips for Your Adventure</h3>
+    <ul>
+      <li><strong>Take your time:</strong> Spend at least 5 minutes at each stop to fully appreciate the artwork</li>
+      <li><strong>Use your senses:</strong> Notice colors, textures, and details up close (without touching!)</li>
+      <li><strong>Ask questions:</strong> Gallery assistants and docents love to share insights</li>
+      <li><strong>Stay flexible:</strong> If a gallery is crowded, skip ahead and come back later</li>
+      <li><strong>Take photos:</strong> Capture your favorite pieces (check photography policies)</li>
+      <li><strong>Share your experience:</strong> Tell us what you discovered! #MetAdventure</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>Created with ❤️ for your Metropolitan Museum of Art visit</p>
+    <p>Generated on <span id="date"></span></p>
+  </div>
+
+  <!-- Page 2: Map -->
+  <div class="map-section">
+    <h2>Your Route Map</h2>
+    <p style="margin-bottom: 20px; color: #666;">Follow the numbered galleries to complete your scavenger hunt</p>
+
+    <div class="map-placeholder">
+      <div style="text-align: center; color: #999;">
+        <div style="font-size: 48px; margin-bottom: 10px;">🗺️</div>
+        <div style="font-size: 16px; font-weight: 600;">Use this space to draw your route</div>
+        <div style="font-size: 12px; margin-top: 8px;">Or overlay this sheet on the museum floor plan</div>
+      </div>
+    </div>
+
+    <div class="gallery-checklist">
+      <h3 style="column-span: all; margin-bottom: 16px; font-size: 18px;">Gallery Checklist</h3>
+      <div id="galleryChecklist"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let tourData;
+
+function init() {
+  const stored = localStorage.getItem('tourData');
+  if (!stored) {
+    alert('No tour data found. Please complete the survey first.');
+    window.location.href = 'survey.html';
+    return;
+  }
+
+  tourData = JSON.parse(stored);
+
+  // For demo, we'll reconstruct the stops (in production, this would be passed from tour.html)
+  buildPrintView();
+}
+
+async function buildPrintView() {
+  // Load Asian art data
+  const response = await fetch('../data/asian_art_on_view.csv');
+  const csvText = await response.text();
+  const asianArtData = parseCSV(csvText);
+
+  // Recreate recommendations (simplified version)
+  const stops = generateStops(asianArtData);
+
+  // Build tour info
+  const tourInfo = document.getElementById('tourInfo');
+  tourInfo.innerHTML = `
+    <div class="info-item">
+      <div class="info-label">Stops</div>
+      <div class="info-value">${stops.length}</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Duration</div>
+      <div class="info-value">${tourData.timeMinutes} min</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Galleries</div>
+      <div class="info-value">${new Set(stops.map(s => s.gallery_number)).size}</div>
+    </div>
+  `;
+
+  // Build stops list
+  const stopsList = document.getElementById('stopsList');
+  stopsList.innerHTML = stops.map((stop, index) => `
+    <div class="stop-item">
+      <div class="stop-number ${stop.isSurprise ? 'surprise' : ''}">${stop.isSurprise ? '✨' : index + 1}</div>
+      <div class="stop-content">
+        <div class="stop-title">${stop.title}</div>
+        <div class="stop-meta">
+          Gallery ${stop.gallery_number} • ${stop.culture} • ${stop.object_date}
+        </div>
+        <div class="stop-quest">
+          <strong>🔍 Your Quest:</strong>
+          ${generateClue(stop)}
+        </div>
+        <div class="notes-area">
+          <div class="notes-label">Your Notes & Observations:</div>
+          <div style="height: 40px;"></div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="check${index}">
+          <label for="check${index}">Completed!</label>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Build gallery checklist
+  const galleries = [...new Set(stops.map(s => s.gallery_number))].sort((a, b) => parseInt(a) - parseInt(b));
+  const checklist = document.getElementById('galleryChecklist');
+  checklist.innerHTML = galleries.map(gallery => `
+    <div class="gallery-item">
+      <input type="checkbox" id="gallery${gallery}">
+      <label for="gallery${gallery}">Gallery ${gallery}</label>
+    </div>
+  `).join('');
+
+  // Set date
+  document.getElementById('date').textContent = new Date().toLocaleDateString();
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  return lines.slice(1).map(line => {
+    const values = parseCSVLine(line);
+    const obj = {};
+    headers.forEach((header, i) => {
+      obj[header] = values[i] || '';
+    });
+    return obj;
+  });
+}
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function generateStops(asianArtData) {
+  const numStops = Math.max(5, Math.min(12, Math.floor(tourData.timeMinutes / 12)));
+
+  // Simple selection (top items with variety)
+  const validArt = asianArtData.filter(art => art.gallery_number && art.title);
+  const selected = [];
+  const galleries = new Set();
+
+  for (let i = 0; i < validArt.length && selected.length < numStops; i++) {
+    if (selected.length < 3 || !galleries.has(validArt[i].gallery_number)) {
+      selected.push(validArt[i]);
+      galleries.add(validArt[i].gallery_number);
+    }
+  }
+
+  // Add surprise
+  if (selected.length > 3) {
+    selected[Math.floor(selected.length / 2)].isSurprise = true;
+  }
+
+  return selected.sort((a, b) => parseInt(a.gallery_number) - parseInt(b.gallery_number));
+}
+
+function generateClue(stop) {
+  const clues = [
+    `Find this ${stop.culture} masterpiece in Gallery ${stop.gallery_number}. Study the details in ${stop.medium.toLowerCase()}. What story does it tell?`,
+    `Discover this piece from ${stop.object_date}. Notice the techniques and craftsmanship. How was it made?`,
+    `Seek out this artwork and observe its cultural significance. What emotions does it evoke in you?`,
+    `Locate this ${stop.culture} treasure. Examine the materials and methods used. What makes it unique?`,
+    `Find this piece and imagine the artist who created it. What was their inspiration?`
+  ];
+
+  return clues[Math.floor(Math.random() * clues.length)];
+}
+
+init();
+</script>
+
+</body>
+</html>

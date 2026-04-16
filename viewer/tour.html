@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Personalized Met Tour</title>
+<script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    overflow-x: hidden;
+  }
+
+  .header {
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 20px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .header .subtitle {
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    height: calc(100vh - 81px);
+  }
+
+  .sidebar {
+    background: rgba(22, 33, 62, 0.95);
+    overflow-y: auto;
+    padding: 32px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .map-container {
+    position: relative;
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+
+  .scavenger-hunt {
+    margin-bottom: 32px;
+  }
+
+  .hunt-intro {
+    background: linear-gradient(135deg, #e4002b 0%, #c4001b 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .hunt-intro h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .hunt-intro p {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  .stop {
+    background: rgba(255,255,255,0.05);
+    border-left: 4px solid #e4002b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .stop:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateX(4px);
+  }
+
+  .stop.active {
+    background: rgba(228, 0, 43, 0.15);
+    border-left-width: 6px;
+  }
+
+  .stop-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #e4002b;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 12px;
+  }
+
+  .stop-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .stop-info {
+    flex: 1;
+  }
+
+  .stop-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .stop-meta {
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  .stop-clue {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  .stop-clue strong {
+    color: #e4002b;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .learning-connection {
+    background: rgba(100, 150, 255, 0.1);
+    border-left: 3px solid #6496ff;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  .learning-connection strong {
+    color: #6496ff;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .surprise-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+
+  .action-buttons {
+    position: sticky;
+    bottom: 0;
+    background: rgba(22, 33, 62, 0.98);
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn {
+    flex: 1;
+    background: #e4002b;
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .btn:hover {
+    background: #c4001b;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .route-line {
+    stroke: #e4002b;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 8 4;
+    animation: dash 30s linear infinite;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -1000;
+    }
+  }
+
+  .map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  .map-controls button {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+  }
+
+  .map-controls button:last-child {
+    margin-bottom: 0;
+  }
+
+  .map-controls button:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  @media print {
+    .sidebar, .header, .map-controls {
+      display: none;
+    }
+    .main-content {
+      grid-template-columns: 1fr;
+    }
+    #map {
+      height: 100vh;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Your Personalized Met Adventure</h1>
+  <p class="subtitle" id="tourSummary"></p>
+</div>
+
+<div class="main-content">
+  <div class="sidebar">
+    <div class="scavenger-hunt" id="scavengerHunt"></div>
+    <div class="action-buttons">
+      <button class="btn" onclick="printMap()">📄 Print Map</button>
+      <button class="btn btn-secondary" onclick="downloadRoute()">⬇ Download Route</button>
+    </div>
+  </div>
+
+  <div class="map-container">
+    <div id="map"></div>
+    <div class="map-controls">
+      <button onclick="focusRoute()">🎯 Focus Route</button>
+      <button onclick="toggleFloorView()">🏢 Change Floor</button>
+      <button onclick="resetView()">↺ Reset View</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let map;
+let surveyData;
+let asianArtData = [];
+let galleryData;
+let recommendedStops = [];
+let currentFloor = 'Floor 2'; // Default to Floor 2 (Asian Art)
+
+async function init() {
+  // Load survey data
+  const stored = localStorage.getItem('tourData');
+  if (!stored) {
+    alert('No survey data found. Redirecting to survey...');
+    window.location.href = 'survey.html';
+    return;
+  }
+  surveyData = JSON.parse(stored);
+
+  // Load data
+  await loadData();
+
+  // Generate recommendations
+  generateRecommendations();
+
+  // Build UI
+  buildScavengerHunt();
+  initMap();
+}
+
+async function loadData() {
+  const [csvResponse, galleriesResponse] = await Promise.all([
+    fetch('../data/asian_art_on_view.csv'),
+    fetch('../data/gallery_rooms.geojson')
+  ]);
+
+  const csvText = await csvResponse.text();
+  asianArtData = parseCSV(csvText);
+  galleryData = await galleriesResponse.json();
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+  return lines.slice(1).map(line => {
+    const values = parseCSVLine(line);
+    const obj = {};
+    headers.forEach((header, i) => {
+      obj[header] = values[i] || '';
+    });
+    return obj;
+  });
+}
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function generateRecommendations() {
+  const { timeMinutes, interests, imagePreferences } = surveyData;
+
+  // Calculate number of stops based on time (roughly 10-15 min per stop)
+  const numStops = Math.max(3, Math.min(15, Math.floor(timeMinutes / 12)));
+
+  // Build interest keywords
+  const interestKeywords = [];
+  const interestMap = {
+    'ancient': ['ancient', 'dynasty', 'tomb', 'ritual'],
+    'ceramics': ['porcelain', 'ceramic', 'pottery', 'vase', 'bowl', 'jar'],
+    'painting': ['painting', 'scroll', 'handscroll', 'album'],
+    'sculpture': ['sculpture', 'statue', 'figure', 'buddha'],
+    'decorative': ['decorated', 'ornament', 'inlay', 'lacquer'],
+    'textiles': ['textile', 'silk', 'robe', 'embroidery'],
+    'nature': ['bird', 'flower', 'dragon', 'landscape', 'horse', 'animal'],
+    'religious': ['buddha', 'buddhist', 'deity', 'temple', 'shrine']
+  };
+
+  interests.forEach(int => {
+    if (interestMap[int]) {
+      interestKeywords.push(...interestMap[int]);
+    }
+  });
+
+  // Get cultures from image preferences
+  const preferredCultures = imagePreferences.map(img => img.culture).filter(Boolean);
+
+  // Score artworks
+  const scoredArtworks = asianArtData
+    .filter(art => art.gallery_number && art.title && art.object_id)
+    .map(art => {
+      let score = 0;
+
+      // Match interests (keywords in title or medium)
+      const searchText = `${art.title} ${art.medium}`.toLowerCase();
+      interestKeywords.forEach(keyword => {
+        if (searchText.includes(keyword.toLowerCase())) {
+          score += 3;
+        }
+      });
+
+      // Match culture
+      if (preferredCultures.includes(art.culture)) {
+        score += 5;
+      }
+
+      // Boost highlights
+      if (art.is_highlight === 'True') {
+        score += 2;
+      }
+
+      // Add some randomness for variety
+      score += Math.random() * 2;
+
+      return { ...art, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  // Select top artworks, ensuring variety in galleries
+  const selectedGalleries = new Set();
+  const selected = [];
+
+  for (const artwork of scoredArtworks) {
+    if (selected.length >= numStops - 1) break; // Save one for surprise
+
+    // Prefer spreading across galleries
+    if (selected.length < 3 || !selectedGalleries.has(artwork.gallery_number)) {
+      selected.push(artwork);
+      selectedGalleries.add(artwork.gallery_number);
+    } else if (selectedGalleries.size >= 3 && selected.length < numStops - 1) {
+      // After we have variety, continue adding high-scoring items
+      selected.push(artwork);
+    }
+  }
+
+  // Add a surprise element (random interesting piece not in their interests)
+  const surprisePool = scoredArtworks.filter(art =>
+    !selected.includes(art) &&
+    !selectedGalleries.has(art.gallery_number)
+  );
+  if (surprisePool.length > 0) {
+    const surprise = surprisePool[Math.floor(Math.random() * surprisePool.length)];
+    surprise.isSurprise = true;
+    selected.splice(Math.floor(selected.length / 2), 0, surprise); // Insert in middle
+  }
+
+  // Sort by gallery location for optimal path
+  selected.sort((a, b) => parseInt(a.gallery_number) - parseInt(b.gallery_number));
+
+  recommendedStops = selected;
+}
+
+function buildScavengerHunt() {
+  const container = document.getElementById('scavengerHunt');
+  const { timeMinutes } = surveyData;
+
+  const intro = `
+    <div class="hunt-intro">
+      <h2>🗺️ Your Scavenger Hunt</h2>
+      <p>${recommendedStops.length} stops • ${timeMinutes} minutes • ${new Set(recommendedStops.map(s => s.gallery_number)).size} galleries</p>
+    </div>
+  `;
+
+  const stops = recommendedStops.map((stop, index) => {
+    const clue = generateClue(stop, index);
+    const learning = generateLearningConnection(stop, index);
+
+    return `
+      <div class="stop" onclick="focusStop(${index})" data-gallery="${stop.gallery_number}">
+        <div class="stop-header">
+          <span class="stop-number">${index + 1}</span>
+          <div class="stop-info">
+            <div class="stop-title">
+              ${stop.title}
+              ${stop.isSurprise ? '<span class="surprise-badge">✨ Surprise!</span>' : ''}
+            </div>
+            <div class="stop-meta">
+              Gallery ${stop.gallery_number} • ${stop.culture} • ${stop.object_date}
+            </div>
+          </div>
+        </div>
+        <div class="stop-clue">
+          <strong>🔍 Your Quest:</strong>
+          ${clue}
+        </div>
+        ${learning ? `
+          <div class="learning-connection">
+            <strong>💡 Did You Know?</strong>
+            ${learning}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = intro + stops;
+
+  // Update summary
+  document.getElementById('tourSummary').textContent =
+    `${recommendedStops.length} artworks across ${new Set(recommendedStops.map(s => s.gallery_number)).size} galleries • Estimated ${surveyData.timeMinutes} minutes`;
+}
+
+function generateClue(stop, index) {
+  const clues = [
+    `Find this ${stop.culture} masterpiece and observe the intricate details in the ${stop.medium.toLowerCase()}. What story do you think it tells?`,
+    `Look closely at this piece. Can you spot the techniques used in its creation? Note the craftsmanship.`,
+    `This artwork dates from ${stop.object_date}. Imagine the hands that created it centuries ago. What was the world like then?`,
+    `Study the materials: ${stop.medium.toLowerCase()}. How do you think the artist achieved this effect?`,
+    `Take a moment to appreciate the cultural significance of this ${stop.culture} piece. What emotions does it evoke?`,
+    `Examine this treasure from ${stop.object_date}. What elements make it unique to ${stop.culture} art?`
+  ];
+
+  return clues[index % clues.length];
+}
+
+function generateLearningConnection(stop, index) {
+  if (index === 0) return '';
+
+  const prevStop = recommendedStops[index - 1];
+
+  // Find connections
+  if (stop.culture === prevStop.culture) {
+    return `Notice how both this and the previous piece showcase ${stop.culture} artistic traditions, though from different periods.`;
+  }
+
+  if (stop.object_date === prevStop.object_date) {
+    return `Created around the same time as your previous stop, these pieces show how different cultures approached art during ${stop.object_date}.`;
+  }
+
+  const stopMedium = stop.medium.toLowerCase();
+  const prevMedium = prevStop.medium.toLowerCase();
+  if (stopMedium.includes('porcelain') && prevMedium.includes('porcelain')) {
+    return `Both pieces demonstrate mastery of porcelain work, a technique that evolved over centuries across Asia.`;
+  }
+
+  if (stop.isSurprise) {
+    return `This surprise discovery showcases a different aspect of Asian art - expanding your journey beyond your initial interests!`;
+  }
+
+  return `Each piece in your journey represents a unique chapter in Asian artistic heritage.`;
+}
+
+function initMap() {
+  map = new maplibregl.Map({
+    container: 'map',
+    style: {
+      version: 8,
+      sources: {},
+      layers: [{
+        id: 'background',
+        type: 'background',
+        paint: { 'background-color': '#16213e' }
+      }],
+      glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf'
+    },
+    center: [-73.9635, 40.7794],
+    zoom: 18,
+    bearing: -61,
+    pitch: 45,
+    maxZoom: 21,
+    minZoom: 16,
+  });
+
+  map.on('load', () => {
+    // Add gallery data
+    map.addSource('galleries', {
+      type: 'geojson',
+      data: filterByFloor(galleryData, currentFloor)
+    });
+
+    // Gallery fills
+    map.addLayer({
+      id: 'gallery-fills',
+      type: 'fill',
+      source: 'galleries',
+      paint: {
+        'fill-color': [
+          'case',
+          ['in', ['get', 'gallery_number'], ['literal', getRouteGalleries()]],
+          '#e4002b',
+          '#2a2a4a'
+        ],
+        'fill-opacity': 0.3,
+      }
+    });
+
+    map.addLayer({
+      id: 'gallery-outlines',
+      type: 'line',
+      source: 'galleries',
+      paint: {
+        'line-color': [
+          'case',
+          ['in', ['get', 'gallery_number'], ['literal', getRouteGalleries()]],
+          '#e4002b',
+          '#444466'
+        ],
+        'line-width': 2,
+      }
+    });
+
+    // Add route markers
+    addRouteMarkers();
+
+    // Focus on route
+    focusRoute();
+  });
+}
+
+function filterByFloor(geojson, floor) {
+  return {
+    type: 'FeatureCollection',
+    features: geojson.features.filter(f => f.properties.floor_name === floor)
+  };
+}
+
+function getRouteGalleries() {
+  return recommendedStops.map(s => s.gallery_number);
+}
+
+function addRouteMarkers() {
+  recommendedStops.forEach((stop, index) => {
+    const gallery = galleryData.features.find(f =>
+      f.properties.gallery_number === stop.gallery_number &&
+      f.properties.floor_name === currentFloor
+    );
+
+    if (gallery) {
+      const coords = gallery.geometry.type === 'Polygon'
+        ? gallery.geometry.coordinates[0]
+        : gallery.geometry.coordinates[0][0];
+
+      let sumLng = 0, sumLat = 0;
+      const n = coords.length - 1;
+      for (let i = 0; i < n; i++) {
+        sumLng += coords[i][0];
+        sumLat += coords[i][1];
+      }
+      const center = [sumLng / n, sumLat / n];
+
+      const el = document.createElement('div');
+      el.style.cssText = `
+        width: 36px;
+        height: 36px;
+        background: ${stop.isSurprise ? 'linear-gradient(135deg, #ff6b6b, #ee5a6f)' : '#e4002b'};
+        border: 3px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      `;
+      el.textContent = stop.isSurprise ? '✨' : index + 1;
+      el.onclick = () => focusStop(index);
+
+      new maplibregl.Marker({ element: el, anchor: 'center' })
+        .setLngLat(center)
+        .addTo(map);
+    }
+  });
+}
+
+function focusRoute() {
+  const galleries = recommendedStops.map(s => s.gallery_number);
+  const features = galleryData.features.filter(f =>
+    galleries.includes(f.properties.gallery_number) &&
+    f.properties.floor_name === currentFloor
+  );
+
+  if (features.length === 0) return;
+
+  const bounds = new maplibregl.LngLatBounds();
+  features.forEach(feature => {
+    const coords = feature.geometry.type === 'Polygon'
+      ? feature.geometry.coordinates[0]
+      : feature.geometry.coordinates[0][0];
+    coords.forEach(coord => bounds.extend(coord));
+  });
+
+  map.fitBounds(bounds, { padding: 80, duration: 1000 });
+}
+
+function focusStop(index) {
+  const stop = recommendedStops[index];
+  const gallery = galleryData.features.find(f =>
+    f.properties.gallery_number === stop.gallery_number &&
+    f.properties.floor_name === currentFloor
+  );
+
+  if (gallery) {
+    const coords = gallery.geometry.type === 'Polygon'
+      ? gallery.geometry.coordinates[0]
+      : gallery.geometry.coordinates[0][0];
+
+    let sumLng = 0, sumLat = 0;
+    const n = coords.length - 1;
+    for (let i = 0; i < n; i++) {
+      sumLng += coords[i][0];
+      sumLat += coords[i][1];
+    }
+    const center = [sumLng / n, sumLat / n];
+
+    map.flyTo({ center, zoom: 19.5, duration: 2000 });
+
+    // Highlight stop in sidebar
+    document.querySelectorAll('.stop').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+    });
+  }
+}
+
+function toggleFloorView() {
+  const floors = ['Floor 1', 'Floor 2', 'Floor 3'];
+  const currentIndex = floors.indexOf(currentFloor);
+  currentFloor = floors[(currentIndex + 1) % floors.length];
+  map.getSource('galleries').setData(filterByFloor(galleryData, currentFloor));
+}
+
+function resetView() {
+  map.flyTo({
+    center: [-73.9635, 40.7794],
+    zoom: 18,
+    bearing: -61,
+    pitch: 45,
+    duration: 1000
+  });
+}
+
+function printMap() {
+  window.print();
+}
+
+function downloadRoute() {
+  const data = {
+    stops: recommendedStops,
+    survey: surveyData,
+    galleries: getRouteGalleries()
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'met-tour-route.json';
+  a.click();
+}
+
+init();
+</script>
+
+</body>
+</html>

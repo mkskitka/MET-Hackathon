@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survey Test - Met Museum</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #eee;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(26, 26, 46, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(228, 0, 43, 0.3);
+  }
+
+  .header h1 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .progress {
+    background: rgba(255,255,255,0.1);
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    background: linear-gradient(90deg, #e4002b, #ff4d6d);
+    height: 100%;
+    width: 0;
+    transition: width 0.3s;
+  }
+
+  .question {
+    display: none;
+  }
+
+  .question.active {
+    display: block;
+    animation: fadeIn 0.4s;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question h2 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .question .instruction {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 25px;
+    font-style: italic;
+  }
+
+  .question .genai-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .options {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .option {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .option:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(228, 0, 43, 0.5);
+  }
+
+  .option.selected {
+    background: rgba(228, 0, 43, 0.2);
+    border-color: #e4002b;
+  }
+
+  .option-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .option-description {
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  .image-option {
+    background: rgba(255,255,255,0.05);
+    border: 3px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .image-option:hover {
+    border-color: rgba(228, 0, 43, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .image-option.selected {
+    border-color: #e4002b;
+    box-shadow: 0 0 20px rgba(228, 0, 43, 0.4);
+  }
+
+  .image-option img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #2a2a4a;
+  }
+
+  .image-option .info {
+    padding: 14px;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .image-option .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .image-option .meta {
+    font-size: 11px;
+    color: #999;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .word-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .word-pill {
+    background: rgba(100, 116, 255, 0.2);
+    border: 2px solid rgba(100, 116, 255, 0.4);
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .word-pill:hover {
+    background: rgba(100, 116, 255, 0.3);
+    border-color: rgba(100, 116, 255, 0.6);
+  }
+
+  .word-pill.selected {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-color: #8b5cf6;
+    color: white;
+  }
+
+  .timer {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #e4002b;
+    margin: 20px 0;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .btn {
+    background: #e4002b;
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: #c4001b;
+    transform: translateY(-1px);
+  }
+
+  .btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .results {
+    display: none;
+  }
+
+  .results.active {
+    display: block;
+  }
+
+  .results h2 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .result-item {
+    background: rgba(255,255,255,0.05);
+    border-left: 4px solid #e4002b;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .result-item strong {
+    color: #e4002b;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .result-item .value {
+    color: #ccc;
+    font-size: 14px;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+  }
+
+  .spinner {
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top: 3px solid #e4002b;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Survey Algorithm Test</h1>
+    <p class="subtitle">Testing dynamic question generation with real data</p>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading survey data...</p>
+  </div>
+
+  <div id="questions"></div>
+
+  <div id="results" class="results"></div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display:none">Back</button>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none">Next</button>
+  </div>
+</div>
+
+<script>
+// Survey state
+let surveyData = {
+  objects: [],
+  embeddings: {},
+  currentQuestion: 0,
+  totalQuestions: 9,
+  answers: {}
+};
+
+let questions = [];
+
+// Load data
+async function loadData() {
+  try {
+    const [csvResponse, embeddingsResponse] = await Promise.all([
+      fetch('../data/asian_art_on_view.csv'),
+      fetch('../data/text_embeddings.json')
+    ]);
+
+    const csvText = await csvResponse.text();
+    surveyData.objects = parseCSV(csvText);
+    surveyData.embeddings = await embeddingsResponse.json();
+
+    document.getElementById('loading').style.display = 'none';
+
+    // Generate all questions
+    generateQuestions();
+    showQuestion(0);
+
+  } catch (error) {
+    document.getElementById('loading').innerHTML = `
+      <p style="color: #ff6b6b;">Error loading data: ${error.message}</p>
+      <p style="font-size: 12px; margin-top: 10px;">Make sure the data files exist in ../data/</p>
+    `;
+  }
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',');
+
+  return lines.slice(1).map(line => {
+    const values = parseCSVLine(line);
+    const obj = {};
+    headers.forEach((header, i) => {
+      obj[header] = values[i] || '';
+    });
+    return obj;
+  });
+}
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function cleanText(text) {
+  return text ? text.trim().replace(/^"|"$/g, '').trim() : '';
+}
+
+// Generate all questions
+function generateQuestions() {
+  questions = [
+    generateQ1(),
+    generateQ2(),
+    generateQ3(),
+    generateQ4(),
+    generateQ5(),
+    null, // Q6 - will be generated after Q4 and Q5
+    null, // Q7 - will be generated after Q2, Q3, Q4
+    generateQ8(),
+    generateQ9()
+  ];
+}
+
+function generateQ1() {
+  return {
+    id: 'q1',
+    type: 'single',
+    question: 'How long do you have at the MET today?',
+    options: [
+      { value: 30, label: '⏱️ Quick Visit (30 min)', desc: '3-4 stops' },
+      { value: 60, label: '🚶 Focused Tour (1 hour)', desc: '5-6 stops' },
+      { value: 120, label: '🎨 Deep Dive (2 hours)', desc: '10-12 stops' },
+      { value: 180, label: '🏛️ Full Experience (3+ hours)', desc: '15+ stops' }
+    ]
+  };
+}
+
+function generateQ2() {
+  return {
+    id: 'q2',
+    type: 'single',
+    question: 'How do you want to experience the museum today?',
+    options: [
+      { value: 'curated', label: '🎯 Guide me - I want a curated journey', desc: 'Structured path with detailed information' },
+      { value: 'balanced', label: '🗺️ Balance - Direction with room to explore', desc: 'Suggested route with flexibility' },
+      { value: 'free', label: '🦋 Free spirit - I want to wander', desc: 'Loose suggestions, maximum serendipity' }
+    ]
+  };
+}
+
+function generateQ3() {
+  return {
+    id: 'q3',
+    type: 'single',
+    question: 'How do you like to explore art?',
+    options: [
+      { value: 'focused', label: '🎯 Go Deep - Immerse me in one story', desc: 'Focus on single theme with deep connections' },
+      { value: 'mixed', label: '🌈 Mix It Up - Variety with connections', desc: 'Balanced journey through related themes' },
+      { value: 'variety', label: '🎨 Surprise Me - Maximum variety', desc: 'Different cultures, periods, styles at every stop' }
+    ]
+  };
+}
+
+function generateQ4() {
+  // Get samples from different materials
+  const materialGroups = [
+    { key: 'ceramic', keywords: ['porcelain', 'ceramic'], count: 2 },
+    { key: 'metal', keywords: ['bronze', 'copper', 'gilt'], count: 2 },
+    { key: 'stone', keywords: ['jade', 'stone', 'nephrite'], count: 2 }
+  ];
+
+  const options = [];
+
+  materialGroups.forEach(group => {
+    const objects = surveyData.objects.filter(obj =>
+      group.keywords.some(kw => obj.medium.toLowerCase().includes(kw))
+    );
+
+    const highlights = objects.filter(obj => obj.is_highlight === 'True');
+    const samplePool = highlights.length >= group.count ? highlights : objects;
+    const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, group.count);
+
+    samples.forEach(obj => {
+      options.push({
+        value: group.key,
+        material_type: group.key,
+        object_id: obj.object_id,
+        title: cleanText(obj.title),
+        culture: cleanText(obj.culture),
+        medium: cleanText(obj.medium),
+        gallery: obj.gallery_number
+      });
+    });
+  });
+
+  return {
+    id: 'q4',
+    type: 'image_multi',
+    question: 'Which materials speak to you?',
+    instruction: 'Select as many as you like (at least 1)',
+    minSelect: 1,
+    maxSelect: 6,
+    options: options.sort(() => 0.5 - Math.random())
+  };
+}
+
+function generateQ5() {
+  // Show different subjects/themes with images
+  const themeGroups = [
+    { key: 'religious', keywords: ['buddha', 'bodhisattva', 'deity'], count: 2 },
+    { key: 'nature', keywords: ['flower', 'landscape', 'bird'], count: 2 },
+    { key: 'vessels', keywords: ['vase', 'bowl', 'jar', 'dish'], count: 2 }
+  ];
+
+  const options = [];
+
+  themeGroups.forEach(group => {
+    const objects = surveyData.objects.filter(obj =>
+      group.keywords.some(kw => obj.title.toLowerCase().includes(kw))
+    );
+
+    const highlights = objects.filter(obj => obj.is_highlight === 'True');
+    const samplePool = highlights.length >= group.count ? highlights : objects;
+    const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, group.count);
+
+    samples.forEach(obj => {
+      options.push({
+        value: group.key,
+        theme_type: group.key,
+        object_id: obj.object_id,
+        title: cleanText(obj.title),
+        culture: cleanText(obj.culture),
+        medium: cleanText(obj.medium),
+        gallery: obj.gallery_number
+      });
+    });
+  });
+
+  return {
+    id: 'q5',
+    type: 'image_multi',
+    question: 'Which subjects intrigue you?',
+    instruction: 'Select as many as you like (at least 1)',
+    minSelect: 1,
+    maxSelect: 6,
+    options: options.sort(() => 0.5 - Math.random())
+  };
+}
+
+function generateQ6(material1, material2) {
+  const templates = {
+    'ceramic-stone': {
+      question: "You're drawn to smooth, crafted surfaces. Which refined piece speaks to you?",
+      keywords: ['porcelain', 'jade', 'nephrite']
+    },
+    'ceramic-wood': {
+      question: "You appreciate decorative artistry. Which ornate work captures your eye?",
+      keywords: ['porcelain', 'lacquer', 'decorated']
+    },
+    'metal-stone': {
+      question: "Ancient materials call to you. Which historical piece resonates?",
+      keywords: ['bronze', 'jade', 'stone']
+    },
+    'metal-wood': {
+      question: "You love contrast and fusion. Which mixed-media work intrigues you?",
+      keywords: ['bronze', 'wood', 'gilt']
+    }
+  };
+
+  const key = `${material1}-${material2}`;
+  const template = templates[key] || templates['ceramic-stone'];
+
+  const filtered = surveyData.objects.filter(obj =>
+    template.keywords.some(kw => obj.medium.toLowerCase().includes(kw))
+  );
+
+  const highlights = filtered.filter(obj => obj.is_highlight === 'True');
+  const samplePool = highlights.length >= 3 ? highlights : filtered;
+  const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+  return {
+    id: 'q6',
+    type: 'image',
+    question: template.question,
+    instruction: 'Choose the one that draws you in',
+    genai: `Generated from materials: ${material1} + ${material2}`,
+    options: samples.map(obj => ({
+      value: obj.object_id,
+      object_id: obj.object_id,
+      title: cleanText(obj.title),
+      culture: cleanText(obj.culture),
+      medium: cleanText(obj.medium),
+      date: cleanText(obj.object_date),
+      gallery: obj.gallery_number
+    }))
+  };
+}
+
+function generateQ7(freedom, depth, material) {
+  const materialKeywords = {
+    'ceramic': ['porcelain', 'ceramic'],
+    'metal': ['bronze', 'copper'],
+    'stone': ['jade', 'stone'],
+    'wood': ['wood', 'lacquer']
+  };
+
+  const keywords = materialKeywords[material] || ['porcelain'];
+  let filtered = surveyData.objects.filter(obj =>
+    keywords.some(kw => obj.medium.toLowerCase().includes(kw))
+  );
+
+  let question = '';
+  let samplePool = [];
+
+  if (depth === 'focused') {
+    if (freedom === 'curated') {
+      question = `Let's go deep into ${material}. Pick 2 masterpieces to study closely.`;
+      samplePool = filtered.filter(obj => obj.is_highlight === 'True');
+    } else if (freedom === 'balanced') {
+      question = `Explore ${material} evolution. Pick 2 from different styles.`;
+      samplePool = filtered;
+    } else {
+      question = `Deep dive into ${material} surprises. Pick 2 hidden gems.`;
+      samplePool = filtered.filter(obj => obj.is_highlight === 'False');
+    }
+  } else if (depth === 'mixed') {
+    question = `A mix of ${material} pieces. Pick 2 that intrigue you.`;
+    samplePool = filtered;
+  } else {
+    question = `Different ${material} styles. Pick 2 that surprise you.`;
+    samplePool = filtered;
+  }
+
+  samplePool = samplePool.length > 0 ? samplePool : filtered;
+  const samples = samplePool.sort(() => 0.5 - Math.random()).slice(0, 4);
+
+  return {
+    id: 'q7',
+    type: 'image_multi',
+    question: question,
+    instruction: 'Select 2 artworks',
+    maxSelect: 2,
+    genai: `Generated from freedom=${freedom}, depth=${depth}, material=${material}`,
+    options: samples.map(obj => ({
+      value: obj.object_id,
+      object_id: obj.object_id,
+      title: cleanText(obj.title),
+      culture: cleanText(obj.culture),
+      medium: cleanText(obj.medium),
+      date: cleanText(obj.object_date),
+      gallery: obj.gallery_number
+    }))
+  };
+}
+
+function generateQ8() {
+  const galleries = ['207', '222', '219', '247'];
+  const options = [];
+
+  galleries.forEach(galleryNum => {
+    const galleryObjects = surveyData.objects.filter(obj => obj.gallery_number === galleryNum);
+    const highlights = galleryObjects.filter(obj => obj.is_highlight === 'True');
+    const sample = (highlights[0] || galleryObjects[0]);
+
+    if (sample) {
+      options.push({
+        value: galleryNum,
+        label: `Gallery ${galleryNum}`,
+        object_id: sample.object_id,
+        title: cleanText(sample.title),
+        culture: cleanText(sample.culture),
+        count: galleryObjects.length
+      });
+    }
+  });
+
+  return {
+    id: 'q8',
+    type: 'image',
+    question: 'Which gallery space calls to you?',
+    instruction: 'Choose the one that appeals most',
+    options: options
+  };
+}
+
+function generateQ9() {
+  const emotionWords = [
+    'Delicate', 'Smooth', 'Ancient', 'Luminous', 'Elegant',
+    'Peaceful', 'Powerful', 'Tranquil', 'Playful',
+    'Serene', 'Vibrant', 'Pure', 'Intricate', 'Bold',
+    'Subtle', 'Mysterious', 'Harmonious', 'Majestic',
+    'Contemplative', 'Striking'
+  ];
+
+  const shuffled = emotionWords.sort(() => 0.5 - Math.random());
+
+  return {
+    id: 'q9',
+    type: 'words',
+    question: 'Quick! Pick 5 words that excite you',
+    instruction: '(15 seconds - go with your gut!)',
+    timer: 15,
+    maxSelect: 5,
+    options: shuffled.map(word => ({ value: word, label: word }))
+  };
+}
+
+// Show question
+function showQuestion(index) {
+  surveyData.currentQuestion = index;
+
+  // Update progress
+  const progress = ((index + 1) / surveyData.totalQuestions) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+
+  // Generate dynamic questions if needed
+  if (index === 5 && !questions[5]) {
+    questions[5] = generateQ6(surveyData.answers.q4, surveyData.answers.q5);
+  }
+  if (index === 6 && !questions[6]) {
+    questions[6] = generateQ7(surveyData.answers.q2, surveyData.answers.q3, surveyData.answers.q4);
+  }
+
+  const question = questions[index];
+  const container = document.getElementById('questions');
+
+  container.innerHTML = renderQuestion(question);
+
+  // Show/hide nav buttons
+  document.getElementById('backBtn').style.display = index > 0 ? 'inline-block' : 'none';
+  document.getElementById('nextBtn').style.display = 'inline-block';
+  document.getElementById('nextBtn').disabled = true;
+  document.getElementById('nextBtn').textContent = index === surveyData.totalQuestions - 1 ? 'Finish' : 'Next';
+}
+
+function renderQuestion(q) {
+  let html = `<div class="question active">`;
+
+  if (q.genai) {
+    html += `<span class="genai-badge">🤖 AI Generated</span>`;
+  }
+
+  html += `<h2>${q.question}</h2>`;
+
+  if (q.instruction) {
+    html += `<p class="instruction">${q.instruction}</p>`;
+  }
+
+  if (q.timer) {
+    html += `<div class="timer" id="timer">${q.timer}</div>`;
+  }
+
+  if (q.type === 'single') {
+    html += `<div class="options">`;
+    q.options.forEach((opt, i) => {
+      html += `
+        <div class="option" onclick="selectOption('${q.id}', '${opt.value}', this)">
+          <div class="option-label">${opt.label}</div>
+          <div class="option-description">${opt.desc}</div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  if (q.type === 'image' || q.type === 'image_multi') {
+    html += `<div class="image-grid">`;
+    q.options.forEach((opt, i) => {
+      const imageUrl = `https://collectionapi.metmuseum.org/api/collection/v1/iiif/${opt.object_id}/full/!400,400/0/default.jpg`;
+      html += `
+        <div class="image-option" onclick="selectImageOption('${q.id}', '${opt.value}', this, ${q.minSelect || 1}, ${q.maxSelect || 1})">
+          <img src="${imageUrl}" alt="${opt.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%232a2a4a%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22 font-family=%22sans-serif%22%3ENo Image%3C/text%3E%3C/svg%3E'">
+          <div class="info">
+            <div class="title">${opt.title}</div>
+            <div class="meta">${opt.culture}${opt.date ? ' • ' + opt.date : ''}</div>
+            <div class="meta" style="margin-top: 4px; font-size: 10px;">Gallery ${opt.gallery} • ID: ${opt.object_id}</div>
+          </div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  if (q.type === 'words') {
+    html += `<div class="word-cloud">`;
+    q.options.forEach(opt => {
+      html += `
+        <div class="word-pill" onclick="selectWord('${q.id}', '${opt.value}', this, ${q.maxSelect})">
+          ${opt.label}
+        </div>
+      `;
+    });
+    html += `</div>`;
+
+    // Start timer
+    if (q.timer) {
+      setTimeout(() => startTimer(q.timer), 100);
+    }
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+function selectOption(qid, value, element) {
+  document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+  element.classList.add('selected');
+  surveyData.answers[qid] = value;
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function selectImageOption(qid, value, element, minSelect, maxSelect) {
+  if (maxSelect === 1 && minSelect === 1) {
+    // Single selection mode
+    document.querySelectorAll('.image-option').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+    surveyData.answers[qid] = [value];
+    document.getElementById('nextBtn').disabled = false;
+  } else {
+    // Multi-selection mode
+    const currentlySelected = Array.from(document.querySelectorAll('.image-option.selected'));
+
+    if (element.classList.contains('selected')) {
+      // Deselect
+      element.classList.remove('selected');
+    } else {
+      // Select (if under max limit)
+      if (currentlySelected.length < maxSelect) {
+        element.classList.add('selected');
+      } else {
+        return; // Don't allow more selections
+      }
+    }
+
+    // Collect all selected values
+    const selected = Array.from(document.querySelectorAll('.image-option.selected')).map(el => {
+      const onclickStr = el.getAttribute('onclick');
+      const match = onclickStr.match(/'([^']+)'/g);
+      return match[1].replace(/'/g, '');
+    });
+
+    surveyData.answers[qid] = selected;
+
+    // Enable next button if we have at least minSelect items
+    document.getElementById('nextBtn').disabled = selected.length < minSelect;
+  }
+}
+
+function selectWord(qid, value, element, maxSelect) {
+  element.classList.toggle('selected');
+  const selected = Array.from(document.querySelectorAll('.word-pill.selected')).map(el =>
+    el.textContent.trim()
+  );
+
+  if (selected.length > maxSelect) {
+    element.classList.remove('selected');
+    return;
+  }
+
+  surveyData.answers[qid] = selected;
+  document.getElementById('nextBtn').disabled = selected.length !== maxSelect;
+}
+
+function startTimer(seconds) {
+  let remaining = seconds;
+  const timerEl = document.getElementById('timer');
+
+  const interval = setInterval(() => {
+    remaining--;
+    if (timerEl) timerEl.textContent = remaining;
+
+    if (remaining <= 0) {
+      clearInterval(interval);
+      if (surveyData.answers.q9 && surveyData.answers.q9.length > 0) {
+        document.getElementById('nextBtn').disabled = false;
+      }
+    }
+  }, 1000);
+}
+
+function nextQuestion() {
+  if (surveyData.currentQuestion < surveyData.totalQuestions - 1) {
+    showQuestion(surveyData.currentQuestion + 1);
+  } else {
+    showResults();
+  }
+}
+
+function previousQuestion() {
+  if (surveyData.currentQuestion > 0) {
+    showQuestion(surveyData.currentQuestion - 1);
+  }
+}
+
+function showResults() {
+  document.getElementById('questions').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('backBtn').style.display = 'none';
+
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.className = 'results active';
+
+  let html = '<h2>✅ Survey Complete!</h2>';
+
+  const labels = {
+    q1: 'Duration',
+    q2: 'Freedom Level',
+    q3: 'Depth Preference',
+    q4: 'Material Choice 1',
+    q5: 'Material Choice 2',
+    q6: 'GenAI Selection',
+    q7: 'GenAI Multi-Select',
+    q8: 'Preferred Gallery',
+    q9: 'Emotion Words'
+  };
+
+  Object.keys(surveyData.answers).forEach(key => {
+    const value = surveyData.answers[key];
+    const displayValue = Array.isArray(value) ? value.join(', ') : value;
+
+    html += `
+      <div class="result-item">
+        <strong>${labels[key] || key}</strong>
+        <div class="value">${displayValue}</div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div style="margin-top: 30px; padding: 20px; background: rgba(100, 200, 100, 0.1); border-radius: 12px; border: 2px solid rgba(100, 200, 100, 0.3);">
+      <h3 style="color: #4ade80; margin-bottom: 10px;">Next Steps:</h3>
+      <p style="color: #aaa; font-size: 14px;">This data would now be sent to the recommendation engine to generate your personalized scavenger hunt!</p>
+    </div>
+  `;
+
+  html += `
+    <div style="margin-top: 20px; text-align: center;">
+      <button class="btn" onclick="location.reload()">Start Over</button>
+    </div>
+  `;
+
+  resultsContainer.innerHTML = html;
+
+  // Log to console
+  console.log('Survey Results:', surveyData.answers);
+}
+
+// Initialize
+loadData();
+</script>
+
+</body>
+</html>
