@@ -8,7 +8,7 @@
 <link href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css" rel="stylesheet" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: #1a1a2e; color: #eee; overflow: hidden; }
+  body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: #f5f0e8; color: #1a1008; overflow: hidden; }
 
   /* 3-column layout: galleries | objects | map */
   #app { display: flex; height: 100vh; }
@@ -17,20 +17,20 @@
   #col-galleries {
     width: 280px;
     flex-shrink: 0;
-    background: #0e0e22;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid #ddd5c8;
   }
 
   /* Column 2: Object detail */
   #col-objects {
     width: 340px;
     flex-shrink: 0;
-    background: #12122a;
+    background: #faf7f2;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid #ddd5c8;
     transition: width 0.2s;
   }
   #col-objects.collapsed { width: 0; overflow: hidden; border: none; }
@@ -39,12 +39,12 @@
   #col-image {
     width: 0;
     flex-shrink: 0;
-    background: #0a0a1a;
+    background: #f5f0e8;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     transition: width 0.2s;
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid #ddd5c8;
   }
   #col-image.open { width: 420px; }
 
@@ -54,11 +54,11 @@
     justify-content: space-between;
     padding: 10px 14px;
     flex-shrink: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid #ddd5c8;
   }
   .iv-title {
     font-size: 12px;
-    color: #888;
+    color: #666;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -67,20 +67,20 @@
   .iv-close {
     background: none;
     border: none;
-    color: #666;
+    color: #999;
     font-size: 18px;
     cursor: pointer;
     padding: 0 4px;
     flex-shrink: 0;
   }
-  .iv-close:hover { color: #fff; }
+  .iv-close:hover { color: #1a1008; }
 
   .iv-main {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #060612;
+    background: #eee8dd;
     position: relative;
     max-height: 40vh;
     min-height: 200px;
@@ -116,10 +116,10 @@
     padding: 8px;
     overflow-x: auto;
     flex-shrink: 0;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid #ddd5c8;
   }
   .iv-thumbs::-webkit-scrollbar { height: 4px; }
-  .iv-thumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .iv-thumbs::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
   .iv-thumb {
     width: 48px;
     height: 48px;
@@ -127,21 +127,21 @@
     object-fit: cover;
     flex-shrink: 0;
     cursor: pointer;
-    opacity: 0.4;
+    opacity: 0.5;
     transition: opacity 0.15s;
     border: 2px solid transparent;
   }
-  .iv-thumb:hover { opacity: 0.7; }
+  .iv-thumb:hover { opacity: 0.8; }
   .iv-thumb.active { opacity: 1; border-color: #e4002b; }
 
   .iv-info {
     padding: 10px 14px;
     flex-shrink: 0;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid #ddd5c8;
     font-size: 11px;
-    color: #666;
+    color: #888;
   }
-  .iv-info-title { font-size: 13px; color: #ccc; font-weight: 500; }
+  .iv-info-title { font-size: 13px; color: #1a1008; font-weight: 500; }
 
   /* Column 4: Map */
   #map-wrap { flex: 1; position: relative; }
@@ -152,8 +152,8 @@
     padding: 16px 14px 0;
     flex-shrink: 0;
   }
-  .gc-header h1 { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: 0.3px; }
-  .gc-stats { font-size: 11px; color: #555; margin-top: 3px; }
+  .gc-header h1 { font-size: 14px; font-weight: 600; color: #1a1008; letter-spacing: 0.3px; }
+  .gc-stats { font-size: 11px; color: #999; margin-top: 3px; }
 
   .gc-floors {
     display: flex;
@@ -163,9 +163,9 @@
     flex-wrap: wrap;
   }
   .gc-floor-pill {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #555;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid #ddd5c8;
+    color: #888;
     padding: 4px 10px;
     border-radius: 14px;
     cursor: pointer;
@@ -173,11 +173,11 @@
     font-weight: 500;
     transition: all 0.15s;
   }
-  .gc-floor-pill:hover { background: rgba(255,255,255,0.08); color: #aaa; }
+  .gc-floor-pill:hover { background: rgba(0,0,0,0.06); color: #555; }
   .gc-floor-pill.active { background: #e4002b; border-color: #e4002b; color: #fff; }
-  .gc-floor-pill.has-content { border-color: rgba(228,0,43,0.3); color: #888; }
-  .gc-floor-pill .pill-ct { font-size: 9px; color: #666; margin-left: 2px; }
-  .gc-floor-pill.active .pill-ct { color: rgba(255,255,255,0.6); }
+  .gc-floor-pill.has-content { border-color: rgba(228,0,43,0.3); color: #666; }
+  .gc-floor-pill .pill-ct { font-size: 9px; color: #aaa; margin-left: 2px; }
+  .gc-floor-pill.active .pill-ct { color: rgba(255,255,255,0.7); }
 
   .gc-list {
     flex: 1;
@@ -186,18 +186,18 @@
   }
   .gc-list::-webkit-scrollbar { width: 5px; }
   .gc-list::-webkit-scrollbar-track { background: transparent; }
-  .gc-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+  .gc-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
 
   .gc-section {
     font-size: 9px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: #444;
+    color: #999;
     padding: 12px 14px 4px;
     position: sticky;
     top: 0;
-    background: #0e0e22;
+    background: #fff;
     z-index: 2;
   }
 
@@ -210,20 +210,20 @@
     transition: background 0.1s;
     border-left: 2px solid transparent;
   }
-  .gc-item:hover { background: rgba(255,255,255,0.03); }
-  .gc-item.active { background: rgba(228,0,43,0.1); border-left-color: #e4002b; }
+  .gc-item:hover { background: rgba(0,0,0,0.03); }
+  .gc-item.active { background: rgba(228,0,43,0.06); border-left-color: #e4002b; }
   .gc-item.no-data { opacity: 0.35; }
 
   .gc-num {
     font-size: 13px;
     font-weight: 700;
-    color: #fff;
+    color: #1a1008;
     min-width: 32px;
   }
-  .gc-item.no-data .gc-num { color: #555; }
+  .gc-item.no-data .gc-num { color: #bbb; }
   .gc-name {
     font-size: 11px;
-    color: #777;
+    color: #888;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -243,9 +243,9 @@
   }
   .gc-route-select {
     width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #ccc;
+    background: #fff;
+    border: 1px solid #ddd5c8;
+    color: #1a1008;
     padding: 6px 10px;
     border-radius: 8px;
     font-size: 11px;
@@ -258,8 +258,8 @@
     background-position: right 10px center;
     padding-right: 28px;
   }
-  .gc-route-select:hover { border-color: rgba(255,255,255,0.2); }
-  .gc-route-select option { background: #1a1a2e; color: #ccc; }
+  .gc-route-select:hover { border-color: #bbb; }
+  .gc-route-select option { background: #fff; color: #1a1008; }
 
   .gc-route-info {
     margin-top: 6px;
@@ -299,7 +299,7 @@
   .oc-header {
     padding: 16px 16px 12px;
     flex-shrink: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid #ddd5c8;
   }
   .oc-header-img {
     width: 100%;
@@ -309,7 +309,7 @@
     margin-bottom: 10px;
     display: block;
   }
-  .oc-title { font-size: 15px; font-weight: 600; color: #fff; }
+  .oc-title { font-size: 15px; font-weight: 600; color: #1a1008; }
   .oc-subtitle { font-size: 12px; color: #e4002b; font-weight: 500; margin-top: 2px; }
   .oc-meta { font-size: 11px; color: #666; margin-top: 4px; }
   .oc-desc {
@@ -328,44 +328,44 @@
   }
   .oc-list::-webkit-scrollbar { width: 5px; }
   .oc-list::-webkit-scrollbar-track { background: transparent; }
-  .oc-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+  .oc-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
 
   .oc-obj {
     display: flex;
     gap: 10px;
     padding: 10px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid #eee8dd;
     cursor: pointer;
     transition: background 0.1s;
     border-left: 2px solid transparent;
   }
-  .oc-obj:hover { background: rgba(255,255,255,0.04); }
-  .oc-obj.active { background: rgba(228,0,43,0.08); border-left-color: #e4002b; }
+  .oc-obj:hover { background: rgba(0,0,0,0.02); }
+  .oc-obj.active { background: rgba(228,0,43,0.06); border-left-color: #e4002b; }
   .oc-obj-img {
     width: 56px;
     height: 56px;
     border-radius: 6px;
     object-fit: cover;
     flex-shrink: 0;
-    background: rgba(255,255,255,0.04);
+    background: #eee8dd;
   }
   .oc-obj-placeholder {
     width: 56px;
     height: 56px;
     border-radius: 6px;
     flex-shrink: 0;
-    background: rgba(255,255,255,0.03);
+    background: #eee8dd;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: #333;
+    color: #ccc;
   }
   .oc-obj-info { flex: 1; min-width: 0; }
   .oc-obj-title {
     font-size: 13px;
     font-weight: 500;
-    color: #ddd;
+    color: #1a1008;
     line-height: 1.3;
   }
   .oc-obj-artist { font-size: 11px; color: #888; margin-top: 2px; }
@@ -419,13 +419,13 @@
   }
   .od-scroll::-webkit-scrollbar { width: 5px; }
   .od-scroll::-webkit-scrollbar-track { background: transparent; }
-  .od-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+  .od-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
 
   .od-hero {
     width: 100%;
     max-height: 300px;
     object-fit: contain;
-    background: #0a0a1a;
+    background: #eee8dd;
     display: block;
   }
   .od-images {
@@ -440,14 +440,14 @@
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
-    background: rgba(255,255,255,0.03);
+    background: #eee8dd;
     transition: opacity 0.15s;
   }
   .od-images img:hover { opacity: 0.8; }
 
   .od-body { padding: 16px; }
-  .od-title { font-size: 18px; font-weight: 600; color: #fff; line-height: 1.3; }
-  .od-artist { font-size: 13px; color: #999; margin-top: 4px; }
+  .od-title { font-size: 18px; font-weight: 600; color: #1a1008; line-height: 1.3; }
+  .od-artist { font-size: 13px; color: #666; margin-top: 4px; }
 
   .od-meta-grid {
     display: grid;
@@ -456,15 +456,15 @@
     margin-top: 14px;
     font-size: 12px;
   }
-  .od-meta-label { color: #555; font-weight: 500; }
-  .od-meta-value { color: #aaa; }
+  .od-meta-label { color: #999; font-weight: 500; }
+  .od-meta-value { color: #444; }
 
   .od-desc {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid #ddd5c8;
     font-size: 13px;
-    color: #999;
+    color: #555;
     line-height: 1.7;
     white-space: pre-wrap;
   }
@@ -486,19 +486,19 @@
     top: 16px;
     left: 16px;
     z-index: 10;
-    background: rgba(26, 26, 46, 0.92);
+    background: rgba(255, 253, 247, 0.92);
     backdrop-filter: blur(12px);
     border-radius: 12px;
     padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
   }
   .map-floor-btn {
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #aaa;
+    border: 1px solid #ddd5c8;
+    color: #888;
     padding: 6px 14px;
     border-radius: 8px;
     cursor: pointer;
@@ -506,40 +506,40 @@
     font-weight: 500;
     transition: all 0.15s;
   }
-  .map-floor-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .map-floor-btn:hover { background: rgba(0,0,0,0.04); color: #555; }
   .map-floor-btn.active { background: #e4002b; border-color: #e4002b; color: #fff; }
 
   #hover-tooltip {
     display: none;
     position: fixed;
     z-index: 20;
-    background: rgba(20, 20, 40, 0.96);
+    background: rgba(255, 253, 247, 0.96);
     backdrop-filter: blur(16px);
     border-radius: 10px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     max-width: 280px;
     min-width: 180px;
     overflow: hidden;
     pointer-events: none;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid #ddd5c8;
   }
   .tt-header { padding: 8px 12px; }
-  .tt-title { font-size: 13px; font-weight: 600; color: #fff; }
+  .tt-title { font-size: 13px; font-weight: 600; color: #1a1008; }
   .tt-subtitle { font-size: 10px; color: #e4002b; font-weight: 500; margin-top: 1px; }
-  .tt-meta { font-size: 10px; color: #666; margin-top: 2px; }
+  .tt-meta { font-size: 10px; color: #888; margin-top: 2px; }
 
   .gallery-label {
-    color: rgba(255,255,255,0.45);
+    color: rgba(26,16,8,0.4);
     font-size: 11px;
     font-weight: 600;
     font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-    text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6);
+    text-shadow: none;
     pointer-events: none;
     white-space: nowrap;
     text-align: center;
     line-height: 1;
   }
-  .gallery-label.has-data { color: #fff; }
+  .gallery-label.has-data { color: #2a1a05; }
 </style>
 </head>
 <body>
@@ -1061,13 +1061,26 @@ function initMap() {
     container: 'map',
     style: {
       version: 8, sources: {},
-      layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#16213e' } }],
+      layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#e8e0d0' } }],
       glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf'
     },
     center: [-73.9635, 40.7794], zoom: 17.5, bearing: 118.5, pitch: 0, maxZoom: 21, minZoom: 15,
   });
 
   map.on('load', () => {
+    // OSM context (Central Park, roads)
+    map.addSource('osm', { type: 'vector', url: 'https://tiles.openfreemap.org/planet' });
+
+    map.addLayer({ id: 'ctx-parks', type: 'fill', source: 'osm', 'source-layer': 'landuse',
+      filter: ['in', ['get', 'class'], ['literal', ['park', 'garden', 'grass', 'recreation_ground']]],
+      paint: { 'fill-color': '#c8ddb0', 'fill-opacity': 0.55 } });
+    map.addLayer({ id: 'ctx-landcover', type: 'fill', source: 'osm', 'source-layer': 'landcover',
+      filter: ['in', ['get', 'class'], ['literal', ['grass', 'wood', 'scrub']]],
+      paint: { 'fill-color': '#c8ddb0', 'fill-opacity': 0.4 } });
+    map.addLayer({ id: 'ctx-roads', type: 'line', source: 'osm', 'source-layer': 'transportation',
+      filter: ['in', ['get', 'class'], ['literal', ['motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'minor', 'service']]],
+      paint: { 'line-color': '#1a1008', 'line-width': ['interpolate', ['linear'], ['zoom'], 14, 0.3, 18, 1.5], 'line-opacity': 0.15 } });
+
     map.addSource('floor-outline', { type: 'geojson', data: filterByFloor(floorOutlineData, currentFloor) });
     map.addSource('sections', { type: 'geojson', data: filterByFloor(sectionData, currentFloor) });
     map.addSource('other-rooms', { type: 'geojson', data: filterByFloor(otherRoomsData, currentFloor) });
@@ -1076,29 +1089,32 @@ function initMap() {
     map.addSource('route-line', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
     map.addSource('route-stops', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
 
-    map.addLayer({ id: 'floor-outline-fill', type: 'fill', source: 'floor-outline', paint: { 'fill-color': '#1e2444', 'fill-opacity': 0.9 } });
-    map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#3a4070', 'line-width': 2 } });
-    map.addLayer({ id: 'section-fills', type: 'fill', source: 'sections', paint: { 'fill-color': buildSectionColorExpr(), 'fill-opacity': 0.15 } });
-    map.addLayer({ id: 'section-outlines', type: 'line', source: 'sections', paint: { 'line-color': buildSectionColorExpr(), 'line-width': 2, 'line-opacity': 0.5 } });
-    map.addLayer({ id: 'other-room-fills', type: 'fill', source: 'other-rooms', paint: { 'fill-color': '#2a2a4a', 'fill-opacity': 0.6 } });
-    map.addLayer({ id: 'other-room-outlines', type: 'line', source: 'other-rooms', paint: { 'line-color': '#444466', 'line-width': 0.5 } });
+    // Floor outline - warm white with dark ink stroke
+    map.addLayer({ id: 'floor-outline-fill', type: 'fill', source: 'floor-outline', paint: { 'fill-color': '#fffdf7', 'fill-opacity': 1.0 } });
+    map.addLayer({ id: 'floor-outline-stroke', type: 'line', source: 'floor-outline', paint: { 'line-color': '#1a1008', 'line-width': 4 } });
+    // Sections
+    map.addLayer({ id: 'section-fills', type: 'fill', source: 'sections', paint: { 'fill-color': buildSectionColorExpr(), 'fill-opacity': 0.25 } });
+    map.addLayer({ id: 'section-outlines', type: 'line', source: 'sections', paint: { 'line-color': '#1a1008', 'line-width': 2.5, 'line-opacity': 0.9 } });
+    // Other rooms - warm beige
+    map.addLayer({ id: 'other-room-fills', type: 'fill', source: 'other-rooms', paint: { 'fill-color': '#e8e0d0', 'fill-opacity': 0.8 } });
+    map.addLayer({ id: 'other-room-outlines', type: 'line', source: 'other-rooms', paint: { 'line-color': '#1a1008', 'line-width': 1.5 } });
 
-    // No-data galleries: grey
-    map.addLayer({ id: 'gallery-fills-nodata', type: 'fill', source: 'galleries', paint: { 'fill-color': '#3a3a5a', 'fill-opacity': 0.3 }, filter: buildNoDataFilter() });
-    map.addLayer({ id: 'gallery-outlines-nodata', type: 'line', source: 'galleries', paint: { 'line-color': '#4a4a6a', 'line-width': 1, 'line-opacity': 0.5 }, filter: buildNoDataFilter() });
-    // Data galleries: red
-    map.addLayer({ id: 'gallery-fills-data', type: 'fill', source: 'galleries', paint: { 'fill-color': '#e4002b', 'fill-opacity': 0.35 }, filter: buildHasDataFilter() });
-    map.addLayer({ id: 'gallery-outlines-data', type: 'line', source: 'galleries', paint: { 'line-color': '#e4002b', 'line-width': 1.5, 'line-opacity': 0.9 }, filter: buildHasDataFilter() });
+    // No-data galleries: light parchment
+    map.addLayer({ id: 'gallery-fills-nodata', type: 'fill', source: 'galleries', paint: { 'fill-color': '#f5f0e8', 'fill-opacity': 1.0 }, filter: buildNoDataFilter() });
+    map.addLayer({ id: 'gallery-outlines-nodata', type: 'line', source: 'galleries', paint: { 'line-color': '#1a1008', 'line-width': 1.5, 'line-opacity': 0.6 }, filter: buildNoDataFilter() });
+    // Data galleries: warm orange
+    map.addLayer({ id: 'gallery-fills-data', type: 'fill', source: 'galleries', paint: { 'fill-color': '#f4a261', 'fill-opacity': 0.45 }, filter: buildHasDataFilter() });
+    map.addLayer({ id: 'gallery-outlines-data', type: 'line', source: 'galleries', paint: { 'line-color': '#1a1008', 'line-width': 2, 'line-opacity': 1.0 }, filter: buildHasDataFilter() });
     // Room connections
     map.addLayer({ id: 'connections-line', type: 'line', source: 'connections',
-      paint: { 'line-color': 'rgba(255,255,255,0.08)', 'line-width': 1, 'line-dasharray': [3, 3] } });
-    // Highlighted connections (for selected gallery)
+      paint: { 'line-color': 'rgba(0,0,0,0.06)', 'line-width': 1, 'line-dasharray': [3, 3] } });
+    // Highlighted connections
     map.addLayer({ id: 'connections-highlight', type: 'line', source: 'connections',
       paint: { 'line-color': '#e4002b', 'line-width': 2, 'line-opacity': 0.6 },
       filter: ['==', 'from', '__none__'] });
 
     // Hover/select
-    map.addLayer({ id: 'gallery-hover', type: 'fill', source: 'galleries', paint: { 'fill-color': '#ff4466', 'fill-opacity': 0.6 }, filter: ['==', 'gallery_number', ''] });
+    map.addLayer({ id: 'gallery-hover', type: 'fill', source: 'galleries', paint: { 'fill-color': '#e4002b', 'fill-opacity': 0.3 }, filter: ['==', 'gallery_number', ''] });
 
     // Route layers
     map.addLayer({ id: 'route-line-outline', type: 'line', source: 'route-line',

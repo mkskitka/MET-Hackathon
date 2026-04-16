@@ -46,16 +46,10 @@ def tour():
     return send_from_directory("viewer", "tour.html")
 
 
-# Serve all static files from repo root
-@app.route("/<path:path>")
-def static_files(path):
-    return send_from_directory(".", path)
-
-
 # --- API ---
 
 @app.route("/api/route", methods=["POST"])
-def generate_route():
+def api_generate_route():
     """
     Takes survey answers, returns a personalized route with reasons.
 
@@ -91,6 +85,12 @@ def health():
     return jsonify({"status": "ok"})
 
 
+# Serve all static files from repo root (MUST be after API routes)
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory(".", path)
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     print(f"\n  Met Hackathon Server")
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     print(f"  http://localhost:{port}/api/health → Health check")
     print()
 
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)

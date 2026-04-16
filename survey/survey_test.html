@@ -67,6 +67,20 @@
     font-weight: 500;
   }
 
+  /* ─── Question counter ─── */
+  .question-counter {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .question-counter strong {
+    color: var(--met-red);
+    font-weight: 600;
+  }
+
   /* ─── Progress ─── */
   .progress {
     background: var(--rule-soft);
@@ -429,6 +443,8 @@
     <h1>Survey Algorithm Test</h1>
     <p class="subtitle">Testing dynamic question generation with real data</p>
   </div>
+
+  <div class="question-counter" id="questionCounter"></div>
 
   <div class="progress">
     <div class="progress-bar" id="progressBar"></div>
@@ -868,9 +884,9 @@ function generateQ9() {
   return {
     id: 'q9',
     type: 'words',
-    question: 'Quick! Pick 5 words that excite you',
-    instruction: '(Go with your gut — pick 5)',
-    maxSelect: 5,
+    question: 'Quick! Pick 3 words that excite you',
+    instruction: '(Go with your gut — pick 3)',
+    maxSelect: 3,
     options: shuffled.map(word => ({ value: word, label: word }))
   };
 }
@@ -882,6 +898,8 @@ function showQuestion(index) {
   // Update progress
   const progress = ((index + 1) / surveyData.totalQuestions) * 100;
   document.getElementById('progressBar').style.width = progress + '%';
+  document.getElementById('questionCounter').innerHTML =
+    `Question <strong>${index + 1}</strong> of ${surveyData.totalQuestions}`;
 
   // Generate dynamic questions if needed
   if (index === 5 && !questions[5]) {
