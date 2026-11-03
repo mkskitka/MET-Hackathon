@@ -285,7 +285,6 @@
   <div class="sidebar">
     <div class="scavenger-hunt" id="scavengerHunt"></div>
     <div class="action-buttons">
-      <button class="btn" onclick="printMap()">📄 Print Map</button>
       <button class="btn btn-secondary" onclick="downloadRoute()">⬇ Download Route</button>
     </div>
   </div>
@@ -744,10 +743,6 @@ function resetView() {
     pitch: 45,
     duration: 1000
   });
-}
-
-function printMap() {
-  window.print();
 }
 
 function downloadRoute() {
